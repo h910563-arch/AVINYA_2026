@@ -10,6 +10,8 @@ export function Atmosphere() {
   const glow = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     let raf = 0;
     let tx = window.innerWidth / 2;
     let ty = window.innerHeight * 0.35;

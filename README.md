@@ -1,27 +1,19 @@
-# Welcome to your Lovable project
+# Avinya 26 Event Landing Site
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+A standalone React + TanStack Start event landing site for Avinya 26.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+You need Node.js and npm installed locally.
 
 ```sh
 git clone <this-repository-url>
 cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
 
-## Next Steps after Remixing
+## Project structure
 
 This is a single-page event/fest landing site. The fastest way to make it yours:
 
@@ -33,9 +25,7 @@ This is a single-page event/fest landing site. The fastest way to make it yours:
 6. **Team** — replace the `TEAMS` array with your faculty, mentors, and team members.
 7. **Sponsors** — update the `SPONSORS` array with real partner names.
 8. **SEO & social preview** — update the `TITLE`, `DESC`, and `og:image` in `src/routes/index.tsx`.
-9. **Publish** — run the preview, then click **Publish** to make it live.
-
-If you want registration, ticketing, or an admin dashboard, enable Lovable Cloud and add a backend.
+9. **Publish** — run the preview and deploy the static build to your preferred hosting provider.
 
 ## Built with
 

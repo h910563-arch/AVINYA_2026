@@ -9,6 +9,27 @@ const LINES = [
   "Tap me — I like the attention.",
 ];
 
+function speakText(text: string) {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-IN";
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+
+  const voices = window.speechSynthesis.getVoices();
+  const preferredVoice = voices.find((voice) => voice.lang.toLowerCase().includes("en")) ?? voices[0];
+  if (preferredVoice) {
+    utterance.voice = preferredVoice;
+  }
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
+
 /** Premium companion: brushed-metal shell, soft idle breathing, eyes that follow the pointer,
  *  waves and greets visitors with a rotating speech bubble. */
 export function Robot({ className }: { className?: string }) {
@@ -16,7 +37,6 @@ export function Robot({ className }: { className?: string }) {
   const [pupil, setPupil] = useState({ x: 0, y: 0 });
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [line, setLine] = useState(0);
-  const [speaking, setSpeaking] = useState(false);
   const [waving, setWaving] = useState(false);
 
   useEffect(() => {
@@ -39,38 +59,27 @@ export function Robot({ className }: { className?: string }) {
     return () => window.removeEventListener("pointermove", onMove);
   }, []);
 
-  // greet on mount, then cycle lines
+  // greet once on mount
   useEffect(() => {
     const hello = setTimeout(() => {
-      setSpeaking(true);
+      speakText(LINES[0]);
       setWaving(true);
       setTimeout(() => setWaving(false), 2600);
     }, 1200);
 
-    const cycle = setInterval(() => {
-      setSpeaking(false);
-      setTimeout(() => {
-        setLine((l) => (l + 1) % LINES.length);
-        setSpeaking(true);
-        setWaving(true);
-        setTimeout(() => setWaving(false), 2400);
-      }, 700);
-    }, 7000);
-
     return () => {
       clearTimeout(hello);
-      clearInterval(cycle);
     };
   }, []);
 
   const poke = () => {
-    setSpeaking(false);
-    setTimeout(() => {
-      setLine((l) => (l + 1) % LINES.length);
-      setSpeaking(true);
-      setWaving(true);
-      setTimeout(() => setWaving(false), 2400);
-    }, 180);
+    setLine((l) => {
+      const next = (l + 1) % LINES.length;
+      speakText(LINES[next]);
+      return next;
+    });
+    setWaving(true);
+    setTimeout(() => setWaving(false), 2400);
   };
 
   return (
@@ -78,21 +87,19 @@ export function Robot({ className }: { className?: string }) {
       {/* speech bubble */}
       <div className="pointer-events-none relative z-20 h-16">
         <AnimatePresence mode="wait">
-          {speaking ? (
-            <motion.div
-              key={line}
-              initial={{ opacity: 0, y: 12, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.95 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="glass absolute left-1/2 top-0 w-max max-w-[16rem] -translate-x-1/2 rounded-2xl px-4 py-2.5 text-center"
-            >
-              <p className="text-[12.5px] leading-snug tracking-tight text-foreground/90">
-                {LINES[line]}
-              </p>
-              <span className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 rounded-[3px] border-b border-r border-white/10 bg-white/5 backdrop-blur-xl" />
-            </motion.div>
-          ) : null}
+          <motion.div
+            key={line}
+            initial={{ opacity: 0, y: 12, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.95 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="glass absolute left-1/2 top-0 w-max max-w-[16rem] -translate-x-1/2 rounded-2xl px-4 py-2.5 text-center"
+          >
+            <p className="text-[12.5px] leading-snug tracking-tight text-foreground/90">
+              {LINES[line]}
+            </p>
+            <span className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 rounded-[3px] border-b border-r border-white/10 bg-white/5 backdrop-blur-xl" />
+          </motion.div>
         </AnimatePresence>
       </div>
 
@@ -174,7 +181,7 @@ export function Robot({ className }: { className?: string }) {
               fill="oklch(0.72 0.15 252 / 75%)"
               style={{
                 transformOrigin: "120px 120px",
-                animation: speaking ? "robot-talk 0.42s ease-in-out infinite" : "none",
+                animation: "robot-talk 0.42s ease-in-out infinite",
               }}
             />
 

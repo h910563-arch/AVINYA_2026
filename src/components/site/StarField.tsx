@@ -18,6 +18,7 @@ export function StarField() {
     if (!ctx) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobile = window.innerWidth < 768;
 
     let w = 0;
     let h = 0;
@@ -55,17 +56,17 @@ export function StarField() {
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.round((w * h) / 7000);
+      const count = Math.round((w * h) / (mobile ? 19000 : 7000));
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         z: rand(0.25, 1),
-        r: rand(0.35, 1.5),
+        r: rand(0.35, mobile ? 1.1 : 1.5),
         tw: rand(0.6, 2.4),
         ph: rand(0, Math.PI * 2),
       }));
 
-      rocks = Array.from({ length: Math.max(5, Math.round(w / 190)) }, () => makeRock(false));
+      rocks = Array.from({ length: mobile ? 2 : Math.max(5, Math.round(w / 190)) }, () => makeRock(false));
     };
 
     build();
@@ -128,18 +129,20 @@ export function StarField() {
       }
 
       // asteroids
-      for (const rk of rocks) {
-        if (!reduced) {
-          rk.x += rk.vx * dt * 0.06;
-          rk.y += rk.vy * dt * 0.06;
-          rk.rot += rk.vr * dt;
+      if (!mobile) {
+        for (const rk of rocks) {
+          if (!reduced) {
+            rk.x += rk.vx * dt * 0.06;
+            rk.y += rk.vy * dt * 0.06;
+            rk.rot += rk.vr * dt;
+          }
+          if (rk.y - rk.r > h + 30) Object.assign(rk, makeRock(true));
+          drawRock(rk);
         }
-        if (rk.y - rk.r > h + 30) Object.assign(rk, makeRock(true));
-        drawRock(rk);
       }
 
       // meteors
-      if (!reduced) {
+      if (!reduced && !mobile) {
         nextMeteor -= dt;
         if (nextMeteor <= 0) {
           nextMeteor = rand(1400, 4200);

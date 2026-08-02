@@ -4,11 +4,15 @@ import { useSiteContent, } from "@/lib/site-content-context";
 import type { EventItem } from "@/lib/site-content";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
+const FALLBACK_EVENT_IMAGE =
+  "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80";
+
 function EventCard({ event, index }: { event: EventItem; index: number }) {
   const ref = useRef<HTMLElement>(null);
   const [style, setStyle] = useState({ rx: 0, ry: 0, lx: 50, ly: 50, on: false });
 
   const onMove = (e: React.PointerEvent) => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -42,6 +46,11 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
             src={event.image}
             alt={event.title}
             loading="lazy"
+            onError={(event) => {
+              if (event.currentTarget.dataset.fallbackApplied === "true") return;
+              event.currentTarget.dataset.fallbackApplied = "true";
+              event.currentTarget.src = FALLBACK_EVENT_IMAGE;
+            }}
             className="h-52 w-full object-cover opacity-70 transition-[transform,opacity] duration-[1400ms] group-hover:scale-[1.06] group-hover:opacity-90"
             style={{ transitionTimingFunction: "var(--ease-lux)" }}
           />

@@ -1,6 +1,9 @@
 import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
+const FALLBACK_GALLERY_IMAGE =
+  "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80";
+
 export function Gallery() {
   const { gallery: GALLERY } = useSiteContent();
   return (
@@ -13,11 +16,16 @@ export function Gallery() {
         <div className="columns-2 gap-4 sm:columns-3 lg:columns-4 [&>*]:mb-4">
           {GALLERY.map((src, i) => (
             <Reveal key={src} delay={(i % 4) * 0.07} y={20} variant={revealVariant(i)}>
-              <figure className="group relative overflow-hidden rounded-2xl border border-white/8">
+              <figure className="group relative overflow-hidden rounded-2xl border border-white/8 break-inside-avoid">
                 <img
                   src={src}
                   alt="Gallery image"
                   loading="lazy"
+                  onError={(event) => {
+                    if (event.currentTarget.dataset.fallbackApplied === "true") return;
+                    event.currentTarget.dataset.fallbackApplied = "true";
+                    event.currentTarget.src = FALLBACK_GALLERY_IMAGE;
+                  }}
                   className="w-full object-cover opacity-80 transition-[transform,opacity] duration-[1400ms] group-hover:scale-[1.05] group-hover:opacity-100"
                   style={{ transitionTimingFunction: "var(--ease-lux)" }}
                 />

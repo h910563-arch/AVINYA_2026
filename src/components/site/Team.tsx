@@ -1,6 +1,9 @@
 import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
+const FALLBACK_TEAM_IMAGE =
+  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80";
+
 export function Team() {
   const { teams: TEAMS } = useSiteContent();
   return (
@@ -32,6 +35,11 @@ export function Team() {
                           src={m.image}
                           alt={m.name}
                           loading="lazy"
+                          onError={(event) => {
+                            if (event.currentTarget.dataset.fallbackApplied === "true") return;
+                            event.currentTarget.dataset.fallbackApplied = "true";
+                            event.currentTarget.src = FALLBACK_TEAM_IMAGE;
+                          }}
                           className="aspect-[4/5] w-full object-cover opacity-85 grayscale transition-[transform,filter,opacity] duration-[1400ms] group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
                           style={{ transitionTimingFunction: "var(--ease-lux)" }}
                         />
