@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
-import { EVENTS, FEST } from "@/lib/site-data";
+import { FEST } from "@/lib/site-data";
+import { useSiteContent, } from "@/lib/site-content-context";
+import type { EventItem } from "@/lib/site-content";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
-function EventCard({ event, index }: { event: (typeof EVENTS)[number]; index: number }) {
+function EventCard({ event, index }: { event: EventItem; index: number }) {
   const ref = useRef<HTMLElement>(null);
   const [style, setStyle] = useState({ rx: 0, ry: 0, lx: 50, ly: 50, on: false });
 
@@ -76,6 +78,7 @@ function EventCard({ event, index }: { event: (typeof EVENTS)[number]; index: nu
 }
 
 export function Events() {
+  const { events: EVENTS } = useSiteContent();
   return (
     <section id="events" className="relative px-6 py-28 sm:py-36">
       <div className="mx-auto max-w-6xl">

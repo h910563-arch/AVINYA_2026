@@ -1,8 +1,12 @@
-import { CONTACT_BLURB, FEST } from "@/lib/site-data";
+import { FEST } from "@/lib/site-data";
+import { Link } from "@tanstack/react-router";
+import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText } from "./Reveal";
 import { MagneticButton } from "./MagneticButton";
 
 export function Footer() {
+  const { contact } = useSiteContent();
+  const CONTACT_BLURB = contact.blurb;
   return (
     <footer id="contact" className="relative px-6 pb-16 pt-24 sm:pt-32">
       <div className="mx-auto max-w-6xl">
@@ -29,7 +33,7 @@ export function Footer() {
               </Reveal>
               <Reveal delay={0.3}>
                 <div className="mt-10">
-                  <MagneticButton href={`mailto:${FEST.email}`}>Say hello</MagneticButton>
+                  <MagneticButton href={`mailto:${contact.email}`}>Say hello</MagneticButton>
                 </div>
               </Reveal>
             </div>
@@ -38,15 +42,15 @@ export function Footer() {
               <Reveal delay={0.15}>
                 <p className="eyebrow mb-2">Email</p>
                 <a
-                  href={`mailto:${FEST.email}`}
+                  href={`mailto:${contact.email}`}
                   className="text-[15px] tracking-tight text-foreground/90 transition-opacity duration-500 hover:opacity-70"
                 >
-                  {FEST.email}
+                  {contact.email}
                 </a>
               </Reveal>
               <Reveal delay={0.25}>
                 <p className="eyebrow mb-2">Campus</p>
-                <p className="text-[15px] leading-relaxed text-foreground/90">{FEST.campus}</p>
+                <p className="text-[15px] leading-relaxed text-foreground/90">{contact.campus}</p>
               </Reveal>
             </div>
           </div>
@@ -54,9 +58,18 @@ export function Footer() {
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
           <span className="font-display text-sm font-semibold tracking-tight">{FEST.name}</span>
-          <span className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-muted-foreground">
-            {FEST.tagline}
-          </span>
+          <div className="flex items-center gap-5">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-muted-foreground">
+              {FEST.tagline}
+            </span>
+            <Link
+              to="/admin"
+              className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-muted-foreground transition-colors duration-500 hover:text-foreground"
+            >
+              Admin
+            </Link>
+          </div>
+
         </div>
       </div>
     </footer>
