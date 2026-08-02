@@ -100,7 +100,16 @@ export function Robot({ className }: { className?: string }) {
 
           {/* arms */}
           <rect x="52" y="160" width="16" height="44" rx="8" fill="oklch(0.24 0.012 265)" stroke="oklch(1 0 0 / 8%)" />
-          <rect x="172" y="160" width="16" height="44" rx="8" fill="oklch(0.24 0.012 265)" stroke="oklch(1 0 0 / 8%)" />
+          <rect
+            x="172"
+            y="160"
+            width="16"
+            height="44"
+            rx="8"
+            fill="oklch(0.24 0.012 265)"
+            stroke="oklch(1 0 0 / 8%)"
+            style={{ transformOrigin: "180px 166px", animation: "arm-wave 9s ease-in-out infinite" }}
+          />
         </svg>
 
         {/* soft key light */}
@@ -112,6 +121,8 @@ export function Robot({ className }: { className?: string }) {
           }}
         />
       </div>
+      </div>
     </div>
   );
+
 }
