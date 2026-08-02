@@ -28,6 +28,7 @@ export function Robot({ className }: { className?: string }) {
 
   return (
     <div ref={wrap} className={className} style={{ perspective: "1000px" }}>
+      <div style={{ animation: "robot-hover 11s var(--ease-lux) infinite" }}>
       <div
         className="relative transition-transform duration-[900ms]"
         style={{
@@ -36,6 +37,7 @@ export function Robot({ className }: { className?: string }) {
           animation: "breathe 6.5s ease-in-out infinite",
         }}
       >
+
         <svg viewBox="0 0 240 260" className="h-full w-full" role="img" aria-label="Avinya companion robot">
           <defs>
             <linearGradient id="shell" x1="0" y1="0" x2="0.4" y2="1">
