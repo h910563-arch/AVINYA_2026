@@ -50,7 +50,11 @@ export function Hero() {
             transition={{ duration: 1, ease: EASE }}
             className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-xl"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-azure" />
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-azure"
+              style={{ animation: "twinkle 2.4s ease-in-out infinite" }}
+            />
+
             <span className="eyebrow !text-[10.5px] !tracking-[0.28em] text-foreground/70">
               {FEST.tagline}
             </span>
@@ -123,10 +127,20 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.92, filter: "blur(14px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.6, delay: 0.3, ease: EASE }}
-          className="mx-auto w-[240px] sm:w-[300px] lg:w-full lg:max-w-[340px]"
+          className="relative mx-auto w-[240px] sm:w-[300px] lg:w-full lg:max-w-[340px]"
         >
-          <Robot className="h-auto w-full" />
+          <div
+            className="pointer-events-none absolute inset-6 -z-10 rounded-full glow-pulse"
+            style={{
+              background:
+                "radial-gradient(circle, color-mix(in oklab, var(--azure) 38%, transparent), transparent 68%)",
+            }}
+          />
+          <div style={{ animation: "tilt-soft 14s ease-in-out infinite" }}>
+            <Robot className="h-auto w-full" />
+          </div>
         </motion.div>
+
       </div>
     </section>
   );
