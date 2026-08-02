@@ -16,16 +16,16 @@ const SHIPS: Ship[] = [
   { top: "66%", scale: 0.8, dur: 64, delay: 26, hue: "var(--cyan)", opacity: 0.55 },
 ];
 
-function Saucer({ hue }: { hue: string }) {
+function Saucer({ hue, uid }: { hue: string; uid: number }) {
   return (
     <svg viewBox="0 0 160 92" className="h-auto w-[130px]" aria-hidden="true">
       <defs>
-        <linearGradient id={`hull-${hue}`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`hull-${uid}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="oklch(0.55 0.015 265)" />
           <stop offset="55%" stopColor="oklch(0.3 0.015 265)" />
           <stop offset="100%" stopColor="oklch(0.2 0.015 265)" />
         </linearGradient>
-        <radialGradient id={`dome-${hue}`}>
+        <radialGradient id={`dome-${uid}`}>
           <stop offset="0%" stopColor={`color-mix(in oklab, ${hue} 70%, white)`} />
           <stop offset="100%" stopColor={`color-mix(in oklab, ${hue} 40%, transparent)`} />
         </radialGradient>
@@ -39,11 +39,11 @@ function Saucer({ hue }: { hue: string }) {
       />
 
       {/* dome */}
-      <path d="M56 42 A24 22 0 0 1 104 42 Z" fill={`url(#dome-${hue})`} opacity="0.85" />
+      <path d="M56 42 A24 22 0 0 1 104 42 Z" fill={`url(#dome-${uid})`} opacity="0.85" />
       <ellipse cx="72" cy="32" rx="7" ry="4" fill="oklch(1 0 0 / 35%)" />
 
       {/* hull */}
-      <ellipse cx="80" cy="48" rx="62" ry="14" fill={`url(#hull-${hue})`} stroke="oklch(1 0 0 / 22%)" strokeWidth="1" />
+      <ellipse cx="80" cy="48" rx="62" ry="14" fill={`url(#hull-${uid})`} stroke="oklch(1 0 0 / 22%)" strokeWidth="1" />
       <ellipse cx="80" cy="45" rx="52" ry="7" fill="oklch(1 0 0 / 6%)" />
 
       {/* lights */}
@@ -76,7 +76,7 @@ export function Ufos() {
           }}
         >
           <div style={{ animation: `ufo-bob ${7 + i * 2}s ease-in-out infinite` }}>
-            <Saucer hue={s.hue} />
+            <Saucer hue={s.hue} uid={i} />
           </div>
         </div>
       ))}
