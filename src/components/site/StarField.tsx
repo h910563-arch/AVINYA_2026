@@ -29,7 +29,7 @@ export function StarField() {
     const rand = (a: number, b: number) => a + Math.random() * (b - a);
 
     const makeRock = (fromTop: boolean): Rock => {
-      const r = rand(6, 010 + 22);
+      const r = rand(6, 26);
       const pts: number[] = [];
       for (let i = 0; i < 9; i++) pts.push(rand(0.68, 1.25));
       return {
