@@ -40,7 +40,7 @@ export function RevealText({
   delay?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -8% 0px" });
+  const inView = useInView(ref, { once: true });
   const words = text.split(" ");
 
   return (
