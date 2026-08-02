@@ -1,5 +1,5 @@
 import { GALLERY } from "@/lib/site-data";
-import { Reveal, RevealText } from "./Reveal";
+import { Reveal, RevealText, REVEAL_VARIANTS } from "./Reveal";
 
 export function Gallery() {
   return (
@@ -11,7 +11,7 @@ export function Gallery() {
 
         <div className="columns-2 gap-4 sm:columns-3 lg:columns-4 [&>*]:mb-4">
           {GALLERY.map((src, i) => (
-            <Reveal key={src} delay={(i % 4) * 0.07} y={20}>
+            <Reveal key={src} delay={(i % 4) * 0.07} y={20} variant={REVEAL_VARIANTS[i % REVEAL_VARIANTS.length]}>
               <figure className="group relative overflow-hidden rounded-2xl border border-white/8">
                 <img
                   src={src}
