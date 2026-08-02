@@ -78,6 +78,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
 }
 
 export function Events() {
+  const { events: EVENTS } = useSiteContent();
   return (
     <section id="events" className="relative px-6 py-28 sm:py-36">
       <div className="mx-auto max-w-6xl">
