@@ -31,10 +31,12 @@ export function Reveal({
 export function RevealText({
   text,
   className,
+  wordClassName,
   delay = 0,
 }: {
   text: string;
   className?: string;
+  wordClassName?: string;
   delay?: number;
 }) {
   const words = text.split(" ");
@@ -43,7 +45,7 @@ export function RevealText({
       {words.map((word, i) => (
         <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom">
           <motion.span
-            className="inline-block"
+            className={`inline-block ${wordClassName ?? ""}`}
             initial={{ y: "110%" }}
             whileInView={{ y: "0%" }}
             viewport={{ once: true, margin: "-10% 0px" }}

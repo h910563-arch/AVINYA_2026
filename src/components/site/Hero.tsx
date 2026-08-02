@@ -52,8 +52,8 @@ export function Hero() {
             </span>
           </motion.div>
 
-          <h1 className="text-lux text-[clamp(3.4rem,11vw,8.5rem)] font-semibold">
-            <RevealText text={FEST.name} />
+          <h1 className="text-[clamp(3.4rem,11vw,8.5rem)] font-semibold">
+            <RevealText text={FEST.name} wordClassName="text-lux" />
           </h1>
 
           <motion.p
