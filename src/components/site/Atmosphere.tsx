@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { StarField } from "./StarField";
 
 /**
  * Living environment: slow aurora meshes, drifting light rays, grain,
@@ -39,6 +40,9 @@ export function Atmosphere() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden grain">
       <div className="absolute inset-0 bg-background" />
+
+      <StarField />
+
 
       {/* aurora meshes */}
       <div
