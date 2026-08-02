@@ -50,7 +50,11 @@ export function Hero() {
             transition={{ duration: 1, ease: EASE }}
             className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-xl"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-azure" />
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-azure"
+              style={{ animation: "twinkle 2.4s ease-in-out infinite" }}
+            />
+
             <span className="eyebrow !text-[10.5px] !tracking-[0.28em] text-foreground/70">
               {FEST.tagline}
             </span>
