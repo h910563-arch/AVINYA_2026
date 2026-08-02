@@ -199,14 +199,70 @@
 
 @utility text-lux {
   background: linear-gradient(
-    175deg,
-    oklch(0.99 0 0) 20%,
-    oklch(0.78 0.01 260) 70%,
+    100deg,
+    oklch(0.99 0 0) 12%,
+    oklch(0.82 0.05 250) 32%,
+    oklch(0.99 0 0) 46%,
+    oklch(0.78 0.01 260) 68%,
     oklch(0.6 0.02 265)
   );
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: shimmer-lux 9s var(--ease-lux) infinite;
+}
+
+@utility float-slow {
+  animation: float-soft 9s ease-in-out infinite;
+}
+
+@utility glow-pulse {
+  animation: glow-pulse 6s ease-in-out infinite;
+}
+
+@keyframes shimmer-lux {
+  0%,
+  100% {
+    background-position: 120% 50%;
+  }
+  50% {
+    background-position: -20% 50%;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    filter: blur(28px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(40px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes tilt-soft {
+  0%,
+  100% {
+    transform: rotate(-1.2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(1.2deg) translateY(-8px);
+  }
 }
 
 @keyframes drift-a {
