@@ -41,7 +41,7 @@ export function Reveal({
       ref={ref}
       className={className}
       initial={{ opacity: 0, y, filter: "blur(10px)" }}
-      animate={seen ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
+      animate={seen ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y, filter: "blur(10px)" }}
       transition={{ duration: 1.1, delay, ease: EASE }}
     >
       {children}
