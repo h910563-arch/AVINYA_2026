@@ -1,24 +1,52 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Atmosphere } from "@/components/site/Atmosphere";
+import { SmoothScroll } from "@/components/site/SmoothScroll";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { Events } from "@/components/site/Events";
+import { Timeline } from "@/components/site/Timeline";
+import { Gallery } from "@/components/site/Gallery";
+import { Team } from "@/components/site/Team";
+import { Sponsors } from "@/components/site/Sponsors";
+import { Footer } from "@/components/site/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "अvinya'26 — Infinity Unleashed | Annual Tech Fest";
+const DESC =
+  "अVINYA'26, the annual tech fest by The Empirical Society at GTB 4th Centenary Engineering College. Flagship events, workshops and an inter-college showcase, 04–06 March 2026.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="relative min-h-screen">
+      <SmoothScroll />
+      <Atmosphere />
+      <Nav />
+      <main>
+        <Hero />
+        <About />
+        <Events />
+        <Timeline />
+        <Gallery />
+        <Team />
+        <Sponsors />
+      </main>
+      <Footer />
     </div>
   );
 }
