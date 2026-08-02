@@ -37,8 +37,8 @@
   --color-cyan: var(--cyan);
   --color-silver: var(--silver);
   --color-graphite: var(--graphite);
-  --font-display: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
@@ -111,12 +111,15 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 0.96;
+    font-optical-sizing: auto;
   }
 
   p {
-    line-height: 1.75;
+    line-height: 1.78;
+    letter-spacing: -0.005em;
   }
 }
 
