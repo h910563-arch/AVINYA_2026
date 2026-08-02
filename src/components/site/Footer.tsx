@@ -58,9 +58,18 @@ export function Footer() {
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
           <span className="font-display text-sm font-semibold tracking-tight">{FEST.name}</span>
-          <span className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-muted-foreground">
-            {FEST.tagline}
-          </span>
+          <div className="flex items-center gap-5">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-muted-foreground">
+              {FEST.tagline}
+            </span>
+            <Link
+              to="/admin"
+              className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-muted-foreground transition-colors duration-500 hover:text-foreground"
+            >
+              Admin
+            </Link>
+          </div>
+
         </div>
       </div>
     </footer>
