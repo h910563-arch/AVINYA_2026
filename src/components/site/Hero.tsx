@@ -33,13 +33,14 @@ export function Hero() {
 
       {/* floating glass objects */}
       <div
-        className="pointer-events-none absolute left-[3%] top-[8%] -z-10 hidden h-32 w-32 xl:h-40 xl:w-40 rounded-[2.2rem] border border-white/10 bg-white/4 backdrop-blur-2xl lg:block"
+        className="pointer-events-none absolute right-[26%] top-[14%] -z-10 hidden h-28 w-28 rounded-[2.2rem] border border-white/10 bg-white/4 backdrop-blur-2xl xl:block"
         style={{ animation: "float-soft 12s ease-in-out infinite", transform: "rotate(-12deg)" }}
       />
       <div
         className="pointer-events-none absolute right-[6%] bottom-[10%] -z-10 hidden h-28 w-28 rounded-full border border-white/10 bg-white/4 backdrop-blur-2xl lg:block"
         style={{ animation: "float-soft 16s ease-in-out infinite 1.5s" }}
       />
+
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-16 lg:grid-cols-[1.25fr_0.75fr]">
         <div>
