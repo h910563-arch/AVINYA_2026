@@ -24,25 +24,92 @@ function useSeen<T extends HTMLElement>() {
   return { ref, seen };
 }
 
+export type RevealVariant =
+  | "up"
+  | "left"
+  | "right"
+  | "scale"
+  | "flip"
+  | "flip-y"
+  | "tilt"
+  | "swing"
+  | "zoom-blur";
+
+/** Distinct entrance choreographies so each card arrives differently. */
+export const REVEAL_VARIANTS: RevealVariant[] = [
+  "up",
+  "flip",
+  "left",
+  "scale",
+  "swing",
+  "right",
+  "flip-y",
+  "tilt",
+  "zoom-blur",
+];
+
+export function revealVariant(i: number): RevealVariant {
+  return REVEAL_VARIANTS[((i % REVEAL_VARIANTS.length) + REVEAL_VARIANTS.length) % REVEAL_VARIANTS.length] ?? "up";
+}
+
+function statesFor(variant: RevealVariant, y: number) {
+  const to = {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    scale: 1,
+    rotate: 0,
+    rotateX: 0,
+    rotateY: 0,
+    filter: "blur(0px)",
+  };
+  const base = { opacity: 0, x: 0, y: 0, scale: 1, rotate: 0, rotateX: 0, rotateY: 0, filter: "blur(10px)" };
+
+  switch (variant) {
+    case "left":
+      return { from: { ...base, x: -56, y: y * 0.3 }, to };
+    case "right":
+      return { from: { ...base, x: 56, y: y * 0.3 }, to };
+    case "scale":
+      return { from: { ...base, scale: 0.86, y: y * 0.5 }, to };
+    case "flip":
+      return { from: { ...base, rotateX: -42, y: y * 0.8 }, to };
+    case "flip-y":
+      return { from: { ...base, rotateY: 38, x: 26 }, to };
+    case "tilt":
+      return { from: { ...base, rotate: -6, y, scale: 0.94 }, to };
+    case "swing":
+      return { from: { ...base, rotate: 7, x: 34, y: y * 0.4 }, to };
+    case "zoom-blur":
+      return { from: { ...base, scale: 1.14, filter: "blur(18px)" }, to };
+    default:
+      return { from: { ...base, y }, to };
+  }
+}
+
 export function Reveal({
   children,
   delay = 0,
   y = 28,
   className,
+  variant = "up",
 }: {
   children: ReactNode;
   delay?: number;
   y?: number;
   className?: string;
+  variant?: RevealVariant;
 }) {
   const { ref, seen } = useSeen<HTMLDivElement>();
+  const { from, to } = statesFor(variant, y);
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y, filter: "blur(10px)" }}
-      animate={seen ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y, filter: "blur(10px)" }}
-      transition={{ duration: 1.1, delay, ease: EASE }}
+      style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+      initial={from}
+      animate={seen ? to : from}
+      transition={{ duration: 1.05, delay, ease: EASE }}
     >
       {children}
     </motion.div>

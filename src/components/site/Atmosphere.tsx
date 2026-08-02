@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { StarField } from "./StarField";
+import { Ufos } from "./Ufos";
 
 /**
  * Living environment: slow aurora meshes, drifting light rays, grain,
@@ -42,6 +43,7 @@ export function Atmosphere() {
       <div className="absolute inset-0 bg-background" />
 
       <StarField />
+      <Ufos />
 
 
       {/* aurora meshes */}

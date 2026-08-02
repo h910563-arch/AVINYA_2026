@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { EVENTS, FEST } from "@/lib/site-data";
-import { Reveal, RevealText } from "./Reveal";
+import { Reveal, RevealText, revealVariant } from "./Reveal";
 
 function EventCard({ event, index }: { event: (typeof EVENTS)[number]; index: number }) {
   const ref = useRef<HTMLElement>(null);
@@ -16,7 +16,7 @@ function EventCard({ event, index }: { event: (typeof EVENTS)[number]; index: nu
   };
 
   return (
-    <Reveal delay={index * 0.1}>
+    <Reveal delay={index * 0.1} variant={revealVariant(index)}>
       <article
         ref={ref}
         onPointerMove={onMove}

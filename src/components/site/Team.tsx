@@ -1,5 +1,5 @@
 import { TEAMS } from "@/lib/site-data";
-import { Reveal, RevealText } from "./Reveal";
+import { Reveal, RevealText, revealVariant } from "./Reveal";
 
 export function Team() {
   return (
@@ -24,7 +24,7 @@ export function Team() {
 
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 {group.members.map((m, i) => (
-                  <Reveal key={`${group.title}-${m.name}-${i}`} delay={(i % 4) * 0.06} y={18}>
+                  <Reveal key={`${group.title}-${m.name}-${i}`} delay={(i % 4) * 0.06} y={18} variant={revealVariant(i + group.title.length)}>
                     <article className="glass sheen glass-hover group h-full overflow-hidden rounded-[1.4rem] p-2">
                       <div className="overflow-hidden rounded-[1rem]">
                         <img

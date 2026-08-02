@@ -420,3 +420,54 @@
     transform: rotate(360deg) translateX(var(--orbit-r, 140px)) rotate(-360deg);
   }
 }
+
+@keyframes ufo-cruise {
+  0% {
+    transform: translate3d(-20vw, 0, 0);
+  }
+  100% {
+    transform: translate3d(118vw, -6vh, 0);
+  }
+}
+
+@keyframes ufo-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(2deg);
+  }
+}
+
+@keyframes beam-pulse {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scaleY(0.85);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scaleY(1.12);
+  }
+}
+
+@keyframes hand-wave {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(-46deg);
+  }
+}
+
+@keyframes robot-talk {
+  0%,
+  100% {
+    transform: scaleY(0.5) scaleX(1);
+  }
+  50% {
+    transform: scaleY(1.9) scaleX(0.8);
+  }
+}

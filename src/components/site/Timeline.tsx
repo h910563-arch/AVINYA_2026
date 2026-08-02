@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { TIMELINE } from "@/lib/site-data";
-import { Reveal, RevealText } from "./Reveal";
+import { Reveal, RevealText, revealVariant } from "./Reveal";
 
 export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ export function Timeline() {
           />
 
           {TIMELINE.map((item, i) => (
-            <Reveal key={item.phase} delay={i * 0.06} className="relative pb-14 last:pb-0">
+            <Reveal key={item.phase} delay={i * 0.06} variant={revealVariant(i * 3)} className="relative pb-14 last:pb-0">
               <span className="absolute -left-8 top-2 h-[7px] w-[7px] rounded-full bg-silver shadow-[0_0_0_5px_oklch(0.72_0.15_252/14%)] sm:-left-[46px]" />
               <p className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-muted-foreground">
                 {item.phase} · {item.meta}
