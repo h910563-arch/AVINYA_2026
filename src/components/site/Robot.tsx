@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { FEST } from "@/lib/site-data";
 
 const LINES = [
-  `Welcome to ${FEST.name} 👋`,
+  `Welcome to ${FEST.name}!`,
   "Register yourself in the event!",
   "3 days. 20+ events. One infinity.",
   "Tap me — I like the attention.",
