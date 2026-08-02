@@ -83,7 +83,7 @@ export function StarField() {
       const n = rk.pts.length;
       for (let i = 0; i < n; i++) {
         const a = (i / n) * Math.PI * 2;
-        const rr = rk.r * rk.pts[i];
+        const rr = rk.r * (rk.pts[i] ?? 1);
         const px = Math.cos(a) * rr;
         const py = Math.sin(a) * rr * 0.82;
         if (i === 0) ctx.moveTo(px, py);
@@ -159,6 +159,7 @@ export function StarField() {
 
       for (let i = meteors.length - 1; i >= 0; i--) {
         const m = meteors[i];
+        if (!m) continue;
         m.life += dt;
         m.x += m.vx * dt * 0.42;
         m.y += m.vy * dt * 0.42;
