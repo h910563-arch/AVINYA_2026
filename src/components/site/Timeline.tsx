@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
-import { TIMELINE } from "@/lib/site-data";
+import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
 export function Timeline() {
+  const { timeline: TIMELINE } = useSiteContent();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 60%"] });
   const scaleY = useSpring(scrollYProgress, { stiffness: 60, damping: 24, mass: 0.6 });

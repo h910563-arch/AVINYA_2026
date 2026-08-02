@@ -1,7 +1,8 @@
-import { TEAMS } from "@/lib/site-data";
+import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
 export function Team() {
+  const { teams: TEAMS } = useSiteContent();
   return (
     <section id="team" className="relative px-6 py-28 sm:py-36">
       <div className="mx-auto max-w-6xl">
