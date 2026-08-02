@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { FEST, HERO_INTRO } from "@/lib/site-data";
 import { MagneticButton } from "./MagneticButton";
 import { Robot } from "./Robot";
+import { HeroField } from "./HeroField";
 import { RevealText } from "./Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -28,15 +29,18 @@ export function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-[100svh] items-center px-6 pt-32 pb-24">
+      <HeroField />
+
       {/* floating glass objects */}
       <div
-        className="pointer-events-none absolute left-[6%] top-[22%] hidden h-40 w-40 rounded-[2.2rem] border border-white/10 bg-white/4 backdrop-blur-2xl lg:block"
+        className="pointer-events-none absolute right-[26%] top-[14%] -z-10 hidden h-28 w-28 rounded-[2.2rem] border border-white/10 bg-white/4 backdrop-blur-2xl xl:block"
         style={{ animation: "float-soft 12s ease-in-out infinite", transform: "rotate(-12deg)" }}
       />
       <div
-        className="pointer-events-none absolute right-[10%] bottom-[14%] hidden h-28 w-28 rounded-full border border-white/10 bg-white/4 backdrop-blur-2xl lg:block"
+        className="pointer-events-none absolute right-[6%] bottom-[10%] -z-10 hidden h-28 w-28 rounded-full border border-white/10 bg-white/4 backdrop-blur-2xl lg:block"
         style={{ animation: "float-soft 16s ease-in-out infinite 1.5s" }}
       />
+
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-16 lg:grid-cols-[1.25fr_0.75fr]">
         <div>
