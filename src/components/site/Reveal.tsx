@@ -48,6 +48,10 @@ export const REVEAL_VARIANTS: RevealVariant[] = [
   "zoom-blur",
 ];
 
+export function revealVariant(i: number): RevealVariant {
+  return REVEAL_VARIANTS[((i % REVEAL_VARIANTS.length) + REVEAL_VARIANTS.length) % REVEAL_VARIANTS.length] ?? "up";
+}
+
 function statesFor(variant: RevealVariant, y: number) {
   const to = {
     opacity: 1,
