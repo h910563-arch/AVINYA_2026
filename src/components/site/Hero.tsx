@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { FEST, HERO_INTRO } from "@/lib/site-data";
 import { MagneticButton } from "./MagneticButton";
 import { Robot } from "./Robot";
+import { HeroField } from "./HeroField";
 import { RevealText } from "./Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -28,6 +29,8 @@ export function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-[100svh] items-center px-6 pt-32 pb-24">
+      <HeroField />
+
       {/* floating glass objects */}
       <div
         className="pointer-events-none absolute left-[6%] top-[22%] hidden h-40 w-40 rounded-[2.2rem] border border-white/10 bg-white/4 backdrop-blur-2xl lg:block"
