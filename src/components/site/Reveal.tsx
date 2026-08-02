@@ -39,16 +39,18 @@ export function RevealText({
   wordClassName?: string;
   delay?: number;
 }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "0px 0px -8% 0px" });
   const words = text.split(" ");
+
   return (
-    <span className={className}>
+    <span ref={ref} className={className}>
       {words.map((word, i) => (
         <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom">
           <motion.span
             className={`inline-block ${wordClassName ?? ""}`}
             initial={{ y: "110%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true, margin: "-10% 0px" }}
+            animate={inView ? { y: "0%" } : { y: "110%" }}
             transition={{ duration: 1.05, delay: delay + i * 0.06, ease: EASE }}
           >
             {word}
