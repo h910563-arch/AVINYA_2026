@@ -9,27 +9,6 @@ const LINES = [
   "Tap me — I like the attention.",
 ];
 
-function speakText(text: string) {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-    return;
-  }
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-IN";
-  utterance.rate = 1;
-  utterance.pitch = 1;
-  utterance.volume = 1;
-
-  const voices = window.speechSynthesis.getVoices();
-  const preferredVoice = voices.find((voice) => voice.lang.toLowerCase().includes("en")) ?? voices[0];
-  if (preferredVoice) {
-    utterance.voice = preferredVoice;
-  }
-
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
-}
-
 /** Premium companion: brushed-metal shell, soft idle breathing, eyes that follow the pointer,
  *  waves and greets visitors with a rotating speech bubble. */
 export function Robot({ className }: { className?: string }) {
@@ -38,6 +17,31 @@ export function Robot({ className }: { className?: string }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [line, setLine] = useState(0);
   const [waving, setWaving] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+
+  const speakText = (text: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-IN";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    utterance.onstart = () => setSpeaking(true);
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find((voice) => voice.lang.toLowerCase().includes("en")) ?? voices[0];
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  };
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
