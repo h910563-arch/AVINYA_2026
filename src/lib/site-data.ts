@@ -83,7 +83,7 @@ export const TIMELINE = [
   },
 ];
 
-const G = "https://jjvekegxcypkqzvuggmb.supabase.co/storage/v1/object/public/site-media/gallery/";
+const G = "https://ivpzuptfcwezgqjnsrgs.supabase.co/storage/v1/object/public/site-media/gallery/";
 export const GALLERY = [
   "1784914006018-94k0w0.jpeg",
   "1784913991937-qv0416.jpeg",
@@ -101,8 +101,8 @@ export const GALLERY = [
   "1784913798409-9tif5o.jpeg",
 ].map((f) => G + f);
 
-const A = "https://jjvekegxcypkqzvuggmb.supabase.co/storage/v1/object/public/site-images/";
-const B = "https://jjvekegxcypkqzvuggmb.supabase.co/storage/v1/object/public/site-media/team/";
+const A = "https://ivpzuptfcwezgqjnsrgs.supabase.co/storage/v1/object/public/site-images/";
+const B = "https://ivpzuptfcwezgqjnsrgs.supabase.co/storage/v1/object/public/site-media/team/";
 
 export type Member = { name: string; role?: string; image: string };
 export type TeamGroup = { title: string; count: string; members: Member[] };
