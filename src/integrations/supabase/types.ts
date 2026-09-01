@@ -32,6 +32,56 @@ export type Database = {
         }
         Relationships: []
       }
+      registrations: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          created_at?: string
+        }
+        Relationships: []
+      }
+      event_participants: {
+        Row: {
+          id: string
+          registration_id: string
+          event_title: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          registration_id: string
+          event_title: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          registration_id?: string
+          event_title?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_participants_registration_id_fkey"
+            columns: ["registration_id"]
+            isOneToOne: false
+            referencedRelation: "registrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

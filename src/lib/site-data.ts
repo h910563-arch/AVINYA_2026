@@ -4,8 +4,8 @@ export const FEST = {
   glyph: "अ",
   targetDate: "2026-03-04T09:00:00+05:30",
   bannerUrl: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp",
-  registerUrl: "https://avinya-26.vercel.app/auth",
-  eventsUrl: "https://avinya-26.vercel.app/events",
+  registerUrl: "/register",
+  eventsUrl: "/events",
   email: "societytheempirical@gmail.com",
   campus: "Guru Tegh Bahadur 4th Centenary College",
 };
@@ -262,6 +262,17 @@ export const TEAMS: TeamGroup[] = [
     ],
   },
 ];
+
+const NON_EVENT_TEAM_GROUPS = new Set([
+  "Faculty Coordinators",
+  "Mentors",
+  "Heads: The Empirical Society",
+]);
+
+/** The fest's competition events, derived from the team roster above so this list never drifts from it. */
+export const PARTICIPATION_EVENTS = TEAMS.filter((g) => !NON_EVENT_TEAM_GROUPS.has(g.title)).map(
+  (g) => g.title,
+);
 
 export const SPONSORS = [
   "NEBULA LABS",

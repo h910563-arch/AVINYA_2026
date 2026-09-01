@@ -74,7 +74,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
               {event.venue}
             </span>
             <a
-              href={FEST.registerUrl}
+              href={`/events?event=${encodeURIComponent(event.title)}`}
               className="text-[13px] font-medium tracking-tight text-foreground transition-opacity duration-500 hover:opacity-70"
             >
               Register →
