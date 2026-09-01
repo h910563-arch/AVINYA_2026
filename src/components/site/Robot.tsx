@@ -24,23 +24,38 @@ export function Robot({ className }: { className?: string }) {
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-IN";
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    utterance.volume = 1;
-    utterance.onstart = () => setSpeaking(true);
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = () => setSpeaking(false);
+    const say = () => {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-IN";
+      // Slower than the default (1) so the greeting is easy to make out.
+      utterance.rate = 0.82;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      utterance.onstart = () => setSpeaking(true);
+      utterance.onend = () => setSpeaking(false);
+      utterance.onerror = () => setSpeaking(false);
 
-    const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find((voice) => voice.lang.toLowerCase().includes("en")) ?? voices[0];
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
+      const voices = window.speechSynthesis.getVoices();
+      const preferredVoice =
+        voices.find((voice) => voice.lang.toLowerCase() === "en-in") ??
+        voices.find((voice) => voice.lang.toLowerCase().startsWith("en")) ??
+        voices[0];
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    };
+
+    // Voices can load asynchronously on first page visit — if none are
+    // ready yet, wait for them once instead of speaking with no voice set
+    // (which is what made the greeting sound rushed/unclear).
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.addEventListener("voiceschanged", say, { once: true });
+    } else {
+      say();
     }
-
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
   };
 
   useEffect(() => {

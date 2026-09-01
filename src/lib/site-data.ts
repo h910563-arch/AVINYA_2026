@@ -274,6 +274,33 @@ export const PARTICIPATION_EVENTS = TEAMS.filter((g) => !NON_EVENT_TEAM_GROUPS.h
   (g) => g.title,
 );
 
+/**
+ * Each event's own external registration site — the same destination its
+ * poster's QR code opens. "Register" for an event redirects here directly;
+ * there is no on-site Name + Email form for individual events anymore.
+ */
+export const EVENT_REGISTRATION_URLS: Record<string, string> = {
+  "Turing Trial": "https://www.unievent.in/events/turing-trial-1784814346333",
+  "Kill Code": "https://www.unievent.in/events/kill-code-1784810712638",
+  Synthora: "https://www.unievent.in/events/synthora-1784811045061",
+  "Binary Blitz": "https://www.canvaqr.com/RGQr4_xbr-",
+  Thinkverse: "https://www.unievent.in/events/think-verse-1784812334649",
+  "Case Tactix": "https://www.unievent.in/events/case-tactix-1784744873849",
+  "Code Whirl": "https://www.unievent.in/events/codewhirl-1784808405446",
+  "Cuisine Cosmos": "https://www.unievent.in/events/cuisine-cosmos-1784809529603",
+  DesignOps: "https://www.unievent.in/events/design-ops-1784809988495",
+  "Colossal-A-Pitch": "https://q.me-qr.com/ebj58x6e",
+};
+
+/** Looks up an event's external registration URL, ignoring case (poster titles and team titles don't always match case). */
+export function getEventRegistrationUrl(eventTitle: string): string | null {
+  if (EVENT_REGISTRATION_URLS[eventTitle]) return EVENT_REGISTRATION_URLS[eventTitle];
+  const key = Object.keys(EVENT_REGISTRATION_URLS).find(
+    (k) => k.toLowerCase() === eventTitle.toLowerCase(),
+  );
+  return key ? EVENT_REGISTRATION_URLS[key] : null;
+}
+
 export const SPONSORS = [
   "NEBULA LABS",
   "QUANTUM FORGE",

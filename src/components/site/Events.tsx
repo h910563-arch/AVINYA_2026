@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { FEST } from "@/lib/site-data";
+import { FEST, getEventRegistrationUrl } from "@/lib/site-data";
 import { useSiteContent, } from "@/lib/site-content-context";
 import type { EventItem } from "@/lib/site-content";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
@@ -74,7 +74,9 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
               {event.venue}
             </span>
             <a
-              href={`/events?event=${encodeURIComponent(event.title)}`}
+              href={getEventRegistrationUrl(event.title) ?? "/register"}
+              target={getEventRegistrationUrl(event.title) ? "_blank" : undefined}
+              rel={getEventRegistrationUrl(event.title) ? "noopener noreferrer" : undefined}
               className="text-[13px] font-medium tracking-tight text-foreground transition-opacity duration-500 hover:opacity-70"
             >
               Register →

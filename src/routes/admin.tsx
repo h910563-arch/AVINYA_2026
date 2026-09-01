@@ -15,9 +15,7 @@ import {
   saveSiteContent,
   unlockAdmin,
 } from "@/lib/admin.functions";
-import { getParticipants, adminDeleteParticipant } from "@/lib/registration.functions";
 import type { SiteContent } from "@/lib/site-content";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const TITLE = "Admin Panel — अvinya'26";
 const DESC = "Password-protected control room to edit अvinya'26 events, timeline, gallery, crew and contact details.";
@@ -43,18 +41,12 @@ function AdminPage() {
   const unlock = useServerFn(unlockAdmin);
   const lock = useServerFn(lockAdmin);
   const save = useServerFn(saveSiteContent);
-  const fetchParticipants = useServerFn(getParticipants);
-  const deleteParticipantFn = useServerFn(adminDeleteParticipant);
 
   const [unlocked, setUnlocked] = useState(false);
   const [ready, setReady] = useState(false);
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [content, setContent] = useState<SiteContent | null>(null);
-  const [participants, setParticipants] = useState<
-    Awaited<ReturnType<typeof getParticipants>> | null
-  >(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -63,10 +55,9 @@ function AdminPage() {
       setReady(true);
       if (s.unlocked) {
         setContent(await fetchContent());
-        setParticipants(await fetchParticipants());
       }
     })().catch(() => setReady(true));
-  }, [status, fetchContent, fetchParticipants]);
+  }, [status, fetchContent]);
 
   async function handleUnlock(e: React.FormEvent) {
     e.preventDefault();
@@ -80,7 +71,6 @@ function AdminPage() {
       setUnlocked(true);
       setPassword("");
       setContent(await fetchContent());
-      setParticipants(await fetchParticipants());
       toast.success("Welcome back, admin");
     } finally {
       setBusy(false);
@@ -104,25 +94,6 @@ function AdminPage() {
     await lock();
     setUnlocked(false);
     setContent(null);
-  }
-
-  async function handleDeleteParticipant(participantId: string) {
-    setDeletingId(participantId);
-    try {
-      await deleteParticipantFn({ data: { participantId } });
-      setParticipants(
-        (prev) =>
-          prev?.map((group) => ({
-            ...group,
-            participants: group.participants.filter((p) => p.id !== participantId),
-          })) ?? null,
-      );
-      toast.success("Participant removed");
-    } catch {
-      toast.error("Could not remove participant. Try again.");
-    } finally {
-      setDeletingId(null);
-    }
   }
 
   if (!ready) {
@@ -205,7 +176,6 @@ function AdminPage() {
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="team">Team</TabsTrigger>
             <TabsTrigger value="contact">Contact</TabsTrigger>
-            <TabsTrigger value="participants">Participants</TabsTrigger>
           </TabsList>
 
           <TabsContent value="events" className="space-y-6">
@@ -483,49 +453,6 @@ function AdminPage() {
                 onChange={(v) => set({ contact: { ...content.contact, blurb: v } })}
               />
             </Card>
-          </TabsContent>
-
-          <TabsContent value="participants" className="space-y-6">
-            {!participants ? (
-              <p className="font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
-                Loading…
-              </p>
-            ) : (
-              participants.map((group) => (
-                <Card key={group.event} title={group.event}>
-                  {group.participants.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">No participants yet.</p>
-                  ) : (
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Name</TableHead>
-                          <TableHead>Email</TableHead>
-                          <TableHead className="text-right">Action</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {group.participants.map((p) => (
-                          <TableRow key={p.id}>
-                            <TableCell>{p.name}</TableCell>
-                            <TableCell>{p.email}</TableCell>
-                            <TableCell className="text-right">
-                              <Button
-                                variant="ghost"
-                                disabled={deletingId === p.id}
-                                onClick={() => handleDeleteParticipant(p.id)}
-                              >
-                                {deletingId === p.id ? "Removing…" : "Delete"}
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  )}
-                </Card>
-              ))
-            )}
           </TabsContent>
         </Tabs>
 
