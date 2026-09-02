@@ -2,7 +2,7 @@ export const FEST = {
   name: "अvinya'26",
   tagline: "Infinity Unleashed · 2026",
   glyph: "अ",
-  targetDate: "2026-03-04T09:00:00+05:30",
+  targetDate: "2026-10-27T23:59:59",
   bannerUrl: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp",
   registerUrl: "/register",
   eventsUrl: "/events",
@@ -53,33 +53,33 @@ export const EVENTS = [
 export const TIMELINE = [
   {
     phase: "Phase 01",
-    meta: "JAN 20 · 00:00",
-    title: "Registrations Open",
-    description: "Portal opens for all flagship events with early-bird access to workshops.",
+    meta: "03 SEP 2026",
+    title: "Registration & Online Elimination",
+    description: "Registration and side by side Online elimination round starts.",
   },
   {
     phase: "Phase 02",
-    meta: "FEB 12 · 10:00",
-    title: "Selection & Mentorship",
-    description: "Shortlisted teams are paired with industry mentors to refine proposals.",
+    meta: "19 OCT 2026",
+    title: "Registration Ends",
+    description: "Final deadline for candidate registrations.",
   },
   {
     phase: "Phase 03",
-    meta: "MAR 04 · 09:00",
-    title: "System Activation",
-    description: "Opening ceremony and keynote from industry titans in the Grand Auditorium.",
+    meta: "22 OCT 2026",
+    title: "Results of Shortlisted Teams",
+    description: "Result of Shortlisted team for Offline round (declared in the separate eventwise whatsapp groups).",
   },
   {
     phase: "Phase 04",
-    meta: "MAR 05 · 09:00",
-    title: "Competitions & Expo",
-    description: "Two full days of tracks, panels, and interactive student showcases.",
+    meta: "27 OCT 2026",
+    title: "Finale Rounds",
+    description: "Finale rounds for the shortlisted teams/participants (Held offline at Guru Tegh Bahadur 4th Centenary Engineering College , Campus)",
   },
   {
     phase: "Phase 05",
-    meta: "MAR 06 · 18:00",
-    title: "The Grand Finale",
-    description: "Award ceremony followed by our signature cultural night.",
+    meta: "27 OCT 2026",
+    title: "Announcements Of Winners & Felicitation",
+    description: "Announcement of fest winners, award distribution ceremony, and felicitations.",
   },
 ];
 
@@ -294,11 +294,11 @@ export const EVENT_REGISTRATION_URLS: Record<string, string> = {
 
 /** Looks up an event's external registration URL, ignoring case (poster titles and team titles don't always match case). */
 export function getEventRegistrationUrl(eventTitle: string): string | null {
-  if (EVENT_REGISTRATION_URLS[eventTitle]) return EVENT_REGISTRATION_URLS[eventTitle];
+  if (EVENT_REGISTRATION_URLS[eventTitle]) return EVENT_REGISTRATION_URLS[eventTitle] || null;
   const key = Object.keys(EVENT_REGISTRATION_URLS).find(
     (k) => k.toLowerCase() === eventTitle.toLowerCase(),
   );
-  return key ? EVENT_REGISTRATION_URLS[key] : null;
+  return key ? EVENT_REGISTRATION_URLS[key] || null : null;
 }
 
 export const SPONSORS = [
@@ -313,4 +313,4 @@ export const SPONSORS = [
 ];
 
 export const CONTACT_BLURB =
-  "Sponsorship, collaboration, or a question about the fest — drop us a message and someone from the crew will get back to you.";
+  "Sponsorship, collaboration, or a question about the fest ,drop us a messaage, we will get back to you.";

@@ -2,15 +2,15 @@ import { FEST } from "@/lib/site-data";
 import { Link } from "@tanstack/react-router";
 import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText } from "./Reveal";
-import { MagneticButton } from "./MagneticButton";
+import { ContactForm } from "./ContactForm";
 
 export function Footer() {
   const { contact } = useSiteContent();
   const CONTACT_BLURB = contact.blurb;
   return (
     <footer id="contact" className="relative px-6 pb-16 pt-24 sm:pt-32">
-      <div className="mx-auto max-w-6xl">
-        <div className="glass grain relative overflow-hidden rounded-[2rem] px-8 py-14 sm:px-14 sm:py-20">
+      <div className="mx-auto max-w-5xl">
+        <div className="glass grain relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-12">
           <div
             className="pointer-events-none absolute -top-1/2 left-1/4 h-[500px] w-[500px] rounded-full opacity-40 blur-[120px]"
             style={{
@@ -19,38 +19,36 @@ export function Footer() {
               animation: "drift-a 40s ease-in-out infinite",
             }}
           />
-          <div className="relative grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="relative mb-10">
+            <h2 className="font-display text-[clamp(1.5rem,3.5vw,3rem)] font-semibold tracking-tight">
+              <RevealText text="LET's CONNECT , AVINYA-26 is on the GOO!!" />
+            </h2>
+          </div>
+          <div className="relative grid gap-12 lg:grid-cols-[1fr_1fr]">
             <div>
-              <h2 className="font-display text-[clamp(2rem,5.5vw,3.4rem)] font-semibold">
-                <RevealText text="Let's build something" />
-                <br />
-                <RevealText text="worth remembering." delay={0.1} />
-              </h2>
               <Reveal delay={0.2}>
-                <p className="mt-7 max-w-lg text-[15px] leading-[1.9] text-muted-foreground">
-                  {CONTACT_BLURB}
+                <p className="mt-4 max-w-lg text-[15px] leading-[1.9] text-muted-foreground">
+                  {CONTACT_BLURB.replace(" — ", " ").replace("—", "")}
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
-                <div className="mt-10">
-                  <MagneticButton href={`mailto:${contact.email}`}>Say hello</MagneticButton>
+                <div className="mt-5 h-[180px] w-full max-w-md overflow-hidden rounded-2xl border border-white/10 opacity-80 transition-opacity hover:opacity-100">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://maps.google.com/maps?q=Guru+Tegh+Bahadur+4th+Centenary+Engineering+College&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) contrast(1.1) grayscale(10%)" }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
               </Reveal>
             </div>
 
-            <div className="flex flex-col justify-end gap-8">
+            <div className="flex flex-col pt-4">
               <Reveal delay={0.15}>
-                <p className="eyebrow mb-2">Email</p>
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="text-[15px] tracking-tight text-foreground/90 transition-opacity duration-500 hover:opacity-70"
-                >
-                  {contact.email}
-                </a>
-              </Reveal>
-              <Reveal delay={0.25}>
-                <p className="eyebrow mb-2">Campus</p>
-                <p className="text-[15px] leading-relaxed text-foreground/90">{contact.campus}</p>
+                <ContactForm />
               </Reveal>
             </div>
           </div>

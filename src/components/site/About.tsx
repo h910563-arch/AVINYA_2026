@@ -7,7 +7,7 @@ export function About() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section id="about" className="relative px-6 py-28 sm:py-36">
+    <section id="about" className="relative px-6 pt-14 pb-12 sm:pt-20 sm:pb-16">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal>
@@ -42,7 +42,7 @@ export function About() {
               </Reveal>
             ))}
             <Reveal delay={0.3}>
-              <div className="hairline mt-12 w-full" />
+              <div className="hairline mt-10 sm:mt-12 w-full" />
             </Reveal>
           </div>
         </div>

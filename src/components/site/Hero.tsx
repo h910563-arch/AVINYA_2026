@@ -28,7 +28,7 @@ export function Hero() {
   const parts = useCountdown(FEST.targetDate);
 
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-center px-6 pt-32 pb-24">
+    <section id="top" className="relative flex min-h-[92svh] items-center px-6 pt-32 pb-12 sm:pb-16">
       <HeroField />
 
       {/* floating glass objects */}
@@ -78,21 +78,27 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.6, ease: EASE }}
-            className="mt-12 grid max-w-lg grid-cols-4 gap-2 sm:gap-3"
+            className="mt-12 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8"
           >
-            {UNITS.map((unit, i) => (
-              <div
-                key={unit}
-                className="glass sheen glass-hover rounded-2xl px-2 py-5 text-center"
-              >
-                <div className="font-display text-[clamp(1.5rem,4.4vw,2.4rem)] font-semibold tabular-nums tracking-tight">
-                  {parts ? String(parts[i]).padStart(2, "0") : "--"}
+            <div className="grid flex-1 max-w-[400px] grid-cols-4 gap-2 sm:gap-3">
+              {UNITS.map((unit, i) => (
+                <div
+                  key={unit}
+                  className="glass sheen glass-hover rounded-2xl px-2 py-5 text-center"
+                >
+                  <div className="font-display text-[clamp(1.5rem,4.4vw,2.4rem)] font-semibold tabular-nums tracking-tight">
+                    {parts ? String(parts[i]).padStart(2, "0") : "--"}
+                  </div>
+                  <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                    {unit}
+                  </div>
                 </div>
-                <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                  {unit}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="font-display text-lg sm:text-xl font-bold tracking-widest text-white/40 uppercase">
+              to <span className="text-white/80">FINALE</span>
+            </div>
           </motion.div>
 
           <motion.div
@@ -111,7 +117,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.4, delay: 1.1 }}
-            className="mt-16 flex items-center gap-3"
+            className="mt-12 sm:mt-14 flex items-center gap-3"
           >
             <span className="relative block h-9 w-px overflow-hidden bg-white/12">
               <span

@@ -1,5 +1,6 @@
 import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
+import { TiltCard } from "./TiltCard";
 
 const FALLBACK_TEAM_IMAGE =
   "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80";
@@ -7,9 +8,9 @@ const FALLBACK_TEAM_IMAGE =
 export function Team() {
   const { teams: TEAMS } = useSiteContent();
   return (
-    <section id="team" className="relative px-6 py-28 sm:py-36">
+    <section id="team" className="relative px-6 pt-24 pb-16 sm:pt-28 sm:pb-24">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-16 font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold">
+        <h2 className="mb-12 font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold sm:mb-14">
           <RevealText text="The Crew" />
         </h2>
 
@@ -26,35 +27,38 @@ export function Team() {
                 </div>
               </Reveal>
 
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
                 {group.members.map((m, i) => (
-                  <Reveal key={`${group.title}-${m.name}-${i}`} delay={(i % 4) * 0.06} y={18} variant={revealVariant(i + group.title.length)}>
-                    <article className="glass sheen glass-hover group h-full overflow-hidden rounded-[1.4rem] p-2">
-                      <div className="overflow-hidden rounded-[1rem]">
-                        <img
-                          src={m.image}
-                          alt={m.name}
-                          loading="lazy"
-                          onError={(event) => {
-                            if (event.currentTarget.dataset.fallbackApplied === "true") return;
-                            event.currentTarget.dataset.fallbackApplied = "true";
-                            event.currentTarget.src = FALLBACK_TEAM_IMAGE;
-                          }}
-                          className="aspect-[4/5] w-full object-cover opacity-85 grayscale transition-[transform,filter,opacity] duration-[1400ms] group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
-                          style={{ transitionTimingFunction: "var(--ease-lux)" }}
-                        />
-                      </div>
-                      <div className="px-3 pb-3 pt-4">
-                        <h4 className="font-display text-[15px] font-semibold tracking-tight">
+                  <Reveal key={`${group.title}-${m.name}-${i}`} delay={(i % 4) * 0.06} y={18} variant={revealVariant(i + group.title.length)} className="w-[130px] sm:w-[170px]">
+                    <TiltCard>
+                      <article className="glass sheen neon-card-always h-full w-full overflow-hidden rounded-[1.4rem] p-2">
+                        <div className="overflow-hidden rounded-[1rem]">
+                          <img
+                            src={m.image}
+                            alt={m.name}
+                            loading="lazy"
+                            onError={(e) => {
+                              if (e.currentTarget.dataset["fallbackApplied"] === "true") return;
+                              e.currentTarget.dataset["fallbackApplied"] = "true";
+                              e.currentTarget.src =
+                                "https://ivpzuptfcwezgqjnsrgs.supabase.co/storage/v1/object/public/site-media/fallback-team.jpg";
+                            }}
+                            className="aspect-[4/5] w-full object-cover object-top transition-transform duration-[1400ms] group-hover:scale-[1.08]"
+                            style={{ transitionTimingFunction: "var(--ease-lux)" }}
+                          />
+                        </div>
+                        <div className="px-3 pb-3 pt-4">
+                          <h4 className="font-display text-[15px] font-semibold tracking-tight" style={{ transform: "translateZ(20px)" }}>
                           {m.name}
                         </h4>
                         {m.role ? (
-                          <p className="mt-1.5 font-mono text-[9.5px] uppercase tracking-[0.24em] text-muted-foreground">
+                          <p className="mt-1.5 font-mono text-[9.5px] uppercase tracking-[0.24em] text-muted-foreground" style={{ transform: "translateZ(10px)" }}>
                             {m.role}
                           </p>
                         ) : null}
-                      </div>
-                    </article>
+                        </div>
+                      </article>
+                    </TiltCard>
                   </Reveal>
                 ))}
               </div>

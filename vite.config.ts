@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [
     tanstackStart({
       server: {
+        // @ts-expect-error preset exists in newer nitro options or internal config
         preset: "vercel",
       },
     }),

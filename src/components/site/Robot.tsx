@@ -81,7 +81,7 @@ export function Robot({ className }: { className?: string }) {
   // greet once on mount
   useEffect(() => {
     const hello = setTimeout(() => {
-      speakText(LINES[0]);
+      speakText(LINES[0] || "");
       setWaving(true);
       setTimeout(() => setWaving(false), 2600);
     }, 1200);
@@ -94,7 +94,7 @@ export function Robot({ className }: { className?: string }) {
   const poke = () => {
     setLine((l) => {
       const next = (l + 1) % LINES.length;
-      speakText(LINES[next]);
+      speakText(LINES[next] || "");
       return next;
     });
     setWaving(true);

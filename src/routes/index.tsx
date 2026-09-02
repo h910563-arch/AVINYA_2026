@@ -11,7 +11,7 @@ import { Team } from "@/components/site/Team";
 import { Sponsors } from "@/components/site/Sponsors";
 import { Footer } from "@/components/site/Footer";
 
-const TITLE = "अvinya'26 — Infinity Unleashed | Annual Tech Fest";
+const TITLE = "अvinya'26 | Annual Tech Fest";
 const DESC =
   "अVINYA'26, the annual tech fest by The Empirical Society at GTB 4th Centenary Engineering College. Flagship events, workshops and an inter-college showcase, 04–06 March 2026.";
 
