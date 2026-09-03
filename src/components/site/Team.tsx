@@ -29,7 +29,13 @@ export function Team() {
 
               <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
                 {group.members.map((m, i) => (
-                  <Reveal key={`${group.title}-${m.name}-${i}`} delay={(i % 4) * 0.06} y={18} variant={revealVariant(i + group.title.length)} className="w-[130px] sm:w-[170px]">
+                  <Reveal
+                    key={`${group.title}-${m.name}-${i}`}
+                    delay={(i % 4) * 0.06}
+                    y={18}
+                    variant={revealVariant(i + group.title.length)}
+                    className="w-[130px] sm:w-[170px]"
+                  >
                     <TiltCard>
                       <article className="glass sheen neon-card-always h-full w-full overflow-hidden rounded-[1.4rem] p-2">
                         <div className="overflow-hidden rounded-[1rem]">
@@ -48,14 +54,20 @@ export function Team() {
                           />
                         </div>
                         <div className="px-3 pb-3 pt-4">
-                          <h4 className="font-display text-[15px] font-semibold tracking-tight" style={{ transform: "translateZ(20px)" }}>
-                          {m.name}
-                        </h4>
-                        {m.role ? (
-                          <p className="mt-1.5 font-mono text-[9.5px] uppercase tracking-[0.24em] text-muted-foreground" style={{ transform: "translateZ(10px)" }}>
-                            {m.role}
-                          </p>
-                        ) : null}
+                          <h4
+                            className="font-display text-[15px] font-semibold tracking-tight"
+                            style={{ transform: "translateZ(20px)" }}
+                          >
+                            {m.name}
+                          </h4>
+                          {m.role ? (
+                            <p
+                              className="mt-1.5 font-mono text-[9.5px] uppercase tracking-[0.24em] text-muted-foreground"
+                              style={{ transform: "translateZ(10px)" }}
+                            >
+                              {m.role}
+                            </p>
+                          ) : null}
                         </div>
                       </article>
                     </TiltCard>

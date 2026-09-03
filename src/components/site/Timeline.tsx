@@ -21,14 +21,16 @@ const EVENT_TIMELINE = [
     date: "22 Oct 2026",
     mode: "RESULT",
     title: "Result of Shortlisted Teams",
-    description: "Result of Shortlisted team for Offline round (declared in the separate eventwise whatsapp groups).",
+    description:
+      "Result of Shortlisted team for Offline round (declared in the separate eventwise whatsapp groups).",
   },
   {
     phase: "Phase 04",
     date: "27 Oct 2026",
     mode: "FINALE",
     title: "Finale Rounds",
-    description: "Finale rounds for the shortlisted teams/participants (Held offline at Guru Tegh Bahadur 4th Centenary Engineering College , Campus)",
+    description:
+      "Finale rounds for the shortlisted teams/participants (Held offline at Guru Tegh Bahadur 4th Centenary Engineering College , Campus)",
   },
   {
     phase: "Phase 05",
@@ -69,7 +71,6 @@ export function Timeline() {
         <div className="relative">
           {/* DESKTOP SNAKE ROADMAP (3 columns x 2 rows on lg screens) */}
           <div className="hidden lg:grid grid-cols-3 gap-y-14 gap-x-10 relative">
-            
             {/* --- ROW 1: Phase 01 -> Phase 02 -> Phase 03 --- */}
             {/* Phase 01 */}
             <div className="relative">
@@ -125,7 +126,6 @@ export function Timeline() {
                 <div className="absolute w-3 h-3 rounded-full bg-cyan-300 border-2 border-[#0b0f17] shadow-[0_0_10px_rgba(6,182,212,1)]" />
               </div>
             </div>
-
           </div>
 
           {/* TABLET / MOBILE CONNECTED ROADMAP (sm & md screens) */}
@@ -185,7 +185,9 @@ function TimelineCard({
         {/* Corner ambient neon aura on hover */}
         <div
           className={`pointer-events-none absolute -bottom-10 -right-10 h-32 w-32 rounded-full blur-2xl transition-all duration-500 ${
-            isFinale ? "bg-amber-500/10 group-hover:bg-amber-400/25" : "bg-cyan/10 group-hover:bg-cyan/25"
+            isFinale
+              ? "bg-amber-500/10 group-hover:bg-amber-400/25"
+              : "bg-cyan/10 group-hover:bg-cyan/25"
           }`}
         />
 
@@ -206,7 +208,9 @@ function TimelineCard({
             >
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
-                  isFinale ? "bg-amber-400 shadow-[0_0_6px_var(--color-amber-400)]" : "bg-cyan shadow-[0_0_6px_var(--color-cyan)]"
+                  isFinale
+                    ? "bg-amber-400 shadow-[0_0_6px_var(--color-amber-400)]"
+                    : "bg-cyan shadow-[0_0_6px_var(--color-cyan)]"
                 }`}
               />
               <span>{item.phase}</span>

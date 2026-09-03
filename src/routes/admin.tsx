@@ -18,7 +18,8 @@ import {
 import type { SiteContent } from "@/lib/site-content";
 
 const TITLE = "Admin Panel — अvinya'26";
-const DESC = "Password-protected control room to edit अvinya'26 events, timeline, gallery, crew and contact details.";
+const DESC =
+  "Password-protected control room to edit अvinya'26 events, timeline, gallery, crew and contact details.";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -110,10 +111,7 @@ function AdminPage() {
     return (
       <main className="flex min-h-screen items-center justify-center px-6">
         <Toaster />
-        <form
-          onSubmit={handleUnlock}
-          className="glass w-full max-w-sm rounded-[1.75rem] p-8"
-        >
+        <form onSubmit={handleUnlock} className="glass w-full max-w-sm rounded-[1.75rem] p-8">
           <p className="eyebrow mb-3">Restricted</p>
           <h1 className="font-display text-3xl font-semibold">Admin access</h1>
           <p className="mt-3 text-sm text-muted-foreground">
@@ -201,9 +199,7 @@ function AdminPage() {
                       value={ev[key]}
                       onChange={(v) =>
                         set({
-                          events: content.events.map((x, j) =>
-                            j === i ? { ...x, [key]: v } : x,
-                          ),
+                          events: content.events.map((x, j) => (j === i ? { ...x, [key]: v } : x)),
                         })
                       }
                     />
@@ -427,7 +423,9 @@ function AdminPage() {
             ))}
             <Button
               variant="outline"
-              onClick={() => set({ teams: [...content.teams, { title: "", count: "", members: [] }] })}
+              onClick={() =>
+                set({ teams: [...content.teams, { title: "", count: "", members: [] }] })
+              }
             >
               + Add group
             </Button>

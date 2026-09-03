@@ -58,7 +58,10 @@ export function HeroField() {
         />
         <span
           className="absolute block h-1.5 w-1.5 rounded-full bg-cyan/70"
-          style={{ ["--orbit-r" as string]: "250px", animation: "orbit 44s linear reverse infinite" }}
+          style={{
+            ["--orbit-r" as string]: "250px",
+            animation: "orbit 44s linear reverse infinite",
+          }}
         />
       </div>
     </div>

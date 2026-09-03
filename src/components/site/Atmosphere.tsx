@@ -47,7 +47,6 @@ export function Atmosphere() {
       <StarField />
       <Ufos />
 
-
       {/* aurora meshes */}
       <div
         className="absolute -top-[30%] left-[-15%] h-[80vw] w-[80vw] rounded-full opacity-[0.5] blur-[60px] md:blur-[130px] will-change-transform"

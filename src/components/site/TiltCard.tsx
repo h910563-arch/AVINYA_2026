@@ -13,7 +13,7 @@ export function TiltCard({ children }: { children: React.ReactNode }) {
 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-15, 15]);
-  
+
   // Glare effect transforms
   const glareX = useTransform(mouseXSpring, [-0.5, 0.5], [100, -100]);
   const glareY = useTransform(mouseYSpring, [-0.5, 0.5], [100, -100]);
@@ -42,8 +42,10 @@ export function TiltCard({ children }: { children: React.ReactNode }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ y: [0, -15, 0], rotateZ: [-2, 2, -2] }}
-      transition={{ 
-        duration: 3.5, repeat: Infinity, ease: "easeInOut" 
+      transition={{
+        duration: 3.5,
+        repeat: Infinity,
+        ease: "easeInOut",
       }}
       style={{
         rotateY,
@@ -52,20 +54,21 @@ export function TiltCard({ children }: { children: React.ReactNode }) {
       }}
       className="relative h-full w-full cursor-pointer group"
     >
-      <div 
-        style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }} 
+      <div
+        style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}
         className="h-full w-full relative rounded-[1.4rem] overflow-hidden"
       >
         {/* Continuous shine overlay */}
         <div className="pointer-events-none absolute inset-0 z-30 overflow-hidden rounded-[1.4rem]">
           <div className="absolute top-0 left-0 h-[250%] w-[50%] bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.4)] to-transparent animate-shine mix-blend-overlay" />
         </div>
-        
+
         {/* Interactive glare overlay */}
         <motion.div
           className="pointer-events-none absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[1.4rem]"
           style={{
-            background: "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 60%)",
+            background:
+              "radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 60%)",
             x: glareX,
             y: glareY,
           }}

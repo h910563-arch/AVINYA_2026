@@ -8,7 +8,7 @@ type AdminSession = { unlocked?: boolean };
 
 function sessionConfig() {
   return {
- password: process.env["ADMIN_SESSION_SECRET"]!,
+    password: process.env["ADMIN_SESSION_SECRET"]!,
     name: "avinya-admin",
     maxAge: 60 * 60 * 8,
     cookie: { httpOnly: true, secure: true, sameSite: "lax" as const, path: "/" },
@@ -22,6 +22,7 @@ export function passwordMatches(input: string, expected: string): boolean {
 }
 
 export async function getAdminSession() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   return useSession<AdminSession>(sessionConfig());
 }
 

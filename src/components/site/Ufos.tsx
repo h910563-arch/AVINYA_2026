@@ -12,7 +12,15 @@ type Ship = {
 
 const SHIPS: Ship[] = [
   { top: "14%", scale: 1, dur: 52, delay: 0, hue: "var(--azure)", opacity: 0.75 },
-  { top: "38%", scale: 0.62, dur: 74, delay: 12, hue: "var(--violet)", reverse: true, opacity: 0.5 },
+  {
+    top: "38%",
+    scale: 0.62,
+    dur: 74,
+    delay: 12,
+    hue: "var(--violet)",
+    reverse: true,
+    opacity: 0.5,
+  },
   { top: "66%", scale: 0.8, dur: 64, delay: 26, hue: "var(--cyan)", opacity: 0.55 },
 ];
 
@@ -43,7 +51,15 @@ function Saucer({ hue, uid }: { hue: string; uid: number }) {
       <ellipse cx="72" cy="32" rx="7" ry="4" fill="oklch(1 0 0 / 35%)" />
 
       {/* hull */}
-      <ellipse cx="80" cy="48" rx="62" ry="14" fill={`url(#hull-${uid})`} stroke="oklch(1 0 0 / 22%)" strokeWidth="1" />
+      <ellipse
+        cx="80"
+        cy="48"
+        rx="62"
+        ry="14"
+        fill={`url(#hull-${uid})`}
+        stroke="oklch(1 0 0 / 22%)"
+        strokeWidth="1"
+      />
       <ellipse cx="80" cy="45" rx="52" ry="7" fill="oklch(1 0 0 / 6%)" />
 
       {/* lights */}

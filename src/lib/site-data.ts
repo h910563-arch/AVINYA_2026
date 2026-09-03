@@ -67,13 +67,15 @@ export const TIMELINE = [
     phase: "Phase 03",
     meta: "22 OCT 2026",
     title: "Results of Shortlisted Teams",
-    description: "Result of Shortlisted team for Offline round (declared in the separate eventwise whatsapp groups).",
+    description:
+      "Result of Shortlisted team for Offline round (declared in the separate eventwise whatsapp groups).",
   },
   {
     phase: "Phase 04",
     meta: "27 OCT 2026",
     title: "Finale Rounds",
-    description: "Finale rounds for the shortlisted teams/participants (Held offline at Guru Tegh Bahadur 4th Centenary Engineering College , Campus)",
+    description:
+      "Finale rounds for the shortlisted teams/participants (Held offline at Guru Tegh Bahadur 4th Centenary Engineering College , Campus)",
   },
   {
     phase: "Phase 05",

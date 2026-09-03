@@ -15,7 +15,12 @@ function useCountdown(target: string) {
     const tick = () => {
       const diff = Math.max(0, new Date(target).getTime() - Date.now());
       const s = Math.floor(diff / 1000);
-      setParts([Math.floor(s / 86400), Math.floor((s % 86400) / 3600), Math.floor((s % 3600) / 60), s % 60]);
+      setParts([
+        Math.floor(s / 86400),
+        Math.floor((s % 86400) / 3600),
+        Math.floor((s % 3600) / 60),
+        s % 60,
+      ]);
     };
     tick();
     const id = setInterval(tick, 1000);
@@ -28,7 +33,10 @@ export function Hero() {
   const parts = useCountdown(FEST.targetDate);
 
   return (
-    <section id="top" className="relative flex min-h-[92svh] items-center px-6 pt-32 pb-12 sm:pb-16">
+    <section
+      id="top"
+      className="relative flex min-h-[92svh] items-center px-6 pt-32 pb-12 sm:pb-16"
+    >
       <HeroField />
 
       {/* floating glass objects */}
@@ -40,7 +48,6 @@ export function Hero() {
         className="pointer-events-none absolute right-[6%] bottom-[10%] -z-10 hidden h-28 w-28 rounded-full border border-white/10 bg-white/4 backdrop-blur-2xl lg:block"
         style={{ animation: "float-soft 16s ease-in-out infinite 1.5s" }}
       />
-
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-16 lg:grid-cols-[1.25fr_0.75fr]">
         <div>
@@ -105,7 +112,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.75, ease: EASE }}
-            className="mt-3 -mx-8 px-8 py-8 flex flex-nowrap items-center gap-4 w-[calc(100%+4rem)] max-w-[calc(100%+4rem)] overflow-x-auto no-scrollbar"
+            className="mt-3 py-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4"
           >
             <MagneticButton href={FEST.registerUrl}>Register Now</MagneticButton>
             <MagneticButton href={FEST.eventsUrl} variant="ghost">
@@ -149,7 +156,6 @@ export function Hero() {
             <Robot className="h-auto w-full" />
           </div>
         </motion.div>
-
       </div>
     </section>
   );

@@ -8,10 +8,16 @@ import { SectionSkeleton } from "@/components/site/SectionSkeleton";
 
 const About = lazy(() => import("@/components/site/About").then((m) => ({ default: m.About })));
 const Events = lazy(() => import("@/components/site/Events").then((m) => ({ default: m.Events })));
-const Timeline = lazy(() => import("@/components/site/Timeline").then((m) => ({ default: m.Timeline })));
-const Gallery = lazy(() => import("@/components/site/Gallery").then((m) => ({ default: m.Gallery })));
+const Timeline = lazy(() =>
+  import("@/components/site/Timeline").then((m) => ({ default: m.Timeline })),
+);
+const Gallery = lazy(() =>
+  import("@/components/site/Gallery").then((m) => ({ default: m.Gallery })),
+);
 const Team = lazy(() => import("@/components/site/Team").then((m) => ({ default: m.Team })));
-const Sponsors = lazy(() => import("@/components/site/Sponsors").then((m) => ({ default: m.Sponsors })));
+const Sponsors = lazy(() =>
+  import("@/components/site/Sponsors").then((m) => ({ default: m.Sponsors })),
+);
 const Footer = lazy(() => import("@/components/site/Footer").then((m) => ({ default: m.Footer })));
 
 const TITLE = "अvinya'26 | Annual Tech Fest";
@@ -28,7 +34,10 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:image", content: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp" },
+      {
+        name: "twitter:image",
+        content: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp",
+      },
     ],
   }),
   component: Index,

@@ -25,15 +25,7 @@ function useSeen<T extends HTMLElement>() {
 }
 
 export type RevealVariant =
-  | "up"
-  | "left"
-  | "right"
-  | "scale"
-  | "flip"
-  | "flip-y"
-  | "tilt"
-  | "swing"
-  | "zoom-blur";
+  "up" | "left" | "right" | "scale" | "flip" | "flip-y" | "tilt" | "swing" | "zoom-blur";
 
 /** Distinct entrance choreographies so each card arrives differently. */
 export const REVEAL_VARIANTS: RevealVariant[] = [
@@ -49,7 +41,11 @@ export const REVEAL_VARIANTS: RevealVariant[] = [
 ];
 
 export function revealVariant(i: number): RevealVariant {
-  return REVEAL_VARIANTS[((i % REVEAL_VARIANTS.length) + REVEAL_VARIANTS.length) % REVEAL_VARIANTS.length] ?? "up";
+  return (
+    REVEAL_VARIANTS[
+      ((i % REVEAL_VARIANTS.length) + REVEAL_VARIANTS.length) % REVEAL_VARIANTS.length
+    ] ?? "up"
+  );
 }
 
 function statesFor(variant: RevealVariant, y: number) {
@@ -63,7 +59,16 @@ function statesFor(variant: RevealVariant, y: number) {
     rotateY: 0,
     filter: "blur(0px)",
   };
-  const base = { opacity: 0, x: 0, y: 0, scale: 1, rotate: 0, rotateX: 0, rotateY: 0, filter: "blur(10px)" };
+  const base = {
+    opacity: 0,
+    x: 0,
+    y: 0,
+    scale: 1,
+    rotate: 0,
+    rotateX: 0,
+    rotateY: 0,
+    filter: "blur(10px)",
+  };
 
   switch (variant) {
     case "left":
@@ -148,11 +153,13 @@ export function RevealText({
     return () => io.disconnect();
   }, []);
 
-
   return (
     <span ref={ref} className={className}>
       {words.map((word, i) => (
-        <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom pr-2 -mr-2 pb-1 -mb-1">
+        <span
+          key={`${word}-${i}`}
+          className="inline-block overflow-hidden align-bottom pr-2 -mr-2 pb-1 -mb-1"
+        >
           <motion.span
             className={`inline-block ${wordClassName ?? ""}`}
             initial={{ y: "110%" }}

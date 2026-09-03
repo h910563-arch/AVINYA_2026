@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FEST, getEventRegistrationUrl } from "@/lib/site-data";
-import { useSiteContent, } from "@/lib/site-content-context";
+import { useSiteContent } from "@/lib/site-content-context";
 import type { EventItem } from "@/lib/site-content";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
@@ -13,7 +13,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
   return (
     <Reveal delay={index * 0.1} variant={revealVariant(index)}>
       <div
-        className="perspective-1000 group h-[315px] sm:h-[330px] w-full cursor-pointer select-none"
+        className="perspective-1000 group h-[280px] sm:h-[290px] w-full cursor-pointer select-none"
         onClick={() => setIsFlipped((prev) => !prev)}
       >
         <div
@@ -72,12 +72,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                 </p>
               </div>
 
-              {/* Venue badge */}
-              <div className="mt-2 flex items-center gap-1.5 border-t border-white/15 pt-1.5">
-                <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-white shadow-sm backdrop-blur-md">
-                  {event.venue}
-                </span>
-              </div>
+
             </div>
 
             {/* Bottom Outer Card Footer (FRONT: Date on left, Register button on right) */}
@@ -95,7 +90,9 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                 className="group/btn relative inline-flex items-center gap-1.5 rounded-full border border-white/35 bg-white/15 px-3.5 py-1 text-[11.5px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-300 hover:scale-[1.03] hover:border-azure/80 hover:bg-azure/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-[0.98] whitespace-nowrap"
               >
                 <span>Register</span>
-                <span className="transition-transform duration-300 group-hover/btn:translate-x-0.5">→</span>
+                <span className="transition-transform duration-300 group-hover/btn:translate-x-0.5">
+                  →
+                </span>
               </a>
             </div>
           </article>
@@ -148,12 +145,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                 </p>
               </div>
 
-              {/* Venue Tag */}
-              <div className="mt-2 flex items-center gap-1.5 border-t border-white/15 pt-1.5">
-                <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-white shadow-sm backdrop-blur-md">
-                  {event.venue}
-                </span>
-              </div>
+
             </div>
 
             {/* Bottom Action Bar (FLIPPED: Date on left, Register on right) */}
@@ -171,7 +163,9 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                 className="group/btn relative inline-flex items-center gap-1.5 rounded-full border border-white/35 bg-white/15 px-3.5 py-1 text-[11.5px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-300 hover:scale-[1.03] hover:border-azure/80 hover:bg-azure/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-[0.98] whitespace-nowrap"
               >
                 <span>Register</span>
-                <span className="transition-transform duration-300 group-hover/btn:translate-x-0.5">→</span>
+                <span className="transition-transform duration-300 group-hover/btn:translate-x-0.5">
+                  →
+                </span>
               </a>
             </div>
           </article>
@@ -203,7 +197,9 @@ export function Events() {
               <span className="relative z-10 flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-azure shadow-[0_0_8px_var(--color-azure)]" />
                 <span>View all events</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </span>
             </a>
           </Reveal>

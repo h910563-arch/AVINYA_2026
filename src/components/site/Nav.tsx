@@ -62,12 +62,30 @@ export function Nav() {
           aria-label="Toggle Menu"
         >
           {menuOpen ? (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           ) : (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <line x1="4" y1="12" x2="20" y2="12"></line>
               <line x1="4" y1="6" x2="20" y2="6"></line>
               <line x1="4" y1="18" x2="20" y2="18"></line>
@@ -84,7 +102,7 @@ export function Nav() {
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
               style={{ transformOrigin: "top right" }}
-              className="absolute right-4 top-[calc(100%+12px)] flex w-[280px] flex-col gap-3 rounded-2xl bg-background/95 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl border border-white/15 md:hidden"
+              className="absolute right-4 top-[calc(100%+12px)] flex w-[calc(100vw-32px)] max-w-[320px] flex-col gap-3 rounded-2xl bg-background/95 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl border border-white/15 md:hidden"
             >
               <div className="grid grid-cols-2 gap-2">
                 {LINKS.map((l, i) => (

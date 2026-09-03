@@ -1,8 +1,27 @@
 import { useEffect, useRef } from "react";
 
 type Star = { x: number; y: number; z: number; r: number; tw: number; ph: number };
-type Meteor = { x: number; y: number; vx: number; vy: number; len: number; life: number; max: number; w: number };
-type Rock = { x: number; y: number; vx: number; vy: number; r: number; rot: number; vr: number; pts: number[]; o: number };
+type Meteor = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  len: number;
+  life: number;
+  max: number;
+  w: number;
+};
+type Rock = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  r: number;
+  rot: number;
+  vr: number;
+  pts: number[];
+  o: number;
+};
 
 /**
  * Canvas star field: twinkling stars, falling meteors and slowly tumbling asteroids.
@@ -66,7 +85,9 @@ export function StarField() {
         ph: rand(0, Math.PI * 2),
       }));
 
-      rocks = Array.from({ length: mobile ? 2 : Math.max(5, Math.round(w / 190)) }, () => makeRock(false));
+      rocks = Array.from({ length: mobile ? 2 : Math.max(5, Math.round(w / 190)) }, () =>
+        makeRock(false),
+      );
     };
 
     build();
@@ -114,7 +135,7 @@ export function StarField() {
           s.y = -2;
           s.x = Math.random() * w;
         }
-        const t = reduced ? 1 : 0.55 + 0.45 * Math.sin(now / 1000 * s.tw + s.ph);
+        const t = reduced ? 1 : 0.55 + 0.45 * Math.sin((now / 1000) * s.tw + s.ph);
         const alpha = (0.25 + 0.6 * s.z) * t;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);

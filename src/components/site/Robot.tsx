@@ -138,7 +138,12 @@ export function Robot({ className }: { className?: string }) {
             animation: "breathe 6.5s ease-in-out infinite",
           }}
         >
-          <svg viewBox="0 0 240 260" className="h-full w-full" role="img" aria-label="Avinya companion robot">
+          <svg
+            viewBox="0 0 240 260"
+            className="h-full w-full"
+            role="img"
+            aria-label="Avinya companion robot"
+          >
             <defs>
               <linearGradient id="shell" x1="0" y1="0" x2="0.4" y2="1">
                 <stop offset="0%" stopColor="oklch(0.42 0.012 265)" />
@@ -165,26 +170,69 @@ export function Robot({ className }: { className?: string }) {
             </defs>
 
             {/* floor light */}
-            <ellipse cx="120" cy="240" rx="66" ry="10" fill="oklch(0.72 0.15 252 / 22%)" filter="url(#soft)" />
+            <ellipse
+              cx="120"
+              cy="240"
+              rx="66"
+              ry="10"
+              fill="oklch(0.72 0.15 252 / 22%)"
+              filter="url(#soft)"
+            />
 
             {/* body */}
-            <rect x="72" y="150" width="96" height="72" rx="30" fill="url(#shell)" stroke="url(#rim)" strokeWidth="1.2" />
+            <rect
+              x="72"
+              y="150"
+              width="96"
+              height="72"
+              rx="30"
+              fill="url(#shell)"
+              stroke="url(#rim)"
+              strokeWidth="1.2"
+            />
             <rect x="96" y="176" width="48" height="6" rx="3" fill="oklch(1 0 0 / 8%)" />
 
             {/* neck */}
             <rect x="108" y="138" width="24" height="20" rx="8" fill="oklch(0.23 0.012 265)" />
 
             {/* head */}
-            <rect x="52" y="42" width="136" height="104" rx="42" fill="url(#shell)" stroke="url(#rim)" strokeWidth="1.4" />
+            <rect
+              x="52"
+              y="42"
+              width="136"
+              height="104"
+              rx="42"
+              fill="url(#shell)"
+              stroke="url(#rim)"
+              strokeWidth="1.4"
+            />
 
             {/* visor */}
-            <rect x="70" y="62" width="100" height="64" rx="30" fill="url(#visor)" stroke="oklch(1 0 0 / 12%)" />
+            <rect
+              x="70"
+              y="62"
+              width="100"
+              height="64"
+              rx="30"
+              fill="url(#visor)"
+              stroke="oklch(1 0 0 / 12%)"
+            />
 
             {/* eyes */}
-            <g style={{ transform: `translate(${pupil.x}px, ${pupil.y}px)`, transition: "transform 500ms var(--ease-lux)" }}>
+            <g
+              style={{
+                transform: `translate(${pupil.x}px, ${pupil.y}px)`,
+                transition: "transform 500ms var(--ease-lux)",
+              }}
+            >
               <circle cx="100" cy="94" r="16" fill="url(#eyeGlow)" opacity="0.55" />
               <circle cx="140" cy="94" r="16" fill="url(#eyeGlow)" opacity="0.55" />
-              <g style={{ transformOrigin: "120px 94px", animation: "blink 7s ease-in-out infinite" }}>
+              <g
+                style={{
+                  transformOrigin: "120px 94px",
+                  animation: "blink 7s ease-in-out infinite",
+                }}
+              >
                 <circle cx="100" cy="94" r="7" fill="oklch(0.97 0.02 240)" />
                 <circle cx="140" cy="94" r="7" fill="oklch(0.97 0.02 240)" />
               </g>
@@ -205,10 +253,24 @@ export function Robot({ className }: { className?: string }) {
             />
 
             {/* visor highlight */}
-            <path d="M78 74 Q104 58 150 66" stroke="oklch(1 0 0 / 20%)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path
+              d="M78 74 Q104 58 150 66"
+              stroke="oklch(1 0 0 / 20%)"
+              strokeWidth="3"
+              fill="none"
+              strokeLinecap="round"
+            />
 
             {/* antenna */}
-            <line x1="120" y1="42" x2="120" y2="24" stroke="oklch(0.5 0.01 265)" strokeWidth="3" strokeLinecap="round" />
+            <line
+              x1="120"
+              y1="42"
+              x2="120"
+              y2="24"
+              stroke="oklch(0.5 0.01 265)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
             <circle
               cx="120"
               cy="19"
@@ -220,7 +282,15 @@ export function Robot({ className }: { className?: string }) {
             <circle cx="120" cy="19" r="12" fill="oklch(0.72 0.15 252 / 30%)" filter="url(#soft)" />
 
             {/* arms */}
-            <rect x="52" y="160" width="16" height="44" rx="8" fill="oklch(0.24 0.012 265)" stroke="oklch(1 0 0 / 8%)" />
+            <rect
+              x="52"
+              y="160"
+              width="16"
+              height="44"
+              rx="8"
+              fill="oklch(0.24 0.012 265)"
+              stroke="oklch(1 0 0 / 8%)"
+            />
             <rect
               x="172"
               y="160"
@@ -231,7 +301,9 @@ export function Robot({ className }: { className?: string }) {
               stroke="oklch(1 0 0 / 8%)"
               style={{
                 transformOrigin: "180px 166px",
-                animation: waving ? "hand-wave 0.9s ease-in-out infinite" : "arm-wave 9s ease-in-out infinite",
+                animation: waving
+                  ? "hand-wave 0.9s ease-in-out infinite"
+                  : "arm-wave 9s ease-in-out infinite",
               }}
             />
           </svg>

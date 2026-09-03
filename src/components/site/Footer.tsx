@@ -36,7 +36,7 @@ export function Footer() {
                     if (splitIdx !== -1) {
                       const mainText = rawBlurb.slice(0, splitIdx).trim();
                       const contactText = rawBlurb.slice(splitIdx + splitStr.length).trim();
-                      
+
                       const contacts = contactText
                         .split(")")
                         .filter((c) => c.trim().length > 0)
@@ -55,7 +55,9 @@ export function Footer() {
                                 if (match) {
                                   return (
                                     <li key={i} className="flex items-center gap-2">
-                                      <span className="font-bold text-cyan">{match[1]?.trim() || ""}</span>
+                                      <span className="font-bold text-cyan">
+                                        {match[1]?.trim() || ""}
+                                      </span>
                                       <span className="text-white/40">—</span>
                                       <span className="font-mono text-[13.5px] font-medium text-white/90">
                                         {(match[2]?.trim() || "").replace(/-/g, "")}
@@ -63,7 +65,11 @@ export function Footer() {
                                     </li>
                                   );
                                 }
-                                return <li key={i} className="text-white/80">{c}</li>;
+                                return (
+                                  <li key={i} className="text-white/80">
+                                    {c}
+                                  </li>
+                                );
                               })}
                             </ul>
                           </div>
@@ -81,7 +87,10 @@ export function Footer() {
                     width="100%"
                     height="100%"
                     src="https://maps.google.com/maps?q=Guru+Tegh+Bahadur+4th+Centenary+Engineering+College&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                    style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) contrast(1.1) grayscale(10%)" }}
+                    style={{
+                      border: 0,
+                      filter: "invert(90%) hue-rotate(180deg) contrast(1.1) grayscale(10%)",
+                    }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -111,7 +120,6 @@ export function Footer() {
               Admin
             </Link>
           </div>
-
         </div>
       </div>
     </footer>

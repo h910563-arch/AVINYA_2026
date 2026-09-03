@@ -51,10 +51,7 @@ function RegisterPage() {
   return (
     <main className="flex min-h-screen items-center justify-center px-6 py-24">
       <Toaster />
-      <form
-        onSubmit={handleSubmit}
-        className="glass w-full max-w-sm rounded-[1.75rem] p-8"
-      >
+      <form onSubmit={handleSubmit} className="glass w-full max-w-sm rounded-[1.75rem] p-8">
         <p className="eyebrow mb-3">{FEST.name}</p>
         <h1 className="font-display text-3xl font-semibold">Register</h1>
         <p className="mt-3 text-sm text-muted-foreground">

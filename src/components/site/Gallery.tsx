@@ -1,9 +1,20 @@
+import { useState, useEffect } from "react";
 import { useSiteContent } from "@/lib/site-content-context";
 import { RevealText } from "./Reveal";
 import DomeGallery from "./DomeGallery";
 
 export function Gallery() {
   const { gallery: GALLERY } = useSiteContent();
+  const [openedSize, setOpenedSize] = useState("520px");
+
+  useEffect(() => {
+    const handleResize = () => {
+      setOpenedSize(window.innerWidth < 640 ? "320px" : "520px");
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const galleryImages = GALLERY.map((src) => ({
     src,
@@ -42,8 +53,8 @@ export function Gallery() {
             grayscale={false}
             imageBorderRadius="18px"
             openedImageBorderRadius="24px"
-            openedImageWidth="520px"
-            openedImageHeight="520px"
+            openedImageWidth={openedSize}
+            openedImageHeight={openedSize}
             dragSensitivity={18}
             dragDampening={1.8}
             autoRotate={true}

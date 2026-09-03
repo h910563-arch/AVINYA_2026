@@ -361,8 +361,10 @@ export default function DomeGallery({
         if (focusedElRef.current) return;
         stopInertia();
         const evt = event as PointerEvent | MouseEvent | TouchEvent;
-        const clientX = "clientX" in evt ? evt.clientX : (evt as TouchEvent).touches[0]?.clientX || 0;
-        const clientY = "clientY" in evt ? evt.clientY : (evt as TouchEvent).touches[0]?.clientY || 0;
+        const clientX =
+          "clientX" in evt ? evt.clientX : (evt as TouchEvent).touches[0]?.clientX || 0;
+        const clientY =
+          "clientY" in evt ? evt.clientY : (evt as TouchEvent).touches[0]?.clientY || 0;
         draggingRef.current = true;
         movedRef.current = false;
         startRotRef.current = { ...rotationRef.current };
@@ -371,8 +373,10 @@ export default function DomeGallery({
       onDrag: ({ event, last, velocity = [0, 0], direction = [0, 0], movement }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
         const evt = event as PointerEvent | MouseEvent | TouchEvent;
-        const clientX = "clientX" in evt ? evt.clientX : (evt as TouchEvent).touches[0]?.clientX || 0;
-        const clientY = "clientY" in evt ? evt.clientY : (evt as TouchEvent).touches[0]?.clientY || 0;
+        const clientX =
+          "clientX" in evt ? evt.clientX : (evt as TouchEvent).touches[0]?.clientX || 0;
+        const clientY =
+          "clientY" in evt ? evt.clientY : (evt as TouchEvent).touches[0]?.clientY || 0;
         const dxTotal = clientX - startPosRef.current.x;
         const dyTotal = clientY - startPosRef.current.y;
         if (!movedRef.current) {
@@ -631,14 +635,7 @@ export default function DomeGallery({
         overlay.addEventListener("transitionend", onFirstEnd);
       }
     },
-    [
-      enlargeTransitionMs,
-      lockScroll,
-      openedImageHeight,
-      openedImageWidth,
-      segments,
-      unlockScroll,
-    ],
+    [enlargeTransitionMs, lockScroll, openedImageHeight, openedImageWidth, segments, unlockScroll],
   );
 
   const onTileClick = useCallback(
