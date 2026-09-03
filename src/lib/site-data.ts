@@ -291,7 +291,7 @@ export const EVENT_REGISTRATION_URLS: Record<string, string> = {
   "Code Whirl": "https://www.unievent.in/events/codewhirl-1784808405446",
   "Cuisine Cosmos": "https://www.unievent.in/events/cuisine-cosmos-1784809529603",
   DesignOps: "https://www.unievent.in/events/design-ops-1784809988495",
-  "Colossal-A-Pitch": "https://q.me-qr.com/ebj58x6e",
+  "Colossal-A-Pitch": "https://devnovate.co/event/colossal-a-pitch",
 };
 
 /** Looks up an event's external registration URL, ignoring case (poster titles and team titles don't always match case). */
