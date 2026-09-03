@@ -11,16 +11,12 @@ type Props = {
 /** Physical button: magnetic pull, moving light reflection, soft press. */
 export function MagneticButton({ href, children, variant = "solid", className }: Props) {
   const ref = useRef<HTMLAnchorElement>(null);
-  const [t, setT] = useState({ x: 0, y: 0 });
   const [light, setLight] = useState({ x: 50, y: 50, on: false });
 
   const onMove = (e: React.PointerEvent) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    const dx = e.clientX - (r.left + r.width / 2);
-    const dy = e.clientY - (r.top + r.height / 2);
-    setT({ x: dx * 0.28, y: dy * 0.34 });
     setLight({
       x: ((e.clientX - r.left) / r.width) * 100,
       y: ((e.clientY - r.top) / r.height) * 100,
@@ -29,7 +25,6 @@ export function MagneticButton({ href, children, variant = "solid", className }:
   };
 
   const reset = () => {
-    setT({ x: 0, y: 0 });
     setLight((l) => ({ ...l, on: false }));
   };
 
@@ -40,14 +35,13 @@ export function MagneticButton({ href, children, variant = "solid", className }:
       onPointerMove={onMove}
       onPointerLeave={reset}
       className={cn(
-        "group relative inline-flex select-none items-center justify-center overflow-hidden rounded-full px-8 py-4 text-sm tracking-tight transition-[transform,box-shadow,border-color] duration-500 active:scale-[0.97]",
+        "group relative inline-flex select-none items-center justify-center overflow-hidden rounded-full px-6 py-3 text-[13.5px] whitespace-nowrap tracking-tight transition-[transform,box-shadow,border-color] duration-500 active:scale-[0.97]",
         variant === "solid"
-          ? "bg-primary font-medium text-primary-foreground shadow-[0_20px_50px_-24px_oklch(0.72_0.15_252/70%)]"
-          : "glass font-medium text-foreground hover:border-white/20",
+          ? "bg-primary font-medium text-primary-foreground shadow-[0_0_24px_rgba(255,255,255,0.5)] hover:shadow-[0_0_32px_rgba(255,255,255,0.7)]"
+          : "glass font-medium text-foreground hover:border-white/30 shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_28px_rgba(255,255,255,0.4)]",
         className,
       )}
       style={{
-        transform: `translate3d(${t.x}px, ${t.y}px, 0)`,
         transitionTimingFunction: "var(--ease-lux)",
       }}
     >

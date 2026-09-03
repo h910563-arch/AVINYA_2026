@@ -89,7 +89,7 @@ export function ContactForm() {
         placeholder="Message" 
         value={formData.message} 
         onChange={handleChange} 
-        rows={4} 
+        rows={9} 
         className="bg-background/40 border border-white/10 rounded-xl px-4 py-3 text-[14px] outline-none focus:border-primary/50 transition-colors resize-none backdrop-blur-sm" 
       />
       

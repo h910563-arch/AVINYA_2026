@@ -1,5 +1,5 @@
 import { SPONSORS } from "@/lib/site-data";
-import { Reveal } from "./Reveal";
+import { Reveal, RevealText } from "./Reveal";
 
 export function Sponsors() {
   const logos = [
@@ -17,10 +17,12 @@ export function Sponsors() {
   const row = [...logos, ...logos, ...logos];
 
   return (
-    <section className="relative py-24 sm:py-32">
-      <Reveal>
-        <p className="eyebrow mb-12 text-center uppercase tracking-wider text-sm">Community Partners & Sponsers</p>
-      </Reveal>
+    <section className="relative px-6 py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="mb-12 font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold sm:mb-14">
+          <RevealText text="Community Partners & Sponsors" />
+        </h2>
+      </div>
 
       <div
         className="relative overflow-hidden"

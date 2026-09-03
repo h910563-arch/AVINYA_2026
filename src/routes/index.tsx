@@ -1,15 +1,18 @@
+import { lazy, Suspense } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Atmosphere } from "@/components/site/Atmosphere";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
-import { About } from "@/components/site/About";
-import { Events } from "@/components/site/Events";
-import { Timeline } from "@/components/site/Timeline";
-import { Gallery } from "@/components/site/Gallery";
-import { Team } from "@/components/site/Team";
-import { Sponsors } from "@/components/site/Sponsors";
-import { Footer } from "@/components/site/Footer";
+import { SectionSkeleton } from "@/components/site/SectionSkeleton";
+
+const About = lazy(() => import("@/components/site/About").then((m) => ({ default: m.About })));
+const Events = lazy(() => import("@/components/site/Events").then((m) => ({ default: m.Events })));
+const Timeline = lazy(() => import("@/components/site/Timeline").then((m) => ({ default: m.Timeline })));
+const Gallery = lazy(() => import("@/components/site/Gallery").then((m) => ({ default: m.Gallery })));
+const Team = lazy(() => import("@/components/site/Team").then((m) => ({ default: m.Team })));
+const Sponsors = lazy(() => import("@/components/site/Sponsors").then((m) => ({ default: m.Sponsors })));
+const Footer = lazy(() => import("@/components/site/Footer").then((m) => ({ default: m.Footer })));
 
 const TITLE = "अvinya'26 | Annual Tech Fest";
 const DESC =
@@ -39,14 +42,28 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <About />
-        <Events />
-        <Timeline />
-        <Gallery />
-        <Team />
-        <Sponsors />
+        <Suspense fallback={<SectionSkeleton height="50vh" />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton height="100vh" />}>
+          <Events />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton height="80vh" />}>
+          <Timeline />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton height="80vh" />}>
+          <Gallery />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton height="100vh" />}>
+          <Team />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton height="50vh" />}>
+          <Sponsors />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="h-64 bg-background" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

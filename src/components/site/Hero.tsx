@@ -105,11 +105,14 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.75, ease: EASE }}
-            className="mt-11 flex flex-wrap items-center gap-4"
+            className="mt-3 -mx-8 px-8 py-8 flex flex-nowrap items-center gap-4 w-[calc(100%+4rem)] max-w-[calc(100%+4rem)] overflow-x-auto no-scrollbar"
           >
             <MagneticButton href={FEST.registerUrl}>Register Now</MagneticButton>
             <MagneticButton href={FEST.eventsUrl} variant="ghost">
               Explore Events
+            </MagneticButton>
+            <MagneticButton href="#timeline" variant="ghost">
+              Click for the Timeline & Never Miss the Opportunity
             </MagneticButton>
           </motion.div>
 

@@ -41,7 +41,7 @@ export function Atmosphere() {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden grain">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden md:grain">
       <div className="absolute inset-0 bg-background" />
 
       <StarField />
@@ -50,7 +50,7 @@ export function Atmosphere() {
 
       {/* aurora meshes */}
       <div
-        className="absolute -top-[30%] left-[-15%] h-[80vw] w-[80vw] rounded-full opacity-[0.5] blur-[130px]"
+        className="absolute -top-[30%] left-[-15%] h-[80vw] w-[80vw] rounded-full opacity-[0.5] blur-[60px] md:blur-[130px] will-change-transform"
         style={{
           background:
             "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--azure) 55%, transparent), transparent 62%)",
@@ -58,7 +58,7 @@ export function Atmosphere() {
         }}
       />
       <div
-        className="absolute top-[10%] right-[-20%] h-[70vw] w-[70vw] rounded-full opacity-[0.42] blur-[150px]"
+        className="absolute top-[10%] right-[-20%] h-[70vw] w-[70vw] rounded-full opacity-[0.42] blur-[80px] md:blur-[150px] will-change-transform"
         style={{
           background:
             "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--violet) 55%, transparent), transparent 64%)",
@@ -66,7 +66,7 @@ export function Atmosphere() {
         }}
       />
       <div
-        className="absolute bottom-[-25%] left-[20%] h-[65vw] w-[65vw] rounded-full opacity-[0.3] blur-[160px]"
+        className="absolute bottom-[-25%] left-[20%] h-[65vw] w-[65vw] rounded-full opacity-[0.3] blur-[90px] md:blur-[160px] will-change-transform"
         style={{
           background:
             "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 40%, transparent), transparent 66%)",
@@ -76,7 +76,7 @@ export function Atmosphere() {
 
       {/* slow light rays */}
       <div
-        className="absolute inset-x-0 top-[-20%] h-[140%] opacity-[0.14] blur-[2px]"
+        className="absolute inset-x-0 top-[-20%] h-[140%] opacity-[0.14] blur-[2px] will-change-transform"
         style={{
           background:
             "repeating-linear-gradient(102deg, transparent 0 90px, oklch(1 0 0 / 5%) 90px 92px, transparent 92px 220px)",
@@ -87,7 +87,7 @@ export function Atmosphere() {
       {/* pointer light */}
       <div
         ref={glow}
-        className="absolute h-[680px] w-[680px] rounded-full opacity-[0.35] blur-[110px] will-change-transform"
+        className="hidden md:block absolute h-[680px] w-[680px] rounded-full opacity-[0.35] blur-[110px] will-change-transform"
         style={{
           background:
             "radial-gradient(circle, color-mix(in oklab, var(--silver) 22%, transparent), transparent 62%)",
