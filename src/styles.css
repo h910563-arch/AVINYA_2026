@@ -91,7 +91,6 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
   }
 
   body {
@@ -99,7 +98,6 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv01";
-    overflow-x: hidden;
   }
 
   ::selection {

@@ -201,9 +201,16 @@ export default function DomeGallery({
 
   // Continuous auto-rotation animation loop even on hover
   useEffect(() => {
-    if (!autoRotate) return;
+    if (!autoRotate || !rootRef.current) return;
     let animId: number;
+    let isVisible = false;
+
     const animate = () => {
+      if (!isVisible) {
+        animId = requestAnimationFrame(animate);
+        return;
+      }
+
       if (
         !draggingRef.current &&
         !openingRef.current &&
@@ -216,8 +223,21 @@ export default function DomeGallery({
       }
       animId = requestAnimationFrame(animate);
     };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0]?.isIntersecting ?? false;
+      },
+      { threshold: 0.01 },
+    );
+
+    observer.observe(rootRef.current);
     animId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animId);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      observer.disconnect();
+    };
   }, [autoRotate, autoRotateSpeed]);
 
   const lockedRadiusRef = useRef<number | null>(null);

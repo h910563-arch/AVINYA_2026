@@ -3,7 +3,7 @@ import { useEffect } from "react";
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches) return;
     let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
     let raf = 0;
     let cancelled = false;

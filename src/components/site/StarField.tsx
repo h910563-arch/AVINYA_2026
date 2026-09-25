@@ -137,15 +137,13 @@ export function StarField() {
         }
         const t = reduced ? 1 : 0.55 + 0.45 * Math.sin((now / 1000) * s.tw + s.ph);
         const alpha = (0.25 + 0.6 * s.z) * t;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(235,242,255,${alpha.toFixed(3)})`;
-        ctx.fill();
+        ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 2, s.r * 2);
+
         if (s.r > 1.1) {
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r * 3.4, 0, Math.PI * 2);
+          const glowR = s.r * 3.4;
           ctx.fillStyle = `rgba(150,190,255,${(alpha * 0.09).toFixed(3)})`;
-          ctx.fill();
+          ctx.fillRect(s.x - glowR, s.y - glowR, glowR * 2, glowR * 2);
         }
       }
 

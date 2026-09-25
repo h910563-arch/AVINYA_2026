@@ -17,7 +17,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
         onClick={() => setIsFlipped((prev) => !prev)}
       >
         <div
-          className={`transform-style-3d relative h-full w-full rounded-[1.5rem] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-y-180 ${
+          className={`transform-style-3d relative h-full w-full rounded-[1.5rem] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:rotate-y-180 ${
             isFlipped ? "rotate-y-180" : ""
           }`}
           style={{ transformStyle: "preserve-3d" }}
@@ -45,7 +45,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                   event.currentTarget.dataset["fallbackApplied"] = "true";
                   event.currentTarget.src = FALLBACK_EVENT_IMAGE;
                 }}
-                className="h-full w-full object-cover opacity-95 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-100"
+                className="h-full w-full object-cover opacity-95 transition-[transform,opacity] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:scale-105 group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/15 to-black/60" />
             </div>
@@ -71,8 +71,6 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                   {event.description}
                 </p>
               </div>
-
-
             </div>
 
             {/* Bottom Outer Card Footer (FRONT: Date on left, Register button on right) */}
@@ -120,7 +118,7 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                   event.currentTarget.dataset["fallbackApplied"] = "true";
                   event.currentTarget.src = FALLBACK_EVENT_IMAGE;
                 }}
-                className="h-full w-full object-cover opacity-90 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
+                className="h-full w-full object-cover opacity-90 transition-[transform,opacity] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/25 to-black/70" />
             </div>
@@ -144,8 +142,6 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                   {event.description}
                 </p>
               </div>
-
-
             </div>
 
             {/* Bottom Action Bar (FLIPPED: Date on left, Register on right) */}

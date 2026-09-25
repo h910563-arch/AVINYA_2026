@@ -33,12 +33,12 @@ export function Sponsors() {
       >
         <div
           className="flex w-max gap-16 px-6 items-center"
-          style={{ animation: "marquee 30s linear infinite" }}
+          style={{ animation: "marquee 30s linear infinite", willChange: "transform" }}
         >
           {row.map((src, i) => (
             <div
               key={`${src}-${i}`}
-              className="flex items-center justify-center h-20 md:h-24 px-6 rounded-2xl bg-white/40 backdrop-blur-md border border-white/40 shadow-[0_4px_30px_rgba(255,255,255,0.2)] transition-transform duration-300 hover:scale-110 hover:-translate-y-1 hover:bg-white/60"
+              className="flex items-center justify-center h-20 md:h-24 px-6 rounded-2xl bg-white/10 md:bg-white/40 backdrop-blur-none md:backdrop-blur-md border border-white/20 md:border-white/40 shadow-[0_4px_30px_rgba(255,255,255,0.1)] md:shadow-[0_4px_30px_rgba(255,255,255,0.2)] transition-transform duration-300 hover:scale-110 hover:-translate-y-1 hover:bg-white/60"
             >
               <img
                 src={src}
