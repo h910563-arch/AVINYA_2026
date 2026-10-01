@@ -7,11 +7,10 @@ export function Sponsors() {
     "/logo/AlteredSecurity-2048x594--1-.png",
     "/logo/DEVNOVATE.png",
     "/logo/IBlogo_light.png",
-    "/logo/MAVERICK-BRANDS-PRIVATE-LIMITED-v1-230026.png",
     "/logo/UptoSkills.png",
-    "/logo/gfg-gg-logo.png",
     "/logo/logo.png",
     "/logo/skillstory-text.png",
+    "/logo/indiebox logo.PNG",
   ];
 
   const row = [...logos, ...logos, ...logos];
@@ -43,7 +42,11 @@ export function Sponsors() {
               <img
                 src={src}
                 alt="Sponsor Logo"
-                className="h-10 md:h-12 w-auto object-contain drop-shadow-md"
+                className={
+                  src.includes("indiebox")
+                    ? "h-16 md:h-20 w-auto object-contain drop-shadow-md"
+                    : "h-10 md:h-12 w-auto object-contain drop-shadow-md"
+                }
               />
             </div>
           ))}

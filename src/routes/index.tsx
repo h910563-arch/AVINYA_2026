@@ -60,14 +60,14 @@ function Index() {
         <Suspense fallback={<SectionSkeleton height="80vh" />}>
           <Timeline />
         </Suspense>
+        <Suspense fallback={<SectionSkeleton height="50vh" />}>
+          <Sponsors />
+        </Suspense>
         <Suspense fallback={<SectionSkeleton height="80vh" />}>
           <Gallery />
         </Suspense>
         <Suspense fallback={<SectionSkeleton height="100vh" />}>
           <Team />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton height="50vh" />}>
-          <Sponsors />
         </Suspense>
       </main>
       <Suspense fallback={<div className="h-64 bg-background" />}>
