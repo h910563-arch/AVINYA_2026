@@ -6,9 +6,12 @@ import DomeGallery from "./DomeGallery";
 export function Gallery() {
   const { gallery: GALLERY } = useSiteContent();
   const [openedSize, setOpenedSize] = useState("520px");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
       setOpenedSize(window.innerWidth < 640 ? "320px" : "520px");
     };
     handleResize();
@@ -57,7 +60,8 @@ export function Gallery() {
             openedImageHeight={openedSize}
             dragSensitivity={18}
             dragDampening={1.8}
-            autoRotate={true}
+            segments={isMobile ? 14 : 35}
+            autoRotate={!isMobile}
             autoRotateSpeed={0.16}
           />
         </div>

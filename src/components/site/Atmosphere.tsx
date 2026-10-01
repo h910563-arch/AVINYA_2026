@@ -2,6 +2,9 @@ import { useEffect, useRef } from "react";
 import { StarField } from "./StarField";
 import { Ufos } from "./Ufos";
 
+// Detect mobile once at module level (no SSR issues — component is client-only)
+const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
+
 /**
  * Living environment: slow aurora meshes, drifting light rays, grain,
  * and a soft light that follows the pointer.
@@ -45,43 +48,66 @@ export function Atmosphere() {
       <div className="absolute inset-0 bg-background" />
 
       <StarField />
-      <Ufos />
+      {!isMobile && <Ufos />}
 
-      {/* aurora meshes */}
-      <div
-        className="absolute -top-[30%] left-[-15%] h-[80vw] w-[80vw] rounded-full opacity-[0.5] will-change-transform"
-        style={{
-          background:
-            "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--azure) 55%, transparent), transparent 62%)",
-          animation: "drift-a 34s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="absolute top-[10%] right-[-20%] h-[70vw] w-[70vw] rounded-full opacity-[0.42] will-change-transform"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--violet) 55%, transparent), transparent 64%)",
-          animation: "drift-b 46s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="absolute bottom-[-25%] left-[20%] h-[65vw] w-[65vw] rounded-full opacity-[0.3] will-change-transform"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 40%, transparent), transparent 66%)",
-          animation: "drift-c 58s ease-in-out infinite",
-        }}
-      />
+      {/* aurora meshes — disabled on mobile to save GPU */}
+      {!isMobile && (
+        <>
+          <div
+            className="absolute -top-[30%] left-[-15%] h-[80vw] w-[80vw] rounded-full opacity-[0.5] will-change-transform"
+            style={{
+              background:
+                "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--azure) 55%, transparent), transparent 62%)",
+              animation: "drift-a 34s ease-in-out infinite",
+            }}
+          />
+          <div
+            className="absolute top-[10%] right-[-20%] h-[70vw] w-[70vw] rounded-full opacity-[0.42] will-change-transform"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--violet) 55%, transparent), transparent 64%)",
+              animation: "drift-b 46s ease-in-out infinite",
+            }}
+          />
+          <div
+            className="absolute bottom-[-25%] left-[20%] h-[65vw] w-[65vw] rounded-full opacity-[0.3] will-change-transform"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 40%, transparent), transparent 66%)",
+              animation: "drift-c 58s ease-in-out infinite",
+            }}
+          />
+          {/* slow light rays */}
+          <div
+            className="absolute inset-x-0 top-[-20%] h-[140%] opacity-[0.14] will-change-transform"
+            style={{
+              background:
+                "repeating-linear-gradient(102deg, transparent 0 90px, oklch(1 0 0 / 5%) 90px 92px, transparent 92px 220px)",
+              animation: "drift-c 70s ease-in-out infinite",
+            }}
+          />
+        </>
+      )}
 
-      {/* slow light rays */}
-      <div
-        className="absolute inset-x-0 top-[-20%] h-[140%] opacity-[0.14] will-change-transform"
-        style={{
-          background:
-            "repeating-linear-gradient(102deg, transparent 0 90px, oklch(1 0 0 / 5%) 90px 92px, transparent 92px 220px)",
-          animation: "drift-c 70s ease-in-out infinite",
-        }}
-      />
+      {/* Static, lighter gradients for mobile */}
+      {isMobile && (
+        <>
+          <div
+            className="absolute -top-[30%] left-[-15%] h-[80vw] w-[80vw] rounded-full opacity-[0.35]"
+            style={{
+              background:
+                "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--azure) 40%, transparent), transparent 62%)",
+            }}
+          />
+          <div
+            className="absolute top-[10%] right-[-20%] h-[70vw] w-[70vw] rounded-full opacity-[0.28]"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--violet) 40%, transparent), transparent 64%)",
+            }}
+          />
+        </>
+      )}
 
       {/* pointer light */}
       <div

@@ -37,11 +37,12 @@ export function StarField() {
     if (!ctx) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mobile = window.innerWidth < 768;
+    const mobile = window.innerWidth < 1024;
 
     let w = 0;
     let h = 0;
-    let dpr = 1;
+    // Cap DPR at 1 on mobile to halve canvas pixel count
+    let dpr = mobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
     let stars: Star[] = [];
     let rocks: Rock[] = [];
     const meteors: Meteor[] = [];
@@ -66,7 +67,7 @@ export function StarField() {
     };
 
     const build = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = mobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
       w = window.innerWidth;
       h = window.innerHeight;
       canvas.width = Math.floor(w * dpr);
@@ -75,17 +76,19 @@ export function StarField() {
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.round((w * h) / (mobile ? 19000 : 7000));
+      // Mobile: much sparser star field
+      const count = Math.round((w * h) / (mobile ? 32000 : 7000));
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         z: rand(0.25, 1),
-        r: rand(0.35, mobile ? 1.1 : 1.5),
+        r: rand(0.35, mobile ? 0.9 : 1.5),
         tw: rand(0.6, 2.4),
         ph: rand(0, Math.PI * 2),
       }));
 
-      rocks = Array.from({ length: mobile ? 2 : Math.max(5, Math.round(w / 190)) }, () =>
+      // No rocks on mobile at all
+      rocks = mobile ? [] : Array.from({ length: Math.max(5, Math.round(w / 190)) }, () =>
         makeRock(false),
       );
     };
@@ -135,14 +138,16 @@ export function StarField() {
           s.y = -2;
           s.x = Math.random() * w;
         }
-        const t = reduced ? 1 : 0.55 + 0.45 * Math.sin((now / 1000) * s.tw + s.ph);
+        // Skip expensive sin() twinkling on mobile — use fixed alpha
+        const t = (reduced || mobile) ? 1 : 0.55 + 0.45 * Math.sin((now / 1000) * s.tw + s.ph);
         const alpha = (0.25 + 0.6 * s.z) * t;
-        ctx.fillStyle = `rgba(235,242,255,${alpha.toFixed(3)})`;
+        ctx.fillStyle = `rgba(235,242,255,${alpha.toFixed(2)})`;
         ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 2, s.r * 2);
 
-        if (s.r > 1.1) {
+        // Skip glow pass on mobile entirely
+        if (!mobile && s.r > 1.1) {
           const glowR = s.r * 3.4;
-          ctx.fillStyle = `rgba(150,190,255,${(alpha * 0.09).toFixed(3)})`;
+          ctx.fillStyle = `rgba(150,190,255,${(alpha * 0.09).toFixed(2)})`;
           ctx.fillRect(s.x - glowR, s.y - glowR, glowR * 2, glowR * 2);
         }
       }
