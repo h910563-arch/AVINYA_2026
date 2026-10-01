@@ -282,15 +282,23 @@ export const PARTICIPATION_EVENTS = TEAMS.filter((g) => !NON_EVENT_TEAM_GROUPS.h
  * there is no on-site Name + Email form for individual events anymore.
  */
 export const EVENT_REGISTRATION_URLS: Record<string, string> = {
-  "Turing Trial": "https://uptoskills.com/events/studentevents/view/b81c1ce9-1977-4010-af3d-36c1ba0dfb01",
-  "Kill Code": "https://uptoskills.com/events/studentevents/view/80e67b30-93e7-42b3-93b3-1d0f9a2daaa3",
+  "Turing Trial":
+    "https://uptoskills.com/events/studentevents/view/b81c1ce9-1977-4010-af3d-36c1ba0dfb01",
+  "Kill Code":
+    "https://uptoskills.com/events/studentevents/view/80e67b30-93e7-42b3-93b3-1d0f9a2daaa3",
   Synthora: "https://uptoskills.com/events/studentevents/view/c70ce078-b6b5-48c4-964a-f108cb20e597",
-  "Binary Blitz": "https://uptoskills.com/events/studentevents/view/3c770390-f756-480e-a35a-862927f2df2e",
-  Thinkverse: "https://uptoskills.com/events/studentevents/view/501df6d0-9387-4957-a2c9-e0fdad94cfbb",
-  "Case Tactix": "https://uptoskills.com/events/studentevents/view/74545655-7028-411d-8d21-22c827fb6ef1",
-  "Code Whirl": "https://uptoskills.com/events/studentevents/view/426e9c3f-eedf-4d95-8b4b-e7381537856e",
-  "Cuisine Cosmos": "https://uptoskills.com/events/studentevents/view/856baee9-f822-49cb-9a38-9d8b42077161",
-  DesignOps: "https://uptoskills.com/events/studentevents/view/636a9baa-b743-413e-b980-a48f9a8b15cf",
+  "Binary Blitz":
+    "https://uptoskills.com/events/studentevents/view/3c770390-f756-480e-a35a-862927f2df2e",
+  Thinkverse:
+    "https://uptoskills.com/events/studentevents/view/501df6d0-9387-4957-a2c9-e0fdad94cfbb",
+  "Case Tactix":
+    "https://uptoskills.com/events/studentevents/view/74545655-7028-411d-8d21-22c827fb6ef1",
+  "Code Whirl":
+    "https://uptoskills.com/events/studentevents/view/426e9c3f-eedf-4d95-8b4b-e7381537856e",
+  "Cuisine Cosmos":
+    "https://uptoskills.com/events/studentevents/view/856baee9-f822-49cb-9a38-9d8b42077161",
+  DesignOps:
+    "https://uptoskills.com/events/studentevents/view/636a9baa-b743-413e-b980-a48f9a8b15cf",
   "Colossal-A-Pitch": "https://devnovate.co/event/colossal-a-pitch",
 };
 
