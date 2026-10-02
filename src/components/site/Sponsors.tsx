@@ -11,9 +11,11 @@ export function Sponsors() {
     "/logo/logo.png",
     "/logo/skillstory-text.png",
     "/logo/indiebox logo.PNG",
+    "/logo/xyz logo.png",
+    "/logo/shekunj logo.png",
   ];
 
-  const row = [...logos, ...logos, ...logos];
+  const row = [...logos, ...logos];
 
   return (
     <section className="relative px-6 py-24 sm:py-32">
@@ -32,7 +34,7 @@ export function Sponsors() {
       >
         <div
           className="flex w-max gap-16 px-6 items-center"
-          style={{ animation: "marquee 30s linear infinite", willChange: "transform" }}
+          style={{ animation: "marquee 18s linear infinite", willChange: "transform" }}
         >
           {row.map((src, i) => (
             <div
@@ -43,7 +45,9 @@ export function Sponsors() {
                 src={src}
                 alt="Sponsor Logo"
                 className={
-                  src.includes("indiebox")
+                  src.includes("shekunj") || src.includes("66b21b1a")
+                    ? "h-20 md:h-24 w-auto object-contain drop-shadow-md"
+                    : src.includes("indiebox") || src.includes("xyz")
                     ? "h-16 md:h-20 w-auto object-contain drop-shadow-md"
                     : "h-10 md:h-12 w-auto object-contain drop-shadow-md"
                 }
