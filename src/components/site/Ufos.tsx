@@ -1,4 +1,6 @@
-/** Decorative UFOs slowly cruising across the background with pulsing tractor beams. */
+/** Decorative UFOs slowly cruising across the background with pulsing tractor beams.
+ * NOTE: Disabled for the web theme in favor of WebScene.tsx 3D background.
+ */
 
 type Ship = {
   top: string;

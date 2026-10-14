@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FEST } from "@/lib/site-data";
+import { FEST, THEME_WEB } from "@/lib/site-data";
 import { saveMyRegistration } from "@/lib/my-registration";
 
 const TITLE = `Register — ${FEST.name}`;
@@ -46,9 +46,22 @@ function RegisterPage() {
   return (
     <main className="flex min-h-screen items-center justify-center px-6 py-24">
       <Toaster />
-      <form onSubmit={handleSubmit} className="glass w-full max-w-sm rounded-[1.75rem] p-8">
+      <form
+        onSubmit={handleSubmit}
+        className={`${
+          THEME_WEB
+            ? "glass-web border-[#2f6bff]/35 shadow-[0_16px_50px_rgba(0,0,0,0.85),0_0_25px_rgba(47,107,255,0.15)]"
+            : "glass"
+        } w-full max-w-sm rounded-[1.75rem] p-8`}
+      >
         <p className="eyebrow mb-3">{FEST.name}</p>
-        <h1 className="font-display text-3xl font-semibold">Register</h1>
+        <h1
+          className={`font-display text-3xl font-semibold ${
+            THEME_WEB ? "section-heading-spider" : ""
+          }`}
+        >
+          Register
+        </h1>
         <p className="mt-3 text-sm text-muted-foreground">
           Enter your details to register — you'll pick your events next.
         </p>
@@ -77,7 +90,15 @@ function RegisterPage() {
           </div>
         </div>
 
-        <Button type="submit" disabled={busy} className="mt-7 w-full">
+        <Button
+          type="submit"
+          disabled={busy}
+          className={`mt-7 w-full ${
+            THEME_WEB
+              ? "bg-[#e62429] text-white hover:bg-[#ff3344] shadow-[0_0_16px_rgba(230,36,41,0.55)]"
+              : ""
+          }`}
+        >
           {busy ? "Registering…" : "Register"}
         </Button>
       </form>

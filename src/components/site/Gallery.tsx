@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSiteContent } from "@/lib/site-content-context";
+import { THEME_WEB } from "@/lib/site-data";
 import { RevealText } from "./Reveal";
 import DomeGallery from "./DomeGallery";
 
@@ -30,16 +31,34 @@ export function Gallery() {
         {/* Header with Title and Drag Hint */}
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-cyan">
+            <span
+              className={`font-mono text-xs font-semibold uppercase tracking-[0.25em] ${
+                THEME_WEB ? "text-[#e62429]" : "text-cyan"
+              }`}
+            >
               Visual Archives
             </span>
-            <h2 className="mt-2 font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold">
+            <h2
+              className={`mt-2 font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold ${
+                THEME_WEB ? "section-heading-spider" : ""
+              }`}
+            >
               <RevealText text="Moments" />
             </h2>
           </div>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-1.5 font-mono text-[11px] text-muted-foreground backdrop-blur-xl">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_8px_var(--color-cyan)]" />
+          <div
+            className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-[11px] backdrop-blur-xl ${
+              THEME_WEB
+                ? "border-[#2f6bff]/35 bg-[#080d24]/75 text-[#e8ecff] shadow-[0_0_12px_rgba(47,107,255,0.2)]"
+                : "border-white/12 bg-white/5 text-muted-foreground"
+            }`}
+          >
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${
+                THEME_WEB ? "bg-[#e62429] shadow-[0_0_8px_#e62429]" : "bg-cyan shadow-[0_0_8px_var(--color-cyan)]"
+              }`}
+            />
             <span>Drag to rotate • Click tile to expand</span>
           </div>
         </div>

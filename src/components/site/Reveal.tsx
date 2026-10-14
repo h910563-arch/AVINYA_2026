@@ -9,6 +9,13 @@ function useSeen<T extends HTMLElement>() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setSeen(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
@@ -16,7 +23,7 @@ function useSeen<T extends HTMLElement>() {
           io.disconnect();
         }
       },
-      { threshold: 0.05, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.01, rootMargin: "0px 0px -4% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -140,6 +147,13 @@ export function RevealText({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setInView(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
@@ -147,7 +161,7 @@ export function RevealText({
           io.disconnect();
         }
       },
-      { threshold: 0.05 },
+      { threshold: 0.01 },
     );
     io.observe(el);
     return () => io.disconnect();

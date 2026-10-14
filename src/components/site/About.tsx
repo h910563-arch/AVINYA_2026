@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ABOUT_PARAGRAPHS, FEST } from "@/lib/site-data";
+import { ABOUT_PARAGRAPHS, FEST, THEME_WEB } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
 
 export function About() {
@@ -11,10 +11,23 @@ export function About() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal>
-            <p className="eyebrow mb-6">Official Poster</p>
+            <p
+              className={`eyebrow mb-6 flex items-center gap-2 ${
+                THEME_WEB ? "text-[#ff4d4f]" : ""
+              }`}
+            >
+              {THEME_WEB && (
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#e62429] shadow-[0_0_8px_#e62429]" />
+              )}
+              Official Poster
+            </p>
             <button
               onClick={() => setOpen(true)}
-              className="group relative block w-full overflow-hidden rounded-[1.75rem] glass sheen glass-hover p-2 text-left"
+              className={`group relative block w-full overflow-hidden rounded-[1.75rem] ${
+                THEME_WEB
+                  ? "glass-web border-[#2f6bff]/35 hover:border-[#e62429]/70 hover:shadow-[0_0_28px_rgba(230,36,41,0.35)]"
+                  : "glass"
+              } sheen glass-hover p-2 text-left`}
             >
               <img
                 src={FEST.bannerUrl}
@@ -34,7 +47,7 @@ export function About() {
               <Reveal key={i} delay={i * 0.12}>
                 <p
                   className={`text-[15.5px] leading-[1.95] ${
-                    i === 0 ? "text-foreground/85" : "mt-7 text-muted-foreground"
+                    i === 0 ? "text-foreground/90 font-medium" : "mt-7 text-muted-foreground"
                   }`}
                 >
                   {p}
@@ -42,7 +55,13 @@ export function About() {
               </Reveal>
             ))}
             <Reveal delay={0.3}>
-              <div className="hairline mt-10 sm:mt-12 w-full" />
+              <div
+                className={`mt-10 sm:mt-12 w-full h-px ${
+                  THEME_WEB
+                    ? "bg-gradient-to-r from-[#e62429]/50 via-[#2f6bff]/30 to-transparent"
+                    : "hairline"
+                }`}
+              />
             </Reveal>
           </div>
         </div>

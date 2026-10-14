@@ -7,12 +7,30 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportRuntimeError } from "../lib/runtime-error-reporting";
 import { SiteContentProvider } from "@/lib/site-content-context";
 import { DEFAULT_CONTENT } from "@/lib/site-content";
+import { THEME_WEB } from "@/lib/site-data";
+
+const WebScene = lazy(() => import("@/components/site/WebScene"));
+
+function ClientWebScene() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!THEME_WEB || !mounted) return null;
+
+  return (
+    <Suspense fallback={null}>
+      <WebScene />
+    </Suspense>
+  );
+}
 
 function NotFoundComponent() {
   return (
@@ -105,11 +123,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={THEME_WEB ? "theme-web" : ""}>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className={THEME_WEB ? "theme-web" : ""}>
         {children}
         <Scripts />
       </body>
@@ -124,8 +142,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <SiteContentProvider value={content}>
+        {/* Persistent 3D WebScene background below all content across all routes */}
+        <ClientWebScene />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <div className="relative flex min-h-screen flex-col overflow-x-clip">
+        <div className="relative z-10 flex min-h-screen flex-col overflow-x-clip">
           <Outlet />
         </div>
       </SiteContentProvider>

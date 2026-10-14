@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { THEME_WEB } from "@/lib/site-data";
 import { Reveal, RevealText } from "./Reveal";
+// @ts-expect-error CircularCarousel is a JSX component without .d.ts
 import CircularCarousel from "./CircularCarousel";
 
 /** Returns the current window inner-width, updated on every resize. */
@@ -44,7 +46,11 @@ export function Sponsors() {
   return (
     <section className="relative px-4 pt-28 pb-4 sm:px-6 sm:pt-36 sm:pb-6">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-0 font-display text-[clamp(1.6rem,5vw,4rem)] font-semibold sm:mb-1">
+        <h2
+          className={`mb-0 font-display text-[clamp(1.6rem,5vw,4rem)] font-semibold sm:mb-1 ${
+            THEME_WEB ? "section-heading-spider" : ""
+          }`}
+        >
           <RevealText text="Community Partners & Sponsors" />
         </h2>
       </div>

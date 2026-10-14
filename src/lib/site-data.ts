@@ -1,3 +1,10 @@
+/**
+ * Theme toggle flag:
+ * Set THEME_WEB = true for the spider-web night city theme (red/blue 3D WebScene).
+ * Set THEME_WEB = false to restore the previous cosmic/space theme (StarField, UFOs, Robot).
+ */
+export const THEME_WEB = true;
+
 export const FEST = {
   name: "अvinya'26",
   tagline: "Infinity Unleashed · 2026",
@@ -208,7 +215,7 @@ export const TEAMS: TeamGroup[] = [
     count: "03 members",
     members: [
       { name: "KRITIKA", image: "/team/Kritika.jpg" },
-      { name: "HARSH RAJ SINGH", image: "/team/HARSH RAJ SINGH_.jpg" },
+      { name: "HARSH RAJ SINGH", image: "/team/HRS.jpeg" },
       { name: "ISHIKA GOYAL", image: "/team/Ishika Goyal.jpg" },
     ],
   },
@@ -221,11 +228,24 @@ export const TEAMS: TeamGroup[] = [
     ],
   },
   {
+    title: "Colossal-A-Pitch",
+    count: "07 members",
+    members: [
+      { name: "AAKASH", role: "Team Lead", image: "/team/akashprofile.jpg" },
+      { name: "PRIYANSHI", role: "Co-Lead", image: "/team/Priyanshi.jpg" },
+      { name: "YASHVARDHAN GOYAL", role: "MEMBER", image: "/team/Yashvardhan Goel_.jpg" },
+      { name: "RITYA KAPOOR", role: "MEMBER", image: "/team/Ritya Kapoor_.jpg" },
+      { name: "VISHU GARG", role: "MEMBER", image: "/team/Vishu garg.jpg" },
+      { name: "VIRANG", role: "MEMBER", image: "/team/Virang.jpg" },
+      { name: "ARPIT", role: "MEMBER", image: "/team/Arpit Negi.jpg" },
+    ],
+  },
+  {
     title: "Turing Trial",
     count: "06 members",
     members: [
       { name: "SWETA", role: "Team Lead", image: "/team/Sweta Dash.png" },
-      { name: "SHUBH", role: "MEMBER", image: "/team/shubh.png" },
+      { name: "SHUBH", role: "Co-Lead", image: "/team/shubh.png" },
       { name: "UNNATI", role: "MEMBER", image: "/team/Unnati.jpeg" },
       { name: "SAKSHAM BATRA", role: "MEMBER", image: "/team/Saksham batra.jpg" },
       { name: "YASHIKA", role: "MEMBER", image: "/team/Yashika Manrao.jpg" },
@@ -237,13 +257,13 @@ export const TEAMS: TeamGroup[] = [
     count: "08 members",
     members: [
       { name: "YAKSHITA", role: "Team Lead", image: "/team/Yakshita.jpeg" },
+      { name: "MDALSA", role: "Co-Lead", image: "/team/Mdalsa.jpg" },
       { name: "CHHAVISHKA", role: "MEMBER", image: "/team/Chhavishka Madan.jpg" },
       { name: "JATIN SINGH", role: "MEMBER", image: "/team/Jatin singh.jpeg" },
-      { name: "HARMAN", role: "MEMBER", image: "/team/Harman.jpg" },
       { name: "ADITYA SHARMA", role: "MEMBER", image: "/team/Aditya sharma.jpg" },
       { name: "MUSKAN", role: "MEMBER", image: "/team/Muskan.jpg" },
       { name: "KHUSHBOO", role: "MEMBER", image: "/team/Khushboo_.jpg" },
-      { name: "MDALSA", role: "MEMBER", image: "/team/Mdalsa.jpg" },
+
     ],
   },
   {
@@ -251,12 +271,27 @@ export const TEAMS: TeamGroup[] = [
     count: "05 members",
     members: [
       { name: "RIDHIMA MITTAL", role: "TEAM LEAD", image: "/team/Ridhima Mittal.jpg" },
+      { name: "DIVYA", role: "Co-Lead", image: "/team/Divya Chawla.jpeg" },
       { name: "MEHUL", role: "MEMBER", image: "/team/MEHUL ADLAKHA.jpg" },
       { name: "JAGRIT SOOD", role: "MEMBER", image: "/team/Jagrit Sood.jpg" },
-      { name: "ABHINAV KUMAR", role: "Member", image: "/team/Abhinav Kumar.jpg" },
-      { name: "DIVYA", role: "MEMBER", image: "/team/Divya Chawla.jpeg" },
+
     ],
   },
+  {
+    title: "DesignOps",
+    count: "07 members",
+    members: [
+      { name: "BHAVYA", role: "Team Lead", image: "/team/Bhavya.jpg" },
+      { name: "SAKSHI AGGARWAL", role: "Co-Lead", image: "/team/Sakshi  Aggarwal.jpg" },
+      { name: "HARSH", role: "MEMBER", image: "/team/Harsh.PNG" },
+      { name: "TARUN KUMAR", role: "MEMBER", image: "/team/Tarun.jpg" },
+      { name: "ABHINAV KUMAR", role: "Member", image: "/team/Abhinav Kumar.jpg" },
+      { name: "MOKSH MUTREJA", role: "Member", image: "/team/Moksh.jpeg" },
+      { name: "TEJAS GUPTA", role: "Member", image: "/team/Tejas Gupta.jpeg" },
+
+    ],
+  },
+
   {
     title: "Binary Blitz",
     count: "07 members",
@@ -275,7 +310,7 @@ export const TEAMS: TeamGroup[] = [
     count: "07 members",
     members: [
       { name: "MUDITA", role: "Team Lead", image: "/team/Mudita.jpg" },
-      { name: "PRAGYA", role: "MEMBER", image: "/team/Pragya Goyal.jpg" },
+      { name: "PRAGYA", role: "Co-Lead", image: "/team/Pragya Goyal.jpg" },
       { name: "ARCHITA", role: "Member", image: "/team/Archita.jpg" },
       { name: "YUG SHARMA", role: "MEMBER", image: "/team/YUG SHARMA_.jpg" },
       { name: "CHIRAG", role: "MEMBER", image: "/team/CHIRAG CHOUDHARY_.jpg" },
@@ -288,7 +323,7 @@ export const TEAMS: TeamGroup[] = [
     count: "06 members",
     members: [
       { name: "KASHISH", role: "Team Lead", image: "/team/Kashish.jpg" },
-      { name: "HARMAN", role: "MEMBER", image: "/team/Harman.jpg" },
+      { name: "HARMAN", role: "Co-Lead", image: "/team/Harman.jpg" },
       { name: "SAANVI", role: "MEMBER", image: "/team/Saanvi Bansal.jpg" },
       { name: "SAKSHAM SHARMA", role: "MEMBER", image: "/team/Saksham sharma.png" },
       { name: "SUDHANSHU", role: "MEMBER", image: "/team/Sudhansu Kumar.jpg" },
@@ -297,13 +332,13 @@ export const TEAMS: TeamGroup[] = [
   },
   {
     title: "Code Whirl",
-    count: "07 members",
+    count: "06 members",
     members: [
       { name: "KHUSHI", role: "Team Lead", image: "/team/KhushiTaliyan.jpeg" },
+      { name: "NAITIK", role: "Co-Lead", image: "/team/Naitikkk.jpg" },
       { name: "RIDHIMA SHARMA", role: "MEMBER", image: "/team/Ridhima.PNG" },
       { name: "DISHIKA RUSTAGI", role: "MEMBER", image: "/team/Dishika Rustagi.jpg" },
       { name: "PRAGATI", role: "MEMBER", image: "/team/Pragati.jpg" },
-      { name: "NAITIK", role: "MEMBER", image: "/team/Naitikkk.jpg" },
       { name: "TANISHQ MADHWANI", role: "MEMBER", image: "/team/Tanishq Madhwani_.jpg" },
 
     ],
@@ -313,40 +348,16 @@ export const TEAMS: TeamGroup[] = [
     count: "08 members",
     members: [
       { name: "VANSH", role: "Team Lead", image: "/team/Vansh.jpg" },
+      { name: "JATIN TYAGI", role: "Co-Lead", image: "/team/Jatin Tyagi.png" },
       { name: "SAINA", role: "MEMBER", image: "/team/saina aiml (1st yr).png" },
       { name: "PARTH", role: "MEMBER", image: "/team/Parth.jpg" },
       { name: "LAVANYA", role: "MEMBER", image: "/team/Lavanya Jain.jpg" },
       { name: "SANJANA SHARMA", role: "MEMBER", image: "/team/Sanjana_.jpg" },
-      { name: "JATIN TYAGI", role: "MEMBER", image: "/team/Jatin Tyagi.png" },
       { name: "AMAN", role: "MEMBER", image: "/team/Aman_Pandey.png" },
       { name: "ADITYA RAI", role: "MEMBER", image: "/team/Aditya Rai.jpg" },
     ],
   },
-  {
-    title: "DesignOps",
-    count: "07 members",
-    members: [
-      { name: "BHAVYA", role: "Team Lead", image: "/team/Bhavya.jpg" },
-      { name: "HARSH", role: "MEMBER", image: "/team/Harsh.PNG" },
-      { name: "ABHINAV KUMAR", role: "MEMBER", image: "/team/abhinavkumar.png" },
-      { name: "TARUN KUMAR", role: "MEMBER", image: "/team/Tarun.jpg" },
-      { name: "ARYAN TIWARI", role: "MEMBER", image: "/team/Aryan Tiwari_.jpg" },
-      { name: "SAKSHI AGGARWAL", role: "MEMBER", image: "/team/Sakshi  Aggarwal.jpg" },
-    ],
-  },
-  {
-    title: "Colossal-A-Pitch",
-    count: "07 members",
-    members: [
-      { name: "AAKASH", role: "Team Lead", image: "/team/akashprofile.jpg" },
-      { name: "PRIYANSHI", role: "MEMBER", image: "/team/Priyanshi.jpg" },
-      { name: "YASHVARDHAN GOYAL", role: "MEMBER", image: "/team/Yashvardhan Goel_.jpg" },
-      { name: "RITYA KAPOOR", role: "MEMBER", image: "/team/Ritya Kapoor_.jpg" },
-      { name: "VISHU GARG", role: "MEMBER", image: "/team/Vishu garg.jpg" },
-      { name: "VIRANG", role: "MEMBER", image: "/team/Virang.jpg" },
-      { name: "ARPIT", role: "MEMBER", image: "/team/Arpit Negi.jpg" },
-    ],
-  },
+
 ];
 
 const NON_EVENT_TEAM_GROUPS = new Set([

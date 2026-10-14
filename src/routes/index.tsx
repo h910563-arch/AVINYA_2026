@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { SectionSkeleton } from "@/components/site/SectionSkeleton";
+import { WebSection } from "@/components/site/WebSection";
 
 const About = lazy(() => import("@/components/site/About").then((m) => ({ default: m.About })));
 const Events = lazy(() => import("@/components/site/Events").then((m) => ({ default: m.Events })));
@@ -51,28 +52,42 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <Suspense fallback={<SectionSkeleton height="50vh" />}>
-          <About />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton height="100vh" />}>
-          <Events />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton height="80vh" />}>
-          <Timeline />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton height="50vh" />}>
-          <Sponsors />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton height="80vh" />}>
-          <Gallery />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton height="100vh" />}>
-          <Team />
-        </Suspense>
+        <WebSection id="about-wrap">
+          <Suspense fallback={<SectionSkeleton height="50vh" />}>
+            <About />
+          </Suspense>
+        </WebSection>
+        <WebSection id="events-wrap">
+          <Suspense fallback={<SectionSkeleton height="100vh" />}>
+            <Events />
+          </Suspense>
+        </WebSection>
+        <WebSection id="timeline-wrap">
+          <Suspense fallback={<SectionSkeleton height="80vh" />}>
+            <Timeline />
+          </Suspense>
+        </WebSection>
+        <WebSection id="sponsors-wrap">
+          <Suspense fallback={<SectionSkeleton height="50vh" />}>
+            <Sponsors />
+          </Suspense>
+        </WebSection>
+        <WebSection id="gallery-wrap">
+          <Suspense fallback={<SectionSkeleton height="80vh" />}>
+            <Gallery />
+          </Suspense>
+        </WebSection>
+        <WebSection id="team-wrap">
+          <Suspense fallback={<SectionSkeleton height="100vh" />}>
+            <Team />
+          </Suspense>
+        </WebSection>
       </main>
-      <Suspense fallback={<div className="h-64 bg-background" />}>
-        <Footer />
-      </Suspense>
+      <WebSection id="footer-wrap">
+        <Suspense fallback={<div className="h-64 bg-background" />}>
+          <Footer />
+        </Suspense>
+      </WebSection>
     </div>
   );
 }

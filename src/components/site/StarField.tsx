@@ -25,7 +25,7 @@ type Rock = {
 
 /**
  * Canvas star field: twinkling stars, falling meteors and slowly tumbling asteroids.
- * Sits behind all content, purely decorative.
+ * NOTE: Disabled for the web theme in favor of WebScene.tsx 3D background.
  */
 export function StarField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

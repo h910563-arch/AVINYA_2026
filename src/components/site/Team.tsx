@@ -1,4 +1,5 @@
 import { useSiteContent } from "@/lib/site-content-context";
+import { THEME_WEB } from "@/lib/site-data";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 import { TiltCard } from "./TiltCard";
 
@@ -9,7 +10,11 @@ export function Team() {
   return (
     <section id="team" className="relative px-4 sm:px-6 pt-24 pb-16 sm:pt-28 sm:pb-24">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-12 font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold sm:mb-14">
+        <h2
+          className={`mb-12 font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold sm:mb-14 ${
+            THEME_WEB ? "section-heading-spider" : ""
+          }`}
+        >
           <RevealText text="The Crew" />
         </h2>
 
@@ -19,7 +24,13 @@ export function Team() {
               <Reveal>
                 <div className="mb-8 flex items-baseline gap-5">
                   <h3 className="font-display text-xl font-semibold sm:text-2xl">{group.title}</h3>
-                  <span className="hairline flex-1" />
+                  <span
+                    className={`flex-1 h-px ${
+                      THEME_WEB
+                        ? "bg-gradient-to-r from-[#e62429]/50 via-[#2f6bff]/30 to-transparent"
+                        : "hairline"
+                    }`}
+                  />
                   <span className="font-mono text-[10.5px] uppercase tracking-[0.24em] text-muted-foreground">
                     {group.count}
                   </span>
@@ -36,7 +47,13 @@ export function Team() {
                     className="w-[calc(50%-0.6rem)] max-w-[155px] sm:w-[170px] sm:max-w-none"
                   >
                     <TiltCard>
-                      <article className="glass sheen neon-card-always h-full w-full overflow-hidden rounded-[1.4rem] p-2">
+                      <article
+                        className={`${
+                          THEME_WEB
+                            ? "glass-web border-[#2f6bff]/30 hover:border-[#e62429]/70 hover:shadow-[0_0_24px_rgba(230,36,41,0.35)]"
+                            : "glass sheen neon-card-always"
+                        } h-full w-full overflow-hidden rounded-[1.4rem] p-2 transition-all duration-500`}
+                      >
                         <div className="overflow-hidden rounded-[1rem]">
                           <img
                             src={m.image}

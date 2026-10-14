@@ -1,4 +1,4 @@
-import { FEST } from "@/lib/site-data";
+import { FEST, THEME_WEB } from "@/lib/site-data";
 import { Link } from "@tanstack/react-router";
 import { useSiteContent } from "@/lib/site-content-context";
 import { Reveal, RevealText } from "./Reveal";
@@ -10,17 +10,28 @@ export function Footer() {
   return (
     <footer id="contact" className="relative px-6 pb-16 pt-24 sm:pt-32">
       <div className="mx-auto max-w-5xl">
-        <div className="glass grain relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-12">
+        <div
+          className={`${
+            THEME_WEB
+              ? "glass-web border-[#2f6bff]/30 shadow-[0_16px_50px_rgba(0,0,0,0.85),0_0_25px_rgba(47,107,255,0.15)]"
+              : "glass"
+          } grain relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-12`}
+        >
           <div
             className="pointer-events-none absolute -top-1/2 left-1/4 h-[500px] w-[500px] rounded-full opacity-40 blur-[120px]"
             style={{
-              background:
-                "radial-gradient(circle, color-mix(in oklab, var(--azure) 40%, transparent), transparent 65%)",
+              background: THEME_WEB
+                ? "radial-gradient(circle, rgba(230, 36, 41, 0.4), transparent 65%)"
+                : "radial-gradient(circle, color-mix(in oklab, var(--azure) 40%, transparent), transparent 65%)",
               animation: "drift-a 40s ease-in-out infinite",
             }}
           />
           <div className="relative mb-10">
-            <h2 className="font-display text-[clamp(1.5rem,3.5vw,3rem)] font-semibold tracking-tight">
+            <h2
+              className={`font-display text-[clamp(1.5rem,3.5vw,3rem)] font-semibold tracking-tight ${
+                THEME_WEB ? "section-heading-spider" : ""
+              }`}
+            >
               <RevealText text="LET's CONNECT , AVINYA-26 is on the GOO!!" />
             </h2>
           </div>
@@ -45,7 +56,13 @@ export function Footer() {
                       return (
                         <>
                           <p>{mainText}</p>
-                          <div className="mt-5 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                          <div
+                            className={`mt-5 rounded-xl border p-4 backdrop-blur-sm ${
+                              THEME_WEB
+                                ? "border-[#2f6bff]/25 bg-[#080d24]/75 shadow-[0_0_15px_rgba(47,107,255,0.15)]"
+                                : "border-white/10 bg-white/5"
+                            }`}
+                          >
                             <p className="font-semibold text-white/90 text-sm uppercase tracking-wider mb-2">
                               Team Heads Contact
                             </p>
@@ -55,7 +72,11 @@ export function Footer() {
                                 if (match) {
                                   return (
                                     <li key={i} className="flex items-center gap-2">
-                                      <span className="font-bold text-cyan">
+                                      <span
+                                        className={`font-bold ${
+                                          THEME_WEB ? "text-[#5ba4ff]" : "text-cyan"
+                                        }`}
+                                      >
                                         {match[1]?.trim() || ""}
                                       </span>
                                       <span className="text-white/40">—</span>

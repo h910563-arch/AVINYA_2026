@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FEST, getEventRegistrationUrl } from "@/lib/site-data";
+import { FEST, getEventRegistrationUrl, THEME_WEB } from "@/lib/site-data";
 import { useSiteContent } from "@/lib/site-content-context";
 import type { EventItem } from "@/lib/site-content";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
@@ -24,7 +24,11 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
         >
           {/* ================= FRONT FACE: POSTER SHOWCASE ================= */}
           <article
-            className="backface-hidden absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#0b0f17] p-3 sm:p-3.5 shadow-[var(--shadow-soft)] transition-all duration-500 group-hover:border-azure/60 group-hover:shadow-[var(--shadow-lift)]"
+            className={`backface-hidden absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] p-3 sm:p-3.5 transition-all duration-500 ${
+              THEME_WEB
+                ? "glass-web border-[#2f6bff]/30 group-hover:border-[#e62429]/80 shadow-[0_10px_35px_rgba(0,0,0,0.7)] group-hover:shadow-[0_0_28px_rgba(230,36,41,0.35)]"
+                : "border border-white/15 bg-[#0b0f17] shadow-[var(--shadow-soft)] group-hover:border-azure/60 group-hover:shadow-[var(--shadow-lift)]"
+            }`}
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -32,7 +36,11 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
             }}
           >
             {/* Top glowing neon accent line */}
-            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-80" />
+            <div
+              className={`absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent ${
+                THEME_WEB ? "via-[#e62429]" : "via-cyan"
+              } to-transparent opacity-90`}
+            />
 
             {/* Poster Background Image */}
             <div className="absolute inset-0 overflow-hidden rounded-[1.5rem]">
@@ -104,7 +112,11 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
 
           {/* ================= BACK FACE: EVENT DETAILS ================= */}
           <article
-            className="backface-hidden rotate-y-180 absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#070a12] p-3 sm:p-3.5 shadow-[var(--shadow-lift)] transition-all duration-500"
+            className={`backface-hidden rotate-y-180 absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] p-3 sm:p-3.5 transition-all duration-500 ${
+              THEME_WEB
+                ? "glass-web border-[#2f6bff]/35 group-hover:border-[#e62429]/70 shadow-[0_12px_40px_rgba(0,0,0,0.8)]"
+                : "border border-white/20 bg-[#070a12] shadow-[var(--shadow-lift)]"
+            }`}
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -112,7 +124,11 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
             }}
           >
             {/* Top glowing neon accent line */}
-            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-violet to-transparent opacity-80" />
+            <div
+              className={`absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent ${
+                THEME_WEB ? "via-[#2f6bff]" : "via-violet"
+              } to-transparent opacity-90`}
+            />
 
             {/* Poster Background Image - Visible with contrast overlay */}
             <div className="absolute inset-0 overflow-hidden rounded-[1.5rem]">
@@ -174,7 +190,11 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
                   target={getEventRegistrationUrl(event.title) ? "_blank" : undefined}
                   rel={getEventRegistrationUrl(event.title) ? "noopener noreferrer" : undefined}
                   onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1 text-[11px] font-bold text-primary-foreground shadow-[0_0_15px_rgba(56,189,248,0.4)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] whitespace-nowrap"
+                  className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-[11px] font-bold text-white transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] whitespace-nowrap ${
+                    THEME_WEB
+                      ? "bg-[#e62429] shadow-[0_0_15px_rgba(230,36,41,0.6)] hover:bg-[#ff3344] hover:shadow-[0_0_22px_rgba(230,36,41,0.8)]"
+                      : "bg-primary text-primary-foreground shadow-[0_0_15px_rgba(56,189,248,0.4)]"
+                  }`}
                 >
                   <span>Official Registration</span>
                   <span>→</span>
@@ -194,7 +214,11 @@ export function Events() {
     <section id="events" className="relative px-6 pt-14 pb-16 sm:pt-20 sm:pb-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold">
+          <h2
+            className={`font-display text-[clamp(2.2rem,6vw,4rem)] font-semibold ${
+              THEME_WEB ? "section-heading-spider" : ""
+            }`}
+          >
             <RevealText text="Flagship Events" />
           </h2>
           <Reveal delay={0.2}>

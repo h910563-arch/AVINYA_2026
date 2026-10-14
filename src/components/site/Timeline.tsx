@@ -1,4 +1,5 @@
 import { useSiteContent } from "@/lib/site-content-context";
+import { THEME_WEB } from "@/lib/site-data";
 import { Reveal, RevealText, revealVariant } from "./Reveal";
 
 const EVENT_TIMELINE = [
@@ -56,10 +57,18 @@ export function Timeline() {
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="mb-14 text-center sm:text-left">
-          <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-cyan">
+          <span
+            className={`font-mono text-xs font-semibold uppercase tracking-[0.25em] ${
+              THEME_WEB ? "text-[#e62429]" : "text-cyan"
+            }`}
+          >
             Event Roadmap
           </span>
-          <h2 className="mt-2 font-display text-[clamp(2.2rem,5vw,3.75rem)] font-bold tracking-tight text-white">
+          <h2
+            className={`mt-2 font-display text-[clamp(2.2rem,5vw,3.75rem)] font-bold tracking-tight text-white ${
+              THEME_WEB ? "section-heading-spider" : ""
+            }`}
+          >
             <RevealText text="The Sequence" />
           </h2>
           <p className="mt-2.5 max-w-xl font-mono text-xs sm:text-sm text-muted-foreground">
@@ -77,8 +86,20 @@ export function Timeline() {
               {items[0] && <TimelineCard item={items[0]} index={0} isFinale={false} />}
               {/* Branch Connector: Phase 01 -> Phase 02 */}
               <div className="absolute top-1/2 -right-10 -translate-y-1/2 w-10 h-1 flex items-center justify-center z-10">
-                <div className="w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                <div className="absolute w-3 h-3 rounded-full bg-cyan-300 border-2 border-[#0b0f17] shadow-[0_0_10px_rgba(6,182,212,1)]" />
+                <div
+                  className={`w-full h-[2px] ${
+                    THEME_WEB
+                      ? "bg-gradient-to-r from-[#e62429] via-[#ff4d4f] to-[#e62429] shadow-[0_0_10px_rgba(230,36,41,0.85)]"
+                      : "bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                  }`}
+                />
+                <div
+                  className={`absolute w-3 h-3 rounded-full border-2 border-[#06091a] ${
+                    THEME_WEB
+                      ? "bg-[#2f6bff] shadow-[0_0_12px_rgba(47,107,255,1)]"
+                      : "bg-cyan-300 shadow-[0_0_10px_rgba(6,182,212,1)]"
+                  }`}
+                />
               </div>
             </div>
 
@@ -87,8 +108,20 @@ export function Timeline() {
               {items[1] && <TimelineCard item={items[1]} index={1} isFinale={false} />}
               {/* Branch Connector: Phase 02 -> Phase 03 */}
               <div className="absolute top-1/2 -right-10 -translate-y-1/2 w-10 h-1 flex items-center justify-center z-10">
-                <div className="w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                <div className="absolute w-3 h-3 rounded-full bg-cyan-300 border-2 border-[#0b0f17] shadow-[0_0_10px_rgba(6,182,212,1)]" />
+                <div
+                  className={`w-full h-[2px] ${
+                    THEME_WEB
+                      ? "bg-gradient-to-r from-[#e62429] via-[#ff4d4f] to-[#e62429] shadow-[0_0_10px_rgba(230,36,41,0.85)]"
+                      : "bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                  }`}
+                />
+                <div
+                  className={`absolute w-3 h-3 rounded-full border-2 border-[#06091a] ${
+                    THEME_WEB
+                      ? "bg-[#2f6bff] shadow-[0_0_12px_rgba(47,107,255,1)]"
+                      : "bg-cyan-300 shadow-[0_0_10px_rgba(6,182,212,1)]"
+                  }`}
+                />
               </div>
             </div>
 
@@ -97,8 +130,20 @@ export function Timeline() {
               {items[2] && <TimelineCard item={items[2]} index={2} isFinale={false} />}
               {/* Vertical Branch Connector: Phase 03 -> Phase 04 (Drops down to Row 2, Col 3) */}
               <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-1 h-14 flex items-center justify-center z-10">
-                <div className="h-full w-[2px] bg-gradient-to-b from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                <div className="absolute w-3 h-3 rounded-full bg-cyan-300 border-2 border-[#0b0f17] shadow-[0_0_10px_rgba(6,182,212,1)]" />
+                <div
+                  className={`h-full w-[2px] ${
+                    THEME_WEB
+                      ? "bg-gradient-to-b from-[#e62429] via-[#ff4d4f] to-[#e62429] shadow-[0_0_10px_rgba(230,36,41,0.85)]"
+                      : "bg-gradient-to-b from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                  }`}
+                />
+                <div
+                  className={`absolute w-3 h-3 rounded-full border-2 border-[#06091a] ${
+                    THEME_WEB
+                      ? "bg-[#2f6bff] shadow-[0_0_12px_rgba(47,107,255,1)]"
+                      : "bg-cyan-300 shadow-[0_0_10px_rgba(6,182,212,1)]"
+                  }`}
+                />
               </div>
             </div>
 
@@ -112,8 +157,20 @@ export function Timeline() {
               {items[4] && <TimelineCard item={items[4]} index={4} isFinale={false} />}
               {/* Branch Connector: Phase 05 -> Phase 06 (Leftward branch) */}
               <div className="absolute top-1/2 -left-10 -translate-y-1/2 w-10 h-1 flex items-center justify-center z-10">
-                <div className="w-full h-[2px] bg-gradient-to-r from-amber-400 via-yellow-300 to-cyan-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
-                <div className="absolute w-3 h-3 rounded-full bg-amber-300 border-2 border-[#0b0f17] shadow-[0_0_10px_rgba(245,158,11,1)]" />
+                <div
+                  className={`w-full h-[2px] ${
+                    THEME_WEB
+                      ? "bg-gradient-to-r from-[#e62429] via-[#ff4d4f] to-[#2f6bff] shadow-[0_0_10px_rgba(230,36,41,0.85)]"
+                      : "bg-gradient-to-r from-amber-400 via-yellow-300 to-cyan-400 shadow-[0_0_8px_rgba(245,158,11,0.8)]"
+                  }`}
+                />
+                <div
+                  className={`absolute w-3 h-3 rounded-full border-2 border-[#06091a] ${
+                    THEME_WEB
+                      ? "bg-[#e62429] shadow-[0_0_12px_rgba(230,36,41,1)]"
+                      : "bg-amber-300 shadow-[0_0_10px_rgba(245,158,11,1)]"
+                  }`}
+                />
               </div>
             </div>
 
@@ -122,8 +179,20 @@ export function Timeline() {
               {items[3] && <TimelineCard item={items[3]} index={3} isFinale={false} />}
               {/* Branch Connector: Phase 04 -> Phase 05 (Leftward branch) */}
               <div className="absolute top-1/2 -left-10 -translate-y-1/2 w-10 h-1 flex items-center justify-center z-10">
-                <div className="w-full h-[2px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                <div className="absolute w-3 h-3 rounded-full bg-cyan-300 border-2 border-[#0b0f17] shadow-[0_0_10px_rgba(6,182,212,1)]" />
+                <div
+                  className={`w-full h-[2px] ${
+                    THEME_WEB
+                      ? "bg-gradient-to-r from-[#e62429] via-[#ff4d4f] to-[#e62429] shadow-[0_0_10px_rgba(230,36,41,0.85)]"
+                      : "bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                  }`}
+                />
+                <div
+                  className={`absolute w-3 h-3 rounded-full border-2 border-[#06091a] ${
+                    THEME_WEB
+                      ? "bg-[#2f6bff] shadow-[0_0_12px_rgba(47,107,255,1)]"
+                      : "bg-cyan-300 shadow-[0_0_10px_rgba(6,182,212,1)]"
+                  }`}
+                />
               </div>
             </div>
           </div>
@@ -137,8 +206,18 @@ export function Timeline() {
                   <TimelineCard item={item} index={i} isFinale={isFinale} />
                   {i < items.length - 1 && (
                     <div className="hidden md:flex absolute -bottom-8 left-1/2 -translate-x-1/2 w-1 h-8 items-center justify-center z-10">
-                      <div className="h-full w-[2px] bg-gradient-to-b from-cyan-400 to-cyan-300 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                      <div className="absolute w-2.5 h-2.5 rounded-full bg-cyan-300 border-2 border-[#0b0f17]" />
+                      <div
+                        className={`h-full w-[2px] ${
+                          THEME_WEB
+                            ? "bg-gradient-to-b from-[#e62429] to-[#2f6bff] shadow-[0_0_8px_rgba(230,36,41,0.8)]"
+                            : "bg-gradient-to-b from-cyan-400 to-cyan-300 shadow-[0_0_8px_rgba(6,182,212,0.8)]"
+                        }`}
+                      />
+                      <div
+                        className={`absolute w-2.5 h-2.5 rounded-full border-2 border-[#06091a] ${
+                          THEME_WEB ? "bg-[#2f6bff]" : "bg-cyan-300"
+                        }`}
+                      />
                     </div>
                   )}
                 </div>
@@ -169,48 +248,78 @@ function TimelineCard({
       variant={revealVariant(index)}
       className={`group relative h-full rounded-2xl sm:rounded-3xl p-[1px] transition-all duration-500 hover:-translate-y-1.5 ${
         isFinale
-          ? "bg-gradient-to-br from-amber-400/80 via-amber-500/30 to-yellow-300/60 shadow-[0_10px_35px_rgba(0,0,0,0.6),0_0_25px_rgba(245,158,11,0.25)] hover:from-amber-300 hover:via-yellow-400 hover:to-orange-400 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_45px_rgba(245,158,11,0.45)]"
-          : "bg-gradient-to-br from-cyan-400/50 via-white/10 to-azure-400/40 shadow-[0_10px_35px_rgba(0,0,0,0.6),0_0_20px_rgba(6,182,212,0.15)] hover:from-cyan-300 hover:via-azure-400 hover:to-violet-400 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_40px_rgba(56,189,248,0.35)]"
+          ? THEME_WEB
+            ? "bg-gradient-to-br from-[#e62429] via-[#ff4d4f]/40 to-[#2f6bff]/60 shadow-[0_10px_35px_rgba(0,0,0,0.7),0_0_25px_rgba(230,36,41,0.35)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_45px_rgba(230,36,41,0.55)]"
+            : "bg-gradient-to-br from-amber-400/80 via-amber-500/30 to-yellow-300/60 shadow-[0_10px_35px_rgba(0,0,0,0.6),0_0_25px_rgba(245,158,11,0.25)] hover:from-amber-300 hover:via-yellow-400 hover:to-orange-400 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_45px_rgba(245,158,11,0.45)]"
+          : THEME_WEB
+            ? "bg-gradient-to-br from-[#2f6bff]/45 via-[#e62429]/25 to-[#2f6bff]/40 shadow-[0_10px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(47,107,255,0.2)] hover:from-[#2f6bff]/70 hover:via-[#e62429]/45 hover:to-[#2f6bff]/60 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(47,107,255,0.4)]"
+            : "bg-gradient-to-br from-cyan-400/50 via-white/10 to-azure-400/40 shadow-[0_10px_35px_rgba(0,0,0,0.6),0_0_20px_rgba(6,182,212,0.15)] hover:from-cyan-300 hover:via-azure-400 hover:to-violet-400 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_40px_rgba(56,189,248,0.35)]"
       }`}
     >
       {/* Inner Card Core with Deep Frosted Backdrop */}
-      <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)] bg-[#0b0f17]/90 p-6 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),inset_0_-1px_1px_rgba(0,0,0,0.8)]">
+      <div
+        className={`relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[calc(1rem-1px)] sm:rounded-[calc(1.5rem-1px)] p-6 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),inset_0_-1px_1px_rgba(0,0,0,0.8)] ${
+          THEME_WEB ? "glass-web bg-[#070b1e]/90" : "bg-[#0b0f17]/90"
+        }`}
+      >
         {/* Top glowing neon accent line */}
         <div
           className={`absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent ${
-            isFinale ? "via-amber-400" : "via-cyan"
+            THEME_WEB
+              ? isFinale
+                ? "via-[#e62429]"
+                : "via-[#2f6bff]"
+              : isFinale
+                ? "via-amber-400"
+                : "via-cyan"
           } to-transparent opacity-90`}
         />
 
         {/* Corner ambient neon aura on hover */}
         <div
           className={`pointer-events-none absolute -bottom-10 -right-10 h-32 w-32 rounded-full blur-2xl transition-all duration-500 ${
-            isFinale
-              ? "bg-amber-500/10 group-hover:bg-amber-400/25"
-              : "bg-cyan/10 group-hover:bg-cyan/25"
+            THEME_WEB
+              ? isFinale
+                ? "bg-[#e62429]/15 group-hover:bg-[#e62429]/30"
+                : "bg-[#2f6bff]/15 group-hover:bg-[#2f6bff]/30"
+              : isFinale
+                ? "bg-amber-500/10 group-hover:bg-amber-400/25"
+                : "bg-cyan/10 group-hover:bg-cyan/25"
           }`}
         />
 
         {/* Big Watermark Step Number in Background */}
-        <span className="pointer-events-none absolute -right-2 -top-4 select-none font-display text-[5.5rem] font-black tracking-tighter text-white/[0.04] transition-colors duration-300 group-hover:text-cyan/[0.08] sm:text-[6.5rem]">
+        <span
+          className={`pointer-events-none absolute -right-2 -top-4 select-none font-display text-[5.5rem] font-black tracking-tighter text-white/[0.04] transition-colors duration-300 sm:text-[6.5rem] ${
+            THEME_WEB ? "group-hover:text-[#2f6bff]/[0.1]" : "group-hover:text-cyan/[0.08]"
+          }`}
+        >
           {stepNum}
         </span>
 
-        {/* Top Row: Phase Tag Badge & Mode (Single Line) */}
+        {/* Top Row: Phase Tag Badge & Mode */}
         <div>
-          <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
             <span
               className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider whitespace-nowrap shrink-0 ${
                 isFinale
-                  ? "border-amber-400/50 bg-amber-950/80 text-amber-300 shadow-[0_0_10px_rgba(245,158,11,0.3)]"
-                  : "border-cyan-400/40 bg-cyan-950/80 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.3)]"
+                  ? THEME_WEB
+                    ? "border-[#e62429]/60 bg-[#e62429]/25 text-[#ff8890] shadow-[0_0_12px_rgba(230,36,41,0.35)]"
+                    : "border-amber-400/50 bg-amber-950/80 text-amber-300 shadow-[0_0_10px_rgba(245,158,11,0.3)]"
+                  : THEME_WEB
+                    ? "border-[#2f6bff]/50 bg-[#2f6bff]/20 text-[#88b8ff] shadow-[0_0_10px_rgba(47,107,255,0.3)]"
+                    : "border-cyan-400/40 bg-cyan-950/80 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.3)]"
               }`}
             >
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
                   isFinale
-                    ? "bg-amber-400 shadow-[0_0_6px_var(--color-amber-400)]"
-                    : "bg-cyan shadow-[0_0_6px_var(--color-cyan)]"
+                    ? THEME_WEB
+                      ? "bg-[#e62429] shadow-[0_0_6px_#e62429]"
+                      : "bg-amber-400 shadow-[0_0_6px_var(--color-amber-400)]"
+                    : THEME_WEB
+                      ? "bg-[#2f6bff] shadow-[0_0_6px_#2f6bff]"
+                      : "bg-cyan shadow-[0_0_6px_var(--color-cyan)]"
                 }`}
               />
               <span>{item.phase}</span>
@@ -222,7 +331,9 @@ function TimelineCard({
             <span
               className={`inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-[10px] sm:text-[10.5px] font-semibold uppercase tracking-wider whitespace-nowrap shrink-0 ${
                 isFinale
-                  ? "border-amber-400/60 bg-amber-950/90 text-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.35)]"
+                  ? THEME_WEB
+                    ? "border-[#e62429]/60 bg-[#e62429]/30 text-white shadow-[0_0_12px_rgba(230,36,41,0.4)]"
+                    : "border-amber-400/60 bg-amber-950/90 text-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.35)]"
                   : "border-white/25 bg-white/10 text-white shadow-sm"
               } backdrop-blur-md`}
             >
@@ -233,13 +344,23 @@ function TimelineCard({
           {/* Phase Title */}
           {index === 5 ? (
             <div className="flex flex-1 items-center justify-center py-8">
-              <h3 className="font-display text-4xl sm:text-5xl font-black uppercase tracking-widest text-amber-400 transition-colors duration-300 group-hover:text-amber-300 drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+              <h3
+                className={`font-display text-4xl sm:text-5xl font-black uppercase tracking-widest transition-colors duration-300 drop-shadow-[0_0_15px_rgba(230,36,41,0.5)] ${
+                  THEME_WEB
+                    ? "text-[#e62429] group-hover:text-[#ff4d4f]"
+                    : "text-amber-400 group-hover:text-amber-300"
+                }`}
+              >
                 {item.title}
               </h3>
             </div>
           ) : (
             <>
-              <h3 className="mt-4 font-display text-lg sm:text-xl font-bold uppercase tracking-wide text-white transition-colors duration-300 group-hover:text-cyan">
+              <h3
+                className={`mt-4 font-display text-lg sm:text-xl font-bold uppercase tracking-wide text-white transition-colors duration-300 ${
+                  THEME_WEB ? "group-hover:text-[#2f6bff]" : "group-hover:text-cyan"
+                }`}
+              >
                 {item.title}
               </h3>
 
@@ -256,7 +377,13 @@ function TimelineCard({
         {/* Bottom Step Indicator Footer */}
         <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-3 font-mono text-[10.5px] text-muted-foreground">
           <div className="flex items-center gap-2">
-            <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/25 bg-white/10 text-[9.5px] font-bold text-white shadow-[0_0_8px_rgba(255,255,255,0.15)]">
+            <span
+              className={`flex h-5 w-5 items-center justify-center rounded-full border text-[9.5px] font-bold text-white ${
+                THEME_WEB
+                  ? "border-[#2f6bff]/50 bg-[#2f6bff]/20 shadow-[0_0_8px_rgba(47,107,255,0.4)]"
+                  : "border-white/25 bg-white/10 shadow-[0_0_8px_rgba(255,255,255,0.15)]"
+              }`}
+            >
               {index + 1}
             </span>
             <span className="uppercase tracking-widest text-white/60">
@@ -265,13 +392,21 @@ function TimelineCard({
           </div>
 
           {index < 4 && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-cyan/90 transition-transform duration-300 group-hover:translate-x-1">
+            <span
+              className={`inline-flex items-center gap-1 text-[11px] font-medium transition-transform duration-300 group-hover:translate-x-1 ${
+                THEME_WEB ? "text-[#e62429]" : "text-cyan/90"
+              }`}
+            >
               <span>Next Phase</span>
               <span>→</span>
             </span>
           )}
           {index === 4 && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300">
+            <span
+              className={`inline-flex items-center gap-1 text-[11px] font-bold ${
+                THEME_WEB ? "text-[#ff8088]" : "text-amber-300"
+              }`}
+            >
               <span>★ Grand Finale</span>
             </span>
           )}
