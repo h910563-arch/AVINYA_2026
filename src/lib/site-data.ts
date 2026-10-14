@@ -279,13 +279,12 @@ export const TEAMS: TeamGroup[] = [
   },
   {
     title: "DesignOps",
-    count: "07 members",
+    count: "06 members",
     members: [
       { name: "BHAVYA", role: "Team Lead", image: "/team/Bhavya.jpg" },
       { name: "SAKSHI AGGARWAL", role: "Co-Lead", image: "/team/Sakshi  Aggarwal.jpg" },
       { name: "HARSH", role: "MEMBER", image: "/team/Harsh.PNG" },
       { name: "TARUN KUMAR", role: "MEMBER", image: "/team/Tarun.jpg" },
-      { name: "ABHINAV KUMAR", role: "Member", image: "/team/Abhinav Kumar.jpg" },
       { name: "MOKSH MUTREJA", role: "Member", image: "/team/Moksh.jpeg" },
       { name: "TEJAS GUPTA", role: "Member", image: "/team/Tejas Gupta.jpeg" },
 
