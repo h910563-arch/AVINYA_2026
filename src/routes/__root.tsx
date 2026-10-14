@@ -11,7 +11,6 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportRuntimeError } from "../lib/runtime-error-reporting";
-import { getSiteContent } from "@/lib/admin.functions";
 import { SiteContentProvider } from "@/lib/site-content-context";
 import { DEFAULT_CONTENT } from "@/lib/site-content";
 
@@ -97,13 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/empirical_logo.png", type: "image/png" },
     ],
   }),
-  loader: async () => {
-    try {
-      return { content: await getSiteContent() };
-    } catch {
-      return { content: DEFAULT_CONTENT };
-    }
-  },
+  loader: () => ({ content: DEFAULT_CONTENT }),
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

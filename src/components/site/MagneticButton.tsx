@@ -35,7 +35,7 @@ export function MagneticButton({ href, children, variant = "solid", className }:
       onPointerMove={onMove}
       onPointerLeave={reset}
       className={cn(
-        "group relative inline-flex select-none items-center justify-center overflow-hidden rounded-full px-6 py-3 text-[13.5px] whitespace-nowrap tracking-tight transition-[transform,box-shadow,border-color] duration-500 active:scale-[0.97]",
+        "group relative inline-flex select-none items-center justify-center overflow-hidden rounded-full px-5 py-3 sm:px-6 text-[13px] sm:text-[13.5px] text-center sm:whitespace-nowrap tracking-tight transition-[transform,box-shadow,border-color] duration-500 active:scale-[0.97]",
         variant === "solid"
           ? "bg-primary font-medium text-primary-foreground shadow-[0_0_24px_rgba(255,255,255,0.5)] hover:shadow-[0_0_32px_rgba(255,255,255,0.7)]"
           : "glass font-medium text-foreground hover:border-white/30 shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_28px_rgba(255,255,255,0.4)]",

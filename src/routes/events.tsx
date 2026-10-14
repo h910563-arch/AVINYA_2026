@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
@@ -21,35 +21,26 @@ export const Route = createFileRoute("/events")({
 });
 
 function EventsPage() {
-  const navigate = useNavigate();
   const [registration, setRegistration] = useState<MyRegistration | null>(null);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const reg = loadMyRegistration();
-    if (!reg) {
-      navigate({ to: "/register" });
-      return;
-    }
-    setRegistration(reg);
-    setReady(true);
-  }, [navigate]);
-
-  if (!ready || !registration) {
-    return (
-      <main className="flex min-h-screen items-center justify-center px-6">
-        <p className="font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
-          Loading…
-        </p>
-      </main>
-    );
-  }
+    setRegistration(loadMyRegistration());
+  }, []);
 
   return (
     <main className="min-h-screen px-5 py-20 sm:px-8">
       <Toaster />
       <div className="mx-auto max-w-4xl">
-        <p className="eyebrow mb-3">Welcome, {registration.name}</p>
+        <a
+          href="/#events"
+          className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-cyan transition-colors mb-6"
+        >
+          <span>←</span>
+          <span>Back to Fest Overview</span>
+        </a>
+        <p className="eyebrow mb-3">
+          {registration?.name ? `Welcome, ${registration.name}` : FEST.name}
+        </p>
         <h1 className="font-display text-[clamp(2rem,5vw,3rem)] font-semibold">
           Choose your events
         </h1>

@@ -22,7 +22,7 @@ const Footer = lazy(() => import("@/components/site/Footer").then((m) => ({ defa
 
 const TITLE = "अvinya'26 | Annual Tech Fest";
 const DESC =
-  "अVINYA'26, the annual tech fest by The Empirical Society at GTB 4th Centenary Engineering College. Flagship events, workshops and an inter-college showcase, 04–06 March 2026.";
+  "अVINYA'26, the annual tech fest by The Empirical Society at GTB 4th Centenary Engineering College. Flagship events, workshops and an inter-college showcase, 27 October 2026.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,11 +32,11 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp" },
+      { property: "og:image", content: "/assets/banner.webp" },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:image",
-        content: "https://avinya-26.vercel.app/assets/banner-u2Q6ufGC.webp",
+        content: "/assets/banner.webp",
       },
     ],
   }),

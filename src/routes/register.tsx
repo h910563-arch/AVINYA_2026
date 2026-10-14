@@ -1,5 +1,4 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FEST } from "@/lib/site-data";
-import { submitRegistration } from "@/lib/registration.functions";
 import { saveMyRegistration } from "@/lib/my-registration";
 
 const TITLE = `Register — ${FEST.name}`;
@@ -27,25 +25,22 @@ export const Route = createFileRoute("/register")({
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const register = useServerFn(submitRegistration);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!name.trim() || !email.trim()) return;
     setBusy(true);
-    try {
-      const registration = await register({ data: { name, email } });
-      saveMyRegistration(registration);
-      toast.success("You're registered!");
+    const id =
+      typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+    saveMyRegistration({ id, name: name.trim(), email: email.trim().toLowerCase() });
+    toast.success("Welcome aboard!");
+    setTimeout(() => {
       navigate({ to: "/events" });
-    } catch {
-      toast.error("Could not register. Check your details and try again.");
-    } finally {
-      setBusy(false);
-    }
+    }, 300);
   }
 
   return (

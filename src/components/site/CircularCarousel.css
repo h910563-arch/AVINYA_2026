@@ -13,7 +13,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.circular-carousel[data-axis='x'] {
+.circular-carousel[data-axis="x"] {
   touch-action: pan-x;
 }
 
@@ -34,12 +34,18 @@
   inset: 0;
 }
 
-.circular-carousel[data-shape='wheel'] .circular-carousel__view {
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000000 18%, #000000 82%, transparent);
+.circular-carousel[data-shape="wheel"] .circular-carousel__view {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000000 18%,
+    #000000 82%,
+    transparent
+  );
   mask-image: linear-gradient(to bottom, transparent, #000000 18%, #000000 82%, transparent);
 }
 
-.circular-carousel[data-shape='panorama'] .circular-carousel__view {
+.circular-carousel[data-shape="panorama"] .circular-carousel__view {
   -webkit-mask-image: linear-gradient(to right, transparent, #000000 12%, #000000 88%, transparent);
   mask-image: linear-gradient(to right, transparent, #000000 12%, #000000 88%, transparent);
 }
@@ -91,13 +97,19 @@
   width: 100%;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 90% 70% at 50% 45%, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.78) 35%, rgba(255,255,255,0.38) 65%, transparent 100%),
-    radial-gradient(ellipse 55% 75% at 25% 60%, rgba(240,245,255,0.55) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 50% at 75% 30%, rgba(240,245,255,0.45) 0%, transparent 60%),
-    linear-gradient(135deg, rgba(210,225,255,0.25) 0%, rgba(255,255,255,0.12) 100%);
+    radial-gradient(
+      ellipse 90% 70% at 50% 45%,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.78) 35%,
+      rgba(255, 255, 255, 0.38) 65%,
+      transparent 100%
+    ),
+    radial-gradient(ellipse 55% 75% at 25% 60%, rgba(240, 245, 255, 0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 50% at 75% 30%, rgba(240, 245, 255, 0.45) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(210, 225, 255, 0.25) 0%, rgba(255, 255, 255, 0.12) 100%);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.55),
@@ -209,18 +221,32 @@
 }
 
 @keyframes circular-carousel-title {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes circular-carousel-reveal {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .circular-carousel__stage,
-  .circular-carousel__reel { transition: none; }
+  .circular-carousel__reel {
+    transition: none;
+  }
   .circular-carousel__caption,
-  .circular-carousel__title { animation: none; }
+  .circular-carousel__title {
+    animation: none;
+  }
 }

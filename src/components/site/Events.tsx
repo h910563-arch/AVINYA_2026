@@ -11,9 +11,9 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <Reveal delay={index * 0.1} variant={revealVariant(index)}>
+    <Reveal delay={index * 0.08} variant={revealVariant(index)}>
       <div
-        className="perspective-1000 group h-[280px] sm:h-[290px] w-full cursor-pointer select-none"
+        className="perspective-1000 group h-[340px] sm:h-[360px] w-full cursor-pointer select-none"
         onClick={() => setIsFlipped((prev) => !prev)}
       >
         <div
@@ -22,9 +22,9 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
           }`}
           style={{ transformStyle: "preserve-3d" }}
         >
-          {/* ================= FRONT FACE ================= */}
+          {/* ================= FRONT FACE: POSTER SHOWCASE ================= */}
           <article
-            className="backface-hidden absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b0f17] p-3 shadow-[var(--shadow-soft)] transition-all duration-500 group-hover:border-azure/40 group-hover:shadow-[var(--shadow-lift)] sm:p-3.5"
+            className="backface-hidden absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#0b0f17] p-3 sm:p-3.5 shadow-[var(--shadow-soft)] transition-all duration-500 group-hover:border-azure/60 group-hover:shadow-[var(--shadow-lift)]"
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -34,70 +34,77 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
             {/* Top glowing neon accent line */}
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-80" />
 
-            {/* Background Image */}
+            {/* Poster Background Image */}
             <div className="absolute inset-0 overflow-hidden rounded-[1.5rem]">
               <img
                 src={event.image}
                 alt={event.title}
                 loading="lazy"
-                onError={(event) => {
-                  if (event.currentTarget.dataset["fallbackApplied"] === "true") return;
-                  event.currentTarget.dataset["fallbackApplied"] = "true";
-                  event.currentTarget.src = FALLBACK_EVENT_IMAGE;
+                onError={(e) => {
+                  if (e.currentTarget.dataset["fallbackApplied"] === "true") return;
+                  e.currentTarget.dataset["fallbackApplied"] = "true";
+                  e.currentTarget.src = "/events/Turing Trial.jpeg";
                 }}
-                className="h-full w-full object-cover opacity-95 transition-[transform,opacity] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:scale-105 group-hover:opacity-100"
+                className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/15 to-black/60" />
+              {/* Subtle top & bottom gradients for readability while keeping the poster visible */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85" />
             </div>
 
-            {/* FLOATING INNER BOX (FRONT - Transparent Highlighted Glass) */}
-            <div className="relative z-10 flex flex-1 flex-col justify-between rounded-xl border border-white/25 bg-black/10 p-3.5 shadow-[0_4px_24px_rgba(0,0,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.25)] backdrop-blur-[1px] sm:p-4">
-              <div>
-                {/* Category */}
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/40 bg-cyan-950/80 px-2.5 py-0.5 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.25)] backdrop-blur-md">
-                    {event.category}
-                  </span>
-                  <span className="h-2 w-2 rounded-full bg-cyan shadow-[0_0_10px_var(--color-cyan)]" />
-                </div>
-
-                {/* Title */}
-                <h3 className="mt-2.5 font-display text-base font-extrabold uppercase tracking-wide text-white [text-shadow:_0_2px_8px_rgba(0,0,0,1),_0_0_20px_rgba(0,0,0,0.9)] sm:text-lg">
-                  {event.title}
-                </h3>
-
-                {/* Excerpt */}
-                <p className="mt-1.5 font-sans text-[12px] font-medium leading-relaxed text-slate-100 [text-shadow:_0_1px_6px_rgba(0,0,0,1),_0_2px_4px_rgba(0,0,0,0.95)] line-clamp-2">
-                  {event.description}
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom Outer Card Footer (FRONT: Date on left, Register button on right) */}
-            <div className="relative z-10 flex items-center justify-between gap-2 px-1 pt-2">
-              <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/50 bg-amber-950/80 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)] backdrop-blur-md whitespace-nowrap">
-                <span className="text-[8px]">★</span>
-                <span>{event.date}</span>
+            {/* Top Bar: Category badge on left, flip hint on right */}
+            <div className="relative z-10 flex items-center justify-between gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/50 bg-black/70 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.3)] backdrop-blur-md">
+                {event.category}
               </span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-black/60 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-white/80 backdrop-blur-md transition-colors group-hover:border-cyan/50 group-hover:text-cyan">
+                <span>Details</span>
+                <span className="text-[11px]">↻</span>
+              </span>
+            </div>
 
-              <a
-                href={getEventRegistrationUrl(event.title) ?? "/register"}
-                target={getEventRegistrationUrl(event.title) ? "_blank" : undefined}
-                rel={getEventRegistrationUrl(event.title) ? "noopener noreferrer" : undefined}
-                onClick={(e) => e.stopPropagation()}
-                className="group/btn relative inline-flex items-center gap-1.5 rounded-full border border-white/35 bg-white/15 px-3.5 py-1 text-[11.5px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-300 hover:scale-[1.03] hover:border-azure/80 hover:bg-azure/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-[0.98] whitespace-nowrap"
-              >
-                <span>Register</span>
-                <span className="transition-transform duration-300 group-hover/btn:translate-x-0.5">
-                  →
+            {/* Middle spacer to keep the poster artwork completely clear */}
+            <div className="flex-1" />
+
+            {/* Bottom Glass Overlay Bar */}
+            <div className="relative z-10 flex flex-col gap-2 rounded-2xl border border-white/20 bg-black/65 p-3 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-md">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <h3 className="font-display text-sm font-bold uppercase tracking-wide text-white drop-shadow-md sm:text-base">
+                    {event.title}
+                  </h3>
+                  {event.venue ? (
+                    <p className="mt-0.5 font-mono text-[9px] uppercase tracking-wider text-cyan-300/90 leading-snug">
+                      📍 {event.venue}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-2 pt-1 border-t border-white/10">
+                <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/50 bg-amber-950/80 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)] backdrop-blur-md whitespace-nowrap">
+                  <span className="text-[8px]">★</span>
+                  <span>{event.date}</span>
                 </span>
-              </a>
+
+                <a
+                  href={getEventRegistrationUrl(event.title) ?? "/register"}
+                  target={getEventRegistrationUrl(event.title) ? "_blank" : undefined}
+                  rel={getEventRegistrationUrl(event.title) ? "noopener noreferrer" : undefined}
+                  onClick={(e) => e.stopPropagation()}
+                  className="group/btn relative inline-flex items-center gap-1.5 rounded-full border border-white/35 bg-white/20 px-3.5 py-1 text-[11px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-300 hover:scale-[1.03] hover:border-azure/80 hover:bg-azure/50 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-[0.98] whitespace-nowrap"
+                >
+                  <span>Register</span>
+                  <span className="transition-transform duration-300 group-hover/btn:translate-x-0.5">
+                    →
+                  </span>
+                </a>
+              </div>
             </div>
           </article>
 
-          {/* ================= BACK FACE (FLIPPED - Full content, no scrollbar) ================= */}
+          {/* ================= BACK FACE: EVENT DETAILS ================= */}
           <article
-            className="backface-hidden rotate-y-180 absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#0b0f17] p-3 shadow-[var(--shadow-lift)] transition-all duration-500 sm:p-3.5"
+            className="backface-hidden rotate-y-180 absolute inset-0 flex h-full w-full flex-col justify-between overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#070a12] p-3 sm:p-3.5 shadow-[var(--shadow-lift)] transition-all duration-500"
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -107,62 +114,72 @@ function EventCard({ event, index }: { event: EventItem; index: number }) {
             {/* Top glowing neon accent line */}
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-violet to-transparent opacity-80" />
 
-            {/* Background Image */}
+            {/* Poster Background Image - Visible with contrast overlay */}
             <div className="absolute inset-0 overflow-hidden rounded-[1.5rem]">
               <img
                 src={event.image}
                 alt={event.title}
                 loading="lazy"
-                onError={(event) => {
-                  if (event.currentTarget.dataset["fallbackApplied"] === "true") return;
-                  event.currentTarget.dataset["fallbackApplied"] = "true";
-                  event.currentTarget.src = FALLBACK_EVENT_IMAGE;
+                onError={(e) => {
+                  if (e.currentTarget.dataset["fallbackApplied"] === "true") return;
+                  e.currentTarget.dataset["fallbackApplied"] = "true";
+                  e.currentTarget.src = "/events/Turing Trial.jpeg";
                 }}
-                className="h-full w-full object-cover opacity-90 transition-[transform,opacity] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:opacity-100"
+                className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/25 to-black/70" />
+              {/* Dark gradient overlay to preserve poster artwork visibility while keeping text crisp */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/90" />
             </div>
 
-            {/* FLOATING INNER BOX (BACK - Transparent Highlighted Glass) */}
-            <div className="relative z-10 flex flex-1 flex-col justify-between rounded-xl border border-white/25 bg-black/15 p-3.5 shadow-[0_4px_24px_rgba(0,0,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.25)] backdrop-blur-[1px] sm:p-4">
+            {/* Content Container */}
+            <div className="relative z-10 flex flex-1 flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/40 bg-cyan-950/80 px-2.5 py-0.5 font-mono text-[10.5px] font-bold uppercase tracking-[0.2em] text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.25)] backdrop-blur-md">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/50 bg-black/70 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300 backdrop-blur-md shadow-[0_0_10px_rgba(6,182,212,0.25)]">
                     {event.category}
                   </span>
-                  <span className="h-2 w-2 rounded-full bg-violet shadow-[0_0_10px_var(--color-violet)]" />
+                  <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-black/60 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-white/80 backdrop-blur-md">
+                    <span>Front</span>
+                    <span className="text-[10px]">↻</span>
+                  </span>
                 </div>
 
-                <h3 className="mt-2 font-display text-sm font-extrabold uppercase tracking-wide text-white [text-shadow:_0_2px_8px_rgba(0,0,0,1),_0_0_20px_rgba(0,0,0,0.9)] sm:text-base">
+                <h3 className="mt-2 font-display text-sm font-bold uppercase tracking-wide text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:text-base">
                   {event.title}
                 </h3>
 
-                {/* Complete description text with bright contrast */}
-                <p className="mt-1.5 font-sans text-[12px] font-medium leading-relaxed text-slate-100 [text-shadow:_0_1px_6px_rgba(0,0,0,1),_0_2px_4px_rgba(0,0,0,0.95)]">
-                  {event.description}
-                </p>
+                {event.venue ? (
+                  <p className="mt-0.5 font-mono text-[9.5px] uppercase tracking-wider text-cyan-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] leading-snug">
+                    📍 Venue: {event.venue}
+                  </p>
+                ) : null}
+
+                {/* Sleek semi-transparent glass panel for description to ensure 100% legibility */}
+                <div className="mt-2 rounded-xl border border-white/15 bg-black/55 p-2.5 sm:p-3 shadow-[0_4px_20px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.15)] backdrop-blur-md">
+                  <p className="font-sans text-[11.5px] sm:text-[12px] leading-relaxed text-slate-100">
+                    {event.description}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Bottom Action Bar (FLIPPED: Date on left, Register on right) */}
-            <div className="relative z-10 flex items-center justify-between gap-2 px-1 pt-2">
-              <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/50 bg-amber-950/80 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)] backdrop-blur-md whitespace-nowrap">
-                <span className="text-[8px]">★</span>
-                <span>{event.date}</span>
-              </span>
-
-              <a
-                href={getEventRegistrationUrl(event.title) ?? "/register"}
-                target={getEventRegistrationUrl(event.title) ? "_blank" : undefined}
-                rel={getEventRegistrationUrl(event.title) ? "noopener noreferrer" : undefined}
-                onClick={(e) => e.stopPropagation()}
-                className="group/btn relative inline-flex items-center gap-1.5 rounded-full border border-white/35 bg-white/15 px-3.5 py-1 text-[11.5px] font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md transition-all duration-300 hover:scale-[1.03] hover:border-azure/80 hover:bg-azure/40 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-[0.98] whitespace-nowrap"
-              >
-                <span>Register</span>
-                <span className="transition-transform duration-300 group-hover/btn:translate-x-0.5">
-                  →
+              {/* Back Face Footer */}
+              <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/50 bg-amber-950/80 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)] backdrop-blur-md whitespace-nowrap">
+                  <span className="text-[8px]">★</span>
+                  <span>{event.date}</span>
                 </span>
-              </a>
+
+                <a
+                  href={getEventRegistrationUrl(event.title) ?? "/register"}
+                  target={getEventRegistrationUrl(event.title) ? "_blank" : undefined}
+                  rel={getEventRegistrationUrl(event.title) ? "noopener noreferrer" : undefined}
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1 text-[11px] font-bold text-primary-foreground shadow-[0_0_15px_rgba(56,189,248,0.4)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] whitespace-nowrap"
+                >
+                  <span>Official Registration</span>
+                  <span>→</span>
+                </a>
+              </div>
             </div>
           </article>
         </div>

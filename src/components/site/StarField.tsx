@@ -88,9 +88,9 @@ export function StarField() {
       }));
 
       // No rocks on mobile at all
-      rocks = mobile ? [] : Array.from({ length: Math.max(5, Math.round(w / 190)) }, () =>
-        makeRock(false),
-      );
+      rocks = mobile
+        ? []
+        : Array.from({ length: Math.max(5, Math.round(w / 190)) }, () => makeRock(false));
     };
 
     build();
@@ -139,7 +139,7 @@ export function StarField() {
           s.x = Math.random() * w;
         }
         // Skip expensive sin() twinkling on mobile — use fixed alpha
-        const t = (reduced || mobile) ? 1 : 0.55 + 0.45 * Math.sin((now / 1000) * s.tw + s.ph);
+        const t = reduced || mobile ? 1 : 0.55 + 0.45 * Math.sin((now / 1000) * s.tw + s.ph);
         const alpha = (0.25 + 0.6 * s.z) * t;
         ctx.fillStyle = `rgba(235,242,255,${alpha.toFixed(2)})`;
         ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 2, s.r * 2);

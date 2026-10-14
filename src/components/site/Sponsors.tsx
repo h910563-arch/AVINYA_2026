@@ -4,9 +4,7 @@ import CircularCarousel from "./CircularCarousel";
 
 /** Returns the current window inner-width, updated on every resize. */
 function useWindowWidth() {
-  const [w, setW] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200,
-  );
+  const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
   useEffect(() => {
     const update = () => setW(window.innerWidth);
     window.addEventListener("resize", update, { passive: true });
@@ -22,21 +20,25 @@ export function Sponsors() {
   // Breakpoints:  ≤480 (phones) | ≤640 (large phones / foldable)
   //               ≤768 (tablets) | ≤1024 (iPad Pro / small laptop) | >1024 (desktop)
   const cardWidth = vw <= 480 ? 120 : vw <= 640 ? 148 : vw <= 768 ? 175 : vw <= 1024 ? 215 : 280;
-  const gap       = vw <= 480 ? 14  : vw <= 640 ? 20  : vw <= 768 ? 30  : vw <= 1024 ? 45  : 65;
-  const height    = vw <= 480 ? 260 : vw <= 640 ? 300 : vw <= 768 ? 360 : vw <= 1024 ? 420 : 480;
+  const gap = vw <= 480 ? 14 : vw <= 640 ? 20 : vw <= 768 ? 30 : vw <= 1024 ? 45 : 65;
+  const height = vw <= 480 ? 260 : vw <= 640 ? 300 : vw <= 768 ? 360 : vw <= 1024 ? 420 : 480;
   // ──────────────────────────────────────────────────────────────────────────
 
   const items = [
-    { src: "/logo/66b21b1a0d87de951a125c3c.png",        alt: "IIElevenLabs",     title: "IIElevenLabs" },
-    { src: "/logo/AlteredSecurity-2048x594--1-.png",     alt: "Altered Security", title: "Altered Security" },
-    { src: "/logo/DEVNOVATE.png",                        alt: "Devnovate",        title: "Devnovate" },
-    { src: "/logo/IBlogo_light.png",                     alt: "IB",               title: "IB" },
-    { src: "/logo/UptoSkills.png",                       alt: "UptoSkills",       title: "UptoSkills" },
-    { src: "/logo/logo.png",                             alt: "Partner",          title: "Partner" },
-    { src: "/logo/skillstory-text.png",                  alt: "Skillstory",       title: "Skillstory" },
-    { src: "/logo/indiebox logo.PNG",                    alt: "Indiebox",         title: "Indiebox" },
-    { src: "/logo/xyz logo.png",                         alt: "XYZ",              title: "XYZ" },
-    { src: "/logo/shekunj logo.png",                     alt: "Shekunj",          title: "Shekunj" },
+    { src: "/logo/66b21b1a0d87de951a125c3c.png", alt: "IIElevenLabs", title: "IIElevenLabs" },
+    {
+      src: "/logo/AlteredSecurity-2048x594--1-.png",
+      alt: "Altered Security",
+      title: "Altered Security",
+    },
+    { src: "/logo/DEVNOVATE.png", alt: "Devnovate", title: "Devnovate" },
+    { src: "/logo/IBlogo_light.png", alt: "IB", title: "IB" },
+    { src: "/logo/UptoSkills.png", alt: "UptoSkills", title: "UptoSkills" },
+    { src: "/logo/logo.png", alt: "Partner", title: "Partner" },
+    { src: "/logo/skillstory-text.png", alt: "Skillstory", title: "Skillstory" },
+    { src: "/logo/indiebox logo.PNG", alt: "Indiebox", title: "Indiebox" },
+    { src: "/logo/xyz logo.png", alt: "XYZ", title: "XYZ" },
+    { src: "/logo/shekunj logo.png", alt: "Shekunj", title: "Shekunj" },
   ];
 
   return (

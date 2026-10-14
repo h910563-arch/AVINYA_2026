@@ -49,13 +49,6 @@ export function Nav() {
           ))}
         </div>
 
-        <a
-          href={FEST.registerUrl}
-          className="hidden md:block rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[12.5px] font-medium tracking-tight transition-colors duration-500 hover:bg-white/14"
-        >
-          Register
-        </a>
-
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden flex items-center justify-center h-9 w-9 rounded-full border border-white/12 bg-white/8 text-white transition-colors duration-500 hover:bg-white/14"
@@ -124,22 +117,6 @@ export function Nav() {
                   </motion.a>
                 ))}
               </div>
-              <div className="hairline my-1" />
-              <motion.a
-                initial={{ opacity: 0, scale: 0.8, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20,
-                  delay: LINKS.length * 0.05 + 0.1,
-                }}
-                href={FEST.registerUrl}
-                onClick={() => setMenuOpen(false)}
-                className="inline-flex w-full justify-center rounded-xl bg-primary px-4 py-3 text-[14px] font-bold text-primary-foreground shadow-[0_0_15px_var(--color-primary)] transition-transform active:scale-95 hover:bg-primary/90"
-              >
-                Register Now
-              </motion.a>
             </motion.div>
           )}
         </AnimatePresence>
