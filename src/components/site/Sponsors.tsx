@@ -41,6 +41,7 @@ export function Sponsors() {
     { src: "/logo/indiebox logo.PNG", alt: "Indiebox", title: "Indiebox" },
     { src: "/logo/xyz logo.png", alt: "XYZ", title: "XYZ" },
     { src: "/logo/shekunj logo.png", alt: "Shekunj", title: "Shekunj" },
+    { src: "/logo/n8n_full_black_logo.png", alt: "n8n", title: "n8n" },
   ];
 
   return (

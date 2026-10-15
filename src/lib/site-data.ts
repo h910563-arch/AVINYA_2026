@@ -215,7 +215,7 @@ export const TEAMS: TeamGroup[] = [
     count: "03 members",
     members: [
       { name: "KRITIKA", image: "/team/Kritika.jpg" },
-      { name: "HARSH RAJ SINGH", image: "/team/HRS.jpeg" },
+      { name: "HARSH RAJ SINGH", image: "/team/HRS.png" },
       { name: "ISHIKA GOYAL", image: "/team/Ishika Goyal.jpg" },
     ],
   },
