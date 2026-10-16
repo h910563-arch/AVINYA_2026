@@ -48,9 +48,8 @@ export function Sponsors() {
     <section className="relative px-4 pt-28 pb-4 sm:px-6 sm:pt-36 sm:pb-6">
       <div className="mx-auto max-w-6xl">
         <h2
-          className={`mb-0 font-display text-[clamp(1.6rem,5vw,4rem)] font-semibold sm:mb-1 ${
-            THEME_WEB ? "section-heading-spider" : ""
-          }`}
+          className={`mb-0 font-display text-[clamp(1.6rem,5vw,4rem)] font-semibold sm:mb-1 ${THEME_WEB ? "section-heading-spider" : ""
+            }`}
         >
           <RevealText text="Community Partners & Sponsors" />
         </h2>

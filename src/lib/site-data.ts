@@ -102,7 +102,7 @@ export const EVENTS = [
     title: "DESIGNOPS",
     category: "UI/UX Design",
     date: "27 OCT",
-    venue: "L7/Physics Lab, 3rd Floor, BVS Block, GTB4CEC",
+    venue: "L7, 3rd Floor, BVS Block, GTB4CEC",
     image: "/events/Design Ops.jpeg",
     description:
       "Reinvent digital product interfaces. Transform complex user journeys into visually stunning, interactive, and human-centric design prototypes.",
